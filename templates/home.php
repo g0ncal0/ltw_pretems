@@ -5,7 +5,7 @@
         <main>
             <section class="box home-box">
                 <div>
-                    <h1>PRELOVED</h1>
+                    <h1>PRETEMS</h1>
                     <p>The website where you can find preloved items with quality</p>
                 </div>
                 <img src="">
