@@ -4,7 +4,7 @@
             <img src="img/dress.jpeg">
         
             <div class="box-details">
-                <h2>Title</h2>
+                <h3>Title</h3>
                 <p class="info"><span>NEW</span><span>BRAND</span></p>
                 <div>
                     <p>PRICE</p>
@@ -36,4 +36,33 @@
             </div>
         </section>
     <?php }
+
+    function output_cart_item() { ?>
+        <div class="box-item">             
+            <img src="img/dress.jpeg">
+        
+            <div class="box-details">
+                <h3>Title</h3>
+                <div>
+                    <p>PRICE</p>
+                </div>
+            </div>
+        </div>
+    <?php }
+
+    function output_list_items() {
+        // Esta função é para receber lista de items, está provisório assim
+        output_item();
+        output_item();
+        output_item();
+        output_item();
+    }
+
+    function output_list_cart_items() {
+        // Esta função é para receber lista de items, está provisório assim ?>
+        <h2>Cart</h2> <?php
+        output_cart_item();
+        output_cart_item();
+        output_cart_item();
+    }
 ?>

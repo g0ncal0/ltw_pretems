@@ -10,21 +10,9 @@
                 </div>
                 <img src="">
             </section>
-            <section class="container">
-                <h2><span class="special">Featured</span> Items</h2>
-                <div class="box-item">             
-                    <img src="img/dress.jpeg">
-                
-                    <div class="box-details">
-                        <h2>Title</h2>
-                        <p class="info"><span>NEW</span><span>BRAND</span></p>
-                        <div>
-                            <p>PRICE</p>
-                            <button class="button">ADD TO CART</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+
+            <?php output_featured() ?>
+
             <section class="container">
                 <h2>Shop by <span class="special">category</span></h2>
                 <ul class="category-list">
@@ -38,10 +26,8 @@
 
     function output_featured() { ?>
         <section class="container">
-                <h2><span class="special">Featured</span> Items</h2>
-                
-                <!-- Futura função de printar lista de items -->
-                <?php output_item(); ?>
-            </section>
+            <h2><span class="special">Featured</span> Items</h2>
+            <?php output_list_items(); ?>
+        </section>
     <?php }
 ?>
