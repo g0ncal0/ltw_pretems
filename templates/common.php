@@ -1,12 +1,27 @@
 <?php 
-    function output_header() { ?>
+    declare(strict_types=1);
+    function output_header($pagetitle, $description) { ?>
         <!DOCTYPE html>
         <html>
         <head>
-            <title>PRETEMS</title>
-            <!-- OTHER TAGS TO BE INSERTED HERE-->
+            <?php
+            if($pagetitle != null){
+                echo "<title>$pagetitle | PRETEMS</title>";
+            }else{
+                echo "<title>PRETEMS</title>";
+            }
+            ?>
 
-            <meta name="description" content="Preloved items with a twist">
+            <!-- OTHER TAGS TO BE INSERTED HERE-->
+            <?php
+            if($description != null){
+                echo "<meta name='description' content='$description'>";
+            }else{
+                echo "<meta name='description' content='The website where you will find pre-loved items with a twist!'>";
+            }
+
+            ?>
+            <meta name="description" content="<?php echo $description ?>">
             <link rel="stylesheet" href="normalize.css">
 
             <link rel="stylesheet" href="style.css">
@@ -43,6 +58,10 @@
                     <li>sth</li>
                     <li>sth</li>
                 </ul>
+                <form action="search.php" method="get">
+                    <input type="text" name="s" title="s">
+                    <button type="submit">🔎</button>
+                </form>
                 <div>
                     <p>Welcome, {name}!</p>
                     <p>Sign Out</p>
