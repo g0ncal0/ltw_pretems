@@ -22,7 +22,7 @@
 
     function getProductsOfCategory($db, $category) {
         $stmt = $db->prepare('SELECT * FROM products JOIN categories ON products.category = categories.id WHERE categories.name = ?');
-        $stmt->execute(array($id));
+        $stmt->execute(array($category));
         $products = $stmt->fetch();
         return $products;
     }
