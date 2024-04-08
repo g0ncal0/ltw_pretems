@@ -1,0 +1,10 @@
+h2 {
+    font-size: 3em;
+}
+
+.box-item{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    margin-bottom: 2em;
+}

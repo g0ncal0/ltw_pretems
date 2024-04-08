@@ -53,7 +53,7 @@
                     <p id="close-login">Close</p>
                     <p>Get into your account</p>
 
-                    <form action="action_login.php">
+                    <form action="/../actions/action_login.php" method="post">
                         <label for="email">Email Address</label>
                         <input type="email" id="email" name="email">
                         <label for="password">Password</label>
