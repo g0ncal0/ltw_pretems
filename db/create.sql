@@ -48,6 +48,7 @@ CREATE TABLE products
     condition INTEGER REFERENCES condition,
     price REAL NOT NULL,
     user INTEGER NOT NULL REFERENCES users, 
-    available BOOLEAN NOT NULL
+    available BOOLEAN NOT NULL,
+    description TEXT
 );
 
