@@ -40,6 +40,7 @@ CREATE TABLE productimgs (
 /* TODO: check if size is xs ... xxl (with PHP) */
 CREATE TABLE products
 (
+    name TEXT NOT NULL,
     date DATETIME NOT NULL,
     category INTEGER NOT NULL REFERENCES categories,
     brand INTEGER REFERENCES brands,
