@@ -32,9 +32,14 @@ CREATE TABLE condition(
     description TEXT NOT NULL
 );
 
+CREATE TABLE imgs(
+    id INTEGER NOT NULL PRIMARY KEY,
+    filename TEXT NOT NULL
+)
+
 CREATE TABLE productimgs (
     productid INTEGER REFERENCES products,
-    filename TEXT NOT NULL
+    imgid INTEGER REFERENCES imgs
 );
 
 /* TODO: check if size is xs ... xxl (with PHP) */
