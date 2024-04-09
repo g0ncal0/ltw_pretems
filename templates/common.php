@@ -72,7 +72,7 @@
                     <p id="close-login">Close</p>
                     <p>Get into your account</p>
 
-                    <form action="/../actions/action_login.php" method="post">
+                    <form action="/actions/action_login.php" method="post">
                         <label for="email">Email Address</label>
                         <input type="email" id="email" name="email">
                         <label for="password">Password</label>
@@ -80,7 +80,7 @@
                         <button type="submit">Login</button>
                     </form>
 
-                    <p>You can also signup</p>
+                    <p>You can also <a href="/register.php">signup</a></p>
                 </div>
             </div>
     <?php }
