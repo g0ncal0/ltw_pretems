@@ -51,7 +51,7 @@
     }
 
     function searchProducts($db, $query){
-        return fetchAll($db, 'SELECT * FROM products WHERE name LIKE ? OR description LIKE ?', array($query, $query));
+        return fetchAll($db, 'SELECT * FROM products WHERE name LIKE ? OR description LIKE ?', array("%$query%", "%$query%"));
     }
 
 
