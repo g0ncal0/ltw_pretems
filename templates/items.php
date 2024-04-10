@@ -4,7 +4,8 @@
             <img src="img/dress.jpeg">
         
             <div class="box-details">
-                <h3><?php echo $product['name']?></h3>
+                <a href="/item.php?id=<?php echo $product['id']?>">
+                <h3><?php echo $product['name']?></h3></a>
                 <p class="info"><span>NEW</span><span><?php echo $product['Brand']?></span></p>
                 <div>
                     <p><?php echo $product['price']?></p>
@@ -26,9 +27,13 @@
         
             <div class="container">
                 <h1><?php echo $product['name']?></h1>
-                <p class="info"><span>NEW</span><span><?php echo $product['Brand']?></span><span><?php echo $product['size']?></span></p>
-                <p><?php echo $product['description']?></p>
-    
+                <p class="info"><span><?php echo $product['brand']?></span><span><?php echo $product['size']?></span></p>
+                <p><?php echo $product['category']?></p>
+                <p><?php echo $product['date']?></p>
+                <p><?php echo $product['user']?></p>
+                <p><?php echo $product['model']?></p>
+
+
                 <p><?php echo $product['price']?></p>
                 <button class="button">FAVORITES</button>
                 <button class="button">ADD TO CART</button>
@@ -63,4 +68,5 @@
             <?php foreach($products as $product) output_cart_item($product); ?>
         </section>
     <?php }
+
 ?>

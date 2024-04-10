@@ -28,7 +28,9 @@
 .visible{
     display: block !important;
 }
-
+.special{
+    color: var(--main);
+}
 
 /**** PROMOTIONAL ****/
 .promotional{
@@ -215,6 +217,22 @@ body header{
 }
 
 
+
+/*********** INDEX ***********/
+
+
+.home-box{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14vw 19vh;
+    box-shadow: rgba(149, 157, 165, 0.1) 0px 2px 23px;
+    border-bottom-left-radius: 45px;
+    border-bottom-right-radius: 45px;
+}
+
+
+
+
 /**Shop by category **/
 
 .category-list{
@@ -264,3 +282,35 @@ body header{
         font-size: 3rem;
     }
 }
+
+
+
+/**** LOGIN & REGISTER FORMS ****/
+
+.account-form{
+    & input{
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 21rem;
+        min-height: 28px;
+        border-radius: 4px;
+        padding: 5px 12px;
+        margin: 1rem 0;
+        border: 2px solid transparent;
+        box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 24%) 0px 1px 2px;
+        background: rgb(251, 251, 251);
+        transition: all 0.1s ease 0s;
+        :focus{
+            border: 2px solid var(--grey);
+        }
+    
+    }
+    button[type='submit']{
+        width: 100%;
+        max-width: 21rem;
+        margin: 1rem 0;
+
+    }
+}
+

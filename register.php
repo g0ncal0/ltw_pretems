@@ -1,8 +1,9 @@
 <?php 
-    require_once('templates/common.php');
-    require_once('templates/profile.php');
+    require_once('include.php');
 
-    output_header("Register", null);
+    $db = getDatabaseConnection();
+
+    output_header($db, "Register", null);
 
 ?>
 
@@ -11,7 +12,7 @@
 
     <section class="container" >
         <h1>Register a new account</h1>
-        <form action="actions/action_register.php" method="post">
+        <form class="account-form" action="actions/action_register.php" method="post">
             <label for="name">Name</label>
             <input type="text" name="name" id="name">
 

@@ -1,11 +1,11 @@
 <?php 
-    require_once('templates/common.php');
-    require_once('templates/home.php');
+    require_once('include.php');
 
-    output_header(null, null);
+    $db = getDatabaseConnection();
+    output_header($db, null, null);
 ?>
 <main>
-    <section class="box home-box">
+    <section class="home-box">
         <div>
             <h1>PRETEMS</h1>
             <p>The website where you can find preloved items with quality</p>
@@ -14,10 +14,10 @@
         <img src="">
     </section>
 
-    <?php output_featured() ?>
-
-    <?php output_categories() ?>
-
+   
+    <section class="container">
+        <?php output_list_categories($db, "category-list", null);?>
+    </section>
 </main>
 
 <?php

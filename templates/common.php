@@ -1,6 +1,7 @@
 <?php 
     declare(strict_types=1);
-    function output_header($pagetitle, $description) { ?>
+    require_once(__DIR__ . '/mixed.php');
+    function output_header($db, $pagetitle, $description) { ?>
         <!DOCTYPE html>
         <html>
         <head>
@@ -48,16 +49,10 @@
             <div class="menu"> <!-- MENU -->
                 <span id="close-menu" >Close</span>
                 <p class="logo-text">PRETEMS</p>
-                <ul>
-                    <li>sth</li>
-                    <li id="m-category">Categories</li>
-                    <ul>
-                        <li>CAT 1</li>
-                        <li>CAT 2</li>
-                    </ul>
-                    <li>sth</li>
-                    <li>sth</li>
-                </ul>
+                <?php 
+                    output_list_categories($db, "", "");
+                ?>
+                
                 <form action="search.php" method="get">
                     <input type="text" name="s" title="s">
                     <button type="submit">🔎</button>
@@ -72,7 +67,7 @@
                     <p id="close-login">Close</p>
                     <p>Get into your account</p>
 
-                    <form action="/actions/action_login.php" method="post">
+                    <form class="account-form" action="/actions/action_login.php" method="post">
                         <label for="email">Email Address</label>
                         <input type="email" id="email" name="email">
                         <label for="password">Password</label>

@@ -1,29 +1,58 @@
 <?php 
+
+    function fetchAll($db, $query, $array){
+        $stmt = $db->prepare($query);
+        if(isset($array)){
+            $stmt->execute($array);
+        }else{
+            $stmt->execute();
+        }
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
+    function fetch($db, $query, $array){
+        $stmt = $db->prepare($query);
+        if(isset($array)){
+            $stmt->execute($array);
+        }else{
+            $stmt->execute();
+        }
+        $result = $stmt->fetch();
+        return $result;
+    }
+
+
+    /******* USEFUL FUNCTIONS ********/
+
+
+
+
     function getAllProducts($db) {
-        $stmt = $db->prepare('SELECT * FROM products');
-        $stmt->execute();
-        $products = $stmt->fetchAll();
-        return $products;
+        return fetchAll($db, 'SELECT * FROM products', null);
     }
 
     function getProduct($db, $id) {
-        $stmt = $db->prepare('SELECT * FROM products WHERE id = ?');
-        $stmt->execute(array($id));
-        $product = $stmt->fetch();
-        return $product;
+        return fetch($db, 'SELECT * FROM products WHERE id = ?',array($id));
+        
     }
 
     function getProductsOfUser($db, $id) {
-        $stmt = $db->prepare('SELECT * FROM products JOIN users ON products.user = users.username WHERE users.id = ?');
-        $stmt->execute(array($id));
-        $products = $stmt->fetch();
-        return $products;
+        return fetch($db, 'SELECT * FROM products JOIN users ON products.user = users.username WHERE users.id = ?', array($id)
+    );
     }
 
     function getProductsOfCategory($db, $category) {
-        $stmt = $db->prepare('SELECT * FROM products JOIN categories ON products.category = categories.id WHERE categories.name = ?');
-        $stmt->execute(array($category));
-        $products = $stmt->fetch();
-        return $products;
+        return fetchAll($db, 'SELECT * FROM products JOIN categories ON products.category = categories.id WHERE categories.name = ?', array($category));
     }
+
+    function getCategories($db){
+        return fetchAll($db, 'SELECT * FROM categories', null);
+    }
+
+    function searchProducts($db, $query){
+        return fetchAll($db, 'SELECT * FROM products WHERE name LIKE ? OR description LIKE ?', array($query, $query));
+    }
+
+
 ?>

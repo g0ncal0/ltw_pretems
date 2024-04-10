@@ -1,18 +1,26 @@
 <?php 
-    require_once('templates/common.php');
-    require_once('db/connection.php');
-    require_once('templates/home.php');
-    require_once('db/products.php');
+    require_once('include.php');
 
-    output_header("Our catalogue", null);
+    $db = getDatabaseConnection();
+
+    output_header($db,"Our catalogue", null);
 ?>
 <main>
 
 <?php
-    $db = getDatabaseConnection();
+
+    $title = "Products";
+    if(isset($_GET['category'])){
+        // the user is searching for category
+        
+    }
+
+
     $items = getAllProducts($db);
     output_list_items($items);
 ?>
-
 </main>
 
+<?php
+    output_footer();
+?>

@@ -1,13 +1,18 @@
 <?php 
-    require_once('templates/common.php');
-    require_once('templates/items.php');
-
+    require_once('include.php');
 
     $itemname = "Beautiful Dress";
     $itemdescription = "A very beautiful dress only used once.";
 
-    output_header($itemname, $itemdescription);
+    $db = getDatabaseConnection();
+
+
+    output_header($db, $itemname, $itemdescription);
+
+
+    $id = $_GET['id'];
+    $item = getProduct($db, $id);
     
-    output_full_item();
+    output_full_item($item);
     output_footer();
 ?>

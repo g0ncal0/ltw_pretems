@@ -35,7 +35,7 @@ CREATE TABLE condition(
 CREATE TABLE imgs(
     id INTEGER NOT NULL PRIMARY KEY,
     filename TEXT NOT NULL
-)
+);
 
 CREATE TABLE productimgs (
     productid INTEGER REFERENCES products,
@@ -46,6 +46,7 @@ CREATE TABLE productimgs (
 CREATE TABLE products
 (
     name TEXT NOT NULL,
+    id INTEGER NOT NULL PRIMARY KEY,
     date DATETIME NOT NULL,
     category INTEGER NOT NULL REFERENCES categories,
     brand INTEGER REFERENCES brands,
