@@ -310,7 +310,10 @@ body header{
         width: 100%;
         max-width: 21rem;
         margin: 1rem 0;
-
     }
 }
 
+.header-content{
+    padding: 2rem 4rem;
+    text-align: center;
+}

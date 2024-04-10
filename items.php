@@ -12,8 +12,9 @@
     $title = "Products";
     if(isset($_GET['category'])){
         // the user is searching for category
-        
+        $title = $_GET['category'];
     }
+    simpleheader($title);
 
 
     $items = getAllProducts($db);

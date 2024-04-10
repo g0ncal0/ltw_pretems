@@ -72,13 +72,22 @@
                         <input type="email" id="email" name="email">
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password">
-                        <button type="submit">Login</button>
+                        <button class="button" type="submit">Login</button>
                     </form>
 
                     <p>You can also <a href="/register.php">signup</a></p>
                 </div>
             </div>
     <?php }
+
+    function simpleheader($title){
+        ?>
+            <section class="header-content">
+                <h1><?php echo $title ?></h1>
+            </section>
+
+        <?php
+    }
 
     function output_footer() { ?>
         <footer>

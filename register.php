@@ -23,7 +23,7 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="password">
 
-            <button type="submit">Register</button>
+            <button class="button" type="submit">Register</button>
         </form>
     </section>
 

@@ -56,8 +56,7 @@
     <?php }
 
     function output_list_items($products) {?>
-        <section class="products">
-            <h2>Products</h2>
+        <section class="container products">
             <?php foreach($products as $product) output_item($product); ?>
         </section>
     <?php }
