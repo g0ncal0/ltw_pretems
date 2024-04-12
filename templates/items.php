@@ -9,7 +9,7 @@
                 <p class="info"><span>NEW</span><span><?php echo $product['Brand']?></span></p>
                 <div>
                     <p><?php echo $product['price']?></p>
-                    <button class="button">ADD TO CART</button>
+                    <button data-id="<?php echo $product['id'] ?>"  class="button add-cart">ADD TO CART</button>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
 
                 <p><?php echo $product['price']?></p>
                 <button class="button">FAVORITES</button>
-                <button class="button">ADD TO CART</button>
+                <button data-id="<?php echo $product['id'] ?>" class="button">ADD TO CART</button>
                 <button class="button">ASK USER</button>
             </div>
         </section>

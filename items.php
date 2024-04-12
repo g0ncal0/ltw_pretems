@@ -16,7 +16,6 @@
     }
     simpleheader($title);
 
-
     $items = getAllProducts($db);
     output_list_items($items);
 ?>
