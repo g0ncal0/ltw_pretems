@@ -23,6 +23,15 @@
     }
 
 
+    function execute($db, $action, $data){
+        $stmt = $db->prepare($action);
+        if(isset($data)){
+            $stmt->execute($data);
+        }else{
+            $stmt->execute();
+        }
+    }
+
     /******* USEFUL FUNCTIONS ********/
 
 

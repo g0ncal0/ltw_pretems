@@ -59,3 +59,9 @@ CREATE TABLE products
     description TEXT
 );
 
+
+CREATE TABLE cart
+{
+    product INTEGER NOT NULL REFERENCES(products),
+    user INTEGER NOT NULL REFERENCES(users)
+}
