@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS imgs;
 DROP TABLE IF EXISTS productimgs;
 DROP TABLE IF EXISTS cart;
+DROP TABLE IF EXISTS sizes;
 
 CREATE TABLE users (
     name TEXT NOT NULL,
@@ -15,7 +16,8 @@ CREATE TABLE users (
     email TEXT  NOT NULL,
     username TEXT NOT NULL,
     password TEXT NOT NULL,
-    admin BOOLEAN
+    admin BOOLEAN,
+    profileImg TEXT
 );
 
 CREATE TABLE categories(
@@ -70,7 +72,8 @@ CREATE TABLE cart (
     user INTEGER NOT NULL REFERENCES users
 );
 
-INSERT INTO users VALUES ('Zé', 0, 'ze@gmail.com', 'zeze', '1234', FALSE);
+INSERT INTO users VALUES ('Zé', 0, 'ze@gmail.com', 'zeze', '1234', FALSE, 'img/profile.png');
+INSERT INTO users VALUES ('Maria', 1, 'maria@gmail.com', 'maria', '1234', FALSE, 'img/profile.png');
 
 INSERT INTO categories VALUES (0, 'pretty');
 
