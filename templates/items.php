@@ -32,8 +32,6 @@
                 <p><?php echo $product['date']?></p>
                 <p><?php echo $product['user']?></p>
                 <p><?php echo $product['model']?></p>
-
-
                 <p><?php echo $product['price']?></p>
                 <button class="button">FAVORITES</button>
                 <button data-id="<?php echo $product['id'] ?>" class="button">ADD TO CART</button>

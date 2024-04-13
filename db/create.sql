@@ -34,14 +34,19 @@ CREATE TABLE conditions(
     description TEXT NOT NULL
 );
 
+CREATE TABLE sizes(
+    id INTEGER PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL
+);
+
 CREATE TABLE products (
     name TEXT NOT NULL,
     id INTEGER NOT NULL PRIMARY KEY,
     date DATETIME NOT NULL,
-    category INTEGER NOT NULL REFERENCES  categories,
+    category INTEGER NOT NULL REFERENCES categories,
     brand INTEGER REFERENCES brands,
     model TEXT NOT NULL,
-    size TEXT NOT NULL, 
+    size INT NOT NULL REFERENCES sizes,
     condition INTEGER REFERENCES conditions,
     price REAL NOT NULL,
     user INTEGER NOT NULL REFERENCES users, 
@@ -69,7 +74,9 @@ INSERT INTO users VALUES ('Zé', 0, 'ze@gmail.com', 'zeze', '1234', FALSE);
 
 INSERT INTO categories VALUES (0, 'pretty');
 
-INSERT INTO products VALUES ('dress', 0, '2023-11-12', 0, NULL, 'modelo2', '0', NULL, 80.9, 0, TRUE, 'beautiful dress with some functionality. I guess..', NULL);
+INSERT INTO sizes VALUES (0, 'XL');
+
+INSERT INTO products VALUES ('dress', 0, '2023-11-12', 0, NULL, 'modelo2', 0, NULL, 80.9, 0, TRUE, 'beautiful dress with some functionality. I guess..', NULL);
 
 INSERT INTO imgs VALUES (0, 'img/dress.jpeg');
 INSERT INTO imgs VALUES (1, 'img/dress-beach.jpg');
