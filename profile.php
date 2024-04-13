@@ -13,6 +13,7 @@
 
     if ($session->isLoggedIn() && ($id == $session->getId())) { ?>
         <a href="changeProfile.php"><button>Change Profile</button></a>
+        <a href="addProduct.php"><button>Add Product</button></a>
     <?php }
 
     output_footer();

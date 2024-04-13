@@ -32,8 +32,7 @@ CREATE TABLE brands(
 
 CREATE TABLE conditions(
     id INTEGER PRIMARY KEY NOT NULL,
-    name TEXT NOT NULL,
-    description TEXT NOT NULL
+    name TEXT NOT NULL
 );
 
 CREATE TABLE sizes(
@@ -48,7 +47,7 @@ CREATE TABLE products (
     category INTEGER NOT NULL REFERENCES categories,
     brand INTEGER REFERENCES brands,
     model TEXT NOT NULL,
-    size INT NOT NULL REFERENCES sizes,
+    size INTEGER NOT NULL REFERENCES sizes,
     condition INTEGER REFERENCES conditions,
     price REAL NOT NULL,
     user INTEGER NOT NULL REFERENCES users, 
@@ -75,11 +74,25 @@ CREATE TABLE cart (
 INSERT INTO users VALUES ('Zé', 0, 'ze@gmail.com', 'zeze', '1234', FALSE, 'img/profile.png');
 INSERT INTO users VALUES ('Maria', 1, 'maria@gmail.com', 'maria', '1234', FALSE, 'img/profile.png');
 
-INSERT INTO categories VALUES (0, 'pretty');
+INSERT INTO categories VALUES (0, 'Pretty');
+INSERT INTO categories VALUES (1, 'Party');
+INSERT INTO categories VALUES (2, 'Sports');
 
-INSERT INTO sizes VALUES (0, 'XL');
+INSERT INTO sizes VALUES (0, 'XS');
+INSERT INTO sizes VALUES (1, 'S');
+INSERT INTO sizes VALUES (2, 'M');
+INSERT INTO sizes VALUES (3, 'L');
+INSERT INTO sizes VALUES (4, 'XL');
 
-INSERT INTO products VALUES ('dress', 0, '2023-11-12', 0, NULL, 'modelo2', 0, NULL, 80.9, 0, TRUE, 'beautiful dress with some functionality. I guess..', NULL);
+INSERT INTO brands VALUES (0, 'Nike');
+INSERT INTO brands VALUES (1, 'Adidas');
+INSERT INTO brands VALUES (2, 'Pull n Bear');
+
+INSERT INTO conditions VALUES (0, 'New');
+INSERT INTO conditions VALUES (1, 'Nearely used');
+INSERT INTO conditions VALUES (2, 'Used');
+
+INSERT INTO products VALUES ('dress', 0, '2023-11-12', 0, 0, 'modelo2', 0, 0, 80.9, 0, TRUE, 'beautiful dress with some functionality. I guess..', 'img/dress.jpeg');
 
 INSERT INTO imgs VALUES (0, 'img/dress.jpeg');
 INSERT INTO imgs VALUES (1, 'img/dress-beach.jpg');

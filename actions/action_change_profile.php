@@ -8,5 +8,5 @@
 
     changeProfile($db, $session->getId(), $_POST['name'], $_POST['email'], $_POST['password']); 
 
-    header('Location: ../users.php?id=' . $session->getId());
+    header('Location: ../profile.php?id=' . $session->getId());
 ?>
