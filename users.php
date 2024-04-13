@@ -12,9 +12,8 @@
     output_profile($profile);
 
     if ($session->isLoggedIn() && ($id == $session->getId())) { ?>
-        <h1>HIIIII</h1>
+        <a href="changeProfile.php"><button>Change Profile</button></a>
     <?php }
 
-    // have logic: if user is current user, have option for edition
     output_footer();
 ?>
