@@ -49,7 +49,11 @@
             <div class="box-details">
                 <h3><?php echo $product['name']?></h3>
                 <div>
-                    <p><?php echo $product['name']?></p>
+                    <p><?php echo $product['model']?></p><br>
+                    <p><?php echo $product['size']?></p><br><br>
+                    <p><?php echo $product['description']?></p><br>
+                    <p><?php echo $product['price'];  echo '$' ?></p>
+                    // TODO: Something missing?
                 </div>
             </div>
         </div>
@@ -63,7 +67,7 @@
 
     function output_list_cart_items($products) { ?>
         <section class="cart">
-            <h2>Cart</h2>
+            <!-- <h2>Cart</h2> -->
             <?php foreach($products as $product) output_cart_item($product); ?>
         </section>
     <?php }
