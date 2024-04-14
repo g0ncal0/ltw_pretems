@@ -1,67 +1,63 @@
 <?php 
 
-    function fetchAll($db, $query, $array){
-        $stmt = $db->prepare($query);
-        if(isset($array)){
-            $stmt->execute($array);
-        }else{
-            $stmt->execute();
-        }
-        $result = $stmt->fetchAll();
-        return $result;
-    }
+require_once('util.php');
 
-    function fetch($db, $query, $array){
-        $stmt = $db->prepare($query);
-        if(isset($array)){
-            $stmt->execute($array);
-        }else{
-            $stmt->execute();
-        }
-        $result = $stmt->fetch();
-        return $result;
-    }
+function getAllProducts($db) {
+    return fetchAll($db, 'SELECT * FROM products', null);
+}
 
+function getProduct($db, $id) {
+    return fetch($db, 'SELECT * FROM products WHERE id = ?',array($id));
+}
 
-    function execute($db, $action, $data){
-        $stmt = $db->prepare($action);
-        if(isset($data)){
-            $stmt->execute($data);
-        }else{
-            $stmt->execute();
-        }
-    }
+function getProductsOfUser($db, $id) {
+    return fetch($db, 'SELECT * FROM products JOIN users ON products.user = users.username WHERE users.id = ?', array($id));
+}
 
-    /******* USEFUL FUNCTIONS ********/
+function getProductsOfCategory($db, $category) {
+    return fetchAll($db, 'SELECT * FROM products JOIN categories ON products.category = categories.id WHERE categories.name = ?', array($category));
+}
 
+function getCategories($db){
+    return fetchAll($db, 'SELECT * FROM categories', null);
+}
 
+function getBrands($db){
+    return fetchAll($db, 'SELECT * FROM brands', null);
+}
 
+function getSizes($db){
+    return fetchAll($db, 'SELECT * FROM sizes', null);
+}
 
-    function getAllProducts($db) {
-        return fetchAll($db, 'SELECT * FROM products', null);
-    }
+function getConditions($db){
+    return fetchAll($db, 'SELECT * FROM conditions', null);
+}
 
-    function getProduct($db, $id) {
-        return fetch($db, 'SELECT * FROM products WHERE id = ?',array($id));
-        
-    }
+function getCategory($db, $id){
+    return fetch($db, 'SELECT name FROM categories WHERE id = ?', array($id))['name'];
+}
 
-    function getProductsOfUser($db, $id) {
-        return fetch($db, 'SELECT * FROM products JOIN users ON products.user = users.username WHERE users.id = ?', array($id)
-    );
-    }
+function getBrand($db, $id){
+    return fetch($db, 'SELECT name FROM brands WHERE id = ?', array($id))['name'];
+}
 
-    function getProductsOfCategory($db, $category) {
-        return fetchAll($db, 'SELECT * FROM products JOIN categories ON products.category = categories.id WHERE categories.name = ?', array($category));
-    }
+function getSize($db, $id){
+    return fetch($db, 'SELECT name FROM sizes WHERE id = ?', array($id))['name'];
+}
 
-    function getCategories($db){
-        return fetchAll($db, 'SELECT * FROM categories', null);
-    }
+function getCondition($db, $id){
+    return fetch($db, 'SELECT name FROM conditions WHERE id = ?', array($id))['name'];
+}
 
-    function searchProducts($db, $query){
-        return fetchAll($db, 'SELECT * FROM products WHERE name LIKE ? OR description LIKE ?', array("%$query%", "%$query%"));
-    }
+function searchProducts($db, $query){
+    return fetchAll($db, 'SELECT * FROM products WHERE name LIKE ? OR description LIKE ?', array("%$query%", "%$query%"));
+}
 
+function addProduct($db, $name, $date, $category, $brand, $model, $size, $condition, $price, $user, $available, $description, $firstImg) {
+    execute($db, 
+    'INSERT INTO products (name, date, category, brand, model, size, condition, price, user, available, description, firstImg) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+     array($name, $date, $category, $brand, $model, $size, $condition, $price, $user, $available, $description, $firstImg));
+}
 
 ?>
