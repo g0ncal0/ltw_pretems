@@ -20,8 +20,6 @@
         return $cart_items;
     }
 
-    $cart_items = get_cart_items_from_user($db);
-
 
     ?><link rel="stylesheet" href="cart.css"><?php  // FIXME: Should this be here?
 
