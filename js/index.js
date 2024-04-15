@@ -1,9 +1,16 @@
 
 
 function toggleMenu(){
+    
     document.querySelector(".login-signup").classList.remove("visible");
+   
     document.querySelector(".menu").classList.toggle("visible");
-    document.querySelector("html main").classList.toggle("stop-behavior");
+
+    if(!document.querySelector('.menu').classList.contains("visible")){
+        document.querySelector("html main").classList.remove("stop-behavior");
+    }else{
+        document.querySelector("html main").classList.add("stop-behavior");
+    }
 }
 
 document.querySelector("header .menu-header").addEventListener("click", toggleMenu);
@@ -15,7 +22,12 @@ function toggleLoginSignup(){
     document.querySelector(".menu").classList.remove("visible");
     const loginel = document.querySelector(".login-signup");
     loginel.classList.toggle("visible");
-    document.querySelector("html main").classList.toggle("stop-behavior");
+
+    if(!loginel.classList.contains("visible")){
+        document.querySelector("html main").classList.remove("stop-behavior");
+    }else{
+        document.querySelector("html main").classList.add("stop-behavior");
+    }
 }
 
 
