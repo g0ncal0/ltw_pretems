@@ -5,6 +5,7 @@
 
   output_header($db,"Checkout", null);
 
+  protectPage();
 ?>
 
 <main>
