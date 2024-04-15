@@ -20,6 +20,9 @@
         return $cart_items;
     }
 
+    $cart_items = get_cart_items_from_user($db);
+
+
     ?><link rel="stylesheet" href="cart.css"><?php  // FIXME: Should this be here?
 
     $cart_items = get_cart_items_from_user($db);
@@ -34,8 +37,13 @@
     <main>
     <h2>Cart</h2>
     <div class="cart_interface">
-        <?php if(!isset($cart_items)){echo "Your cart is empty";}else{output_list_cart_items($cart_items);} ?>
-        <?php output_total($sum); ?>
+        <?php 
+            if ($cart_items){
+             output_list_cart_items($cart_items); 
+        } else {
+            echo "<p>There are currently no items in your shopping cart</p>";
+        }
+        output_total($sum); ?>
     </div>
     </main>
     <?php
