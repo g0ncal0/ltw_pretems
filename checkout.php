@@ -1,14 +1,15 @@
 <?php
   require_once('include.php');
+  $session = new Session();
 
   $db = getDatabaseConnection();
 
-  output_header($db,"Checkout", null);
+  output_header($db,"Checkout", null, $session->getId());
 
   protectPage();
 ?>
 
-<main>
+
     <section class="container">
         <h1>Checkout</h1>
         <p>We are almost there!</p>
@@ -21,4 +22,3 @@
         </form>
 
     <section>
-</main>

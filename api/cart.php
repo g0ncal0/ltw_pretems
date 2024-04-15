@@ -1,24 +1,26 @@
 <?php
     // ALLOWED: 'insert', 'remove', 'empty'
     require_once(__DIR__ . '/../include.php');
+    header('Content-Type: application/json');
 
-    session_start();
-
-    var_dump($_SESSION['cart']);
+    $session = new Session();
     if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
         return;
     }
     $type = $_GET["type"];
     $product = $_GET["product"];
 
-    if(!isset($type)){
-        return;
-    }
 
-    $user = $_SESSION['id'];
 
-    if(isset($user)){
+    $user = $session->getId();
+
+    if($user !== NULL){
         $db = getDatabaseConnection();
+        if(!isset($type)){
+            $ci = fetchAll($db, 'SELECT product FROM cart WHERE user = ?', array($session->getId()));
+            echo json_encode($ci);
+            return;
+        }
         if($type === 'insert'){
             // we want to insert the element on the database
             execute($db, 'INSERT INTO cart VALUES(?,?)', [$product, $user]);
@@ -30,16 +32,21 @@
             execute($db, 'DELETE FROM cart WHERE user = ?', [$user]);
         }
     }else{
-        if(!isset($_SESSION['cart'])){
-            $_SESSION['cart'] = array();
+        if(!isset($type)){
+            $cart = $session->getCart();
+            $cart_items = getItemsOnIDs($db, $cart);
+            echo json_encode($cart_items);
+        }
+        if($session->getCart === NULL){
+            $session->setCard(array());
         }
         if($type === 'empty'){
-            $_SESSION['cart'] = array();
+            $session->setCard(array());
         }
  
         if($type === 'insert'){
             // we just associate it with session
-            if (!in_array($product, $_SESSION['cart'])) {
+            if (!in_array($product, $session->getCart())) {
                 array_push($_SESSION['cart'], $product);
             }
         }

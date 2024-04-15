@@ -18,16 +18,28 @@ document.querySelector(".menu #close-menu").addEventListener("click", toggleMenu
 
 
 
-function toggleLoginSignup(){
-    document.querySelector(".menu").classList.remove("visible");
-    const loginel = document.querySelector(".login-signup");
-    loginel.classList.toggle("visible");
-
-    if(!loginel.classList.contains("visible")){
-        document.querySelector("html main").classList.remove("stop-behavior");
-    }else{
-        document.querySelector("html main").classList.add("stop-behavior");
-    }
+async function toggleLoginSignup(){
+    await fetch('/api/user.php').then(
+        (e)=>{e.json().then(
+            (user)=>{
+                console.log(user);
+                if(user.user){
+                    window.location.replace("/profile.php");
+                }else{
+                    document.querySelector(".menu").classList.remove("visible");
+                    const loginel = document.querySelector(".login-signup");
+                    loginel.classList.toggle("visible");
+                
+                    if(!loginel.classList.contains("visible")){
+                        document.querySelector("html main").classList.remove("stop-behavior");
+                    }else{
+                        document.querySelector("html main").classList.add("stop-behavior");
+                    }
+                }
+            }
+        )}
+    )
+    
 }
 
 
@@ -38,7 +50,7 @@ document.querySelectorAll(".toggle-login").forEach(function(btn){
 
 
 async function logout(){
-    await fetch('api/logout.php');
+    await fetch('api/logout.php').then(() => {window.location.reload()});
 }
 
 document.querySelectorAll(".act-logout").forEach(function(btn){

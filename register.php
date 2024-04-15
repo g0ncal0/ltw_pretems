@@ -1,14 +1,14 @@
 <?php 
     require_once('include.php');
+    $session = new Session();
 
     $db = getDatabaseConnection();
 
-    output_header($db, "Register", null);
+    output_header($db, "Register", null, $session->getId());
 
 ?>
 
 
-<main>
 
     <section class="container" >
         <h1>Register a new account</h1>
@@ -26,9 +26,6 @@
             <button class="button" type="submit">Register</button>
         </form>
     </section>
-
-</main>
-
 
 <?php
 

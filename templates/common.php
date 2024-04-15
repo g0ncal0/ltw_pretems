@@ -2,7 +2,8 @@
     declare(strict_types=1);
     require_once(__DIR__ . '/mixed.php');
     require_once(__DIR__ . '/../session.php');
-    function output_header($db, $pagetitle, $description) { ?>
+
+    function output_header($db, $pagetitle, $description, $user) { ?>
         <!DOCTYPE html>
         <html>
         <head>
@@ -59,12 +60,9 @@
                     <button type="submit">🔎</button>
                 </form>
                 <?php
-                    $session = new Session();
-                    $user = $session->getId();
-                    if($user){
+                    if(isset($user)){
                         ?>
                             <div>
-                                <p>Sign Out</p>
                                 <a class="act-logout">Log Out</a>
                             </div>
                         <?php

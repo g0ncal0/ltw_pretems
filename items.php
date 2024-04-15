@@ -1,11 +1,11 @@
 <?php 
     require_once('include.php');
+    $session = new Session();
 
     $db = getDatabaseConnection();
 
-    output_header($db,"Our catalogue", null);
+    output_header($db,"Our catalogue", null, $session->getId());
 ?>
-<main>
 
 <?php
 
@@ -26,7 +26,7 @@
 
     output_list_items($items);
 ?>
-</main>
+
 
 <?php
     output_footer();
