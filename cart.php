@@ -8,10 +8,15 @@
 
     output_header($db, "Your shopping Cart", null);    
 
+    session_start();
+
     function get_cart_items_from_user($db) {  // FIXME: Fix query 
-        $stmt = $db->prepare('SELECT * FROM products WHERE id IN (SELECT product FROM cart)');
-        $stmt->execute();
-        $cart_items = $stmt->fetchAll();
+        if(isset($_SESSION['id'])){
+            $cart_items = fetchAll($db, 'SELECT * FROM products WHERE id IN (SELECT product FROM cart)', null);
+        }else{
+            $cart = $_SESSION['cart'];
+            $cart_items = getItemsOnIDs($db, $cart);
+        }
         return $cart_items;
     }
 
@@ -20,8 +25,16 @@
 
     ?><link rel="stylesheet" href="cart.css"><?php  // FIXME: Should this be here?
 
+    $cart_items = get_cart_items_from_user($db);
+    $sum = 0;
+    
+    foreach($cart_items as $ci){
+        $sum += $ci['price'];
+    }
+
     // Output cart interface
     ?>
+    <main>
     <h2>Cart</h2>
     <div class="cart_interface">
         <?php 
@@ -30,8 +43,9 @@
         } else {
             echo "<p>There are currently no items in your shopping cart</p>";
         }
-        output_total(); ?>
+        output_total($sum); ?>
     </div>
+    </main>
     <?php
 
     output_footer();

@@ -32,6 +32,12 @@
         public function setName(string $name) {
         $_SESSION['name'] = $name;
         }
+        public function setCart(array $cart){
+            $_SESSION['cart'] = $cart;
+        }
+        public function getCart() : array{
+            return $_SESSION['cart'];
+        }
 
         public function addMessage(string $type, string $text) {
         $_SESSION['messages'][] = array('type' => $type, 'text' => $text);

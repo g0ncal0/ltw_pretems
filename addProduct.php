@@ -10,7 +10,10 @@
     $sizes = getSizes($db);
     $conditions = getConditions($db);
 
-    output_header($db, 'Add Product', null); ?>
+    output_header($db, 'Add Product', null); 
+    protectPage();
+    ?>
+
 
     <form class="profile-form" action="/actions/action_add_product.php" method="post">
     <label for="name">Product Name:</label>

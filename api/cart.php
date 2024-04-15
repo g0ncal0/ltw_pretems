@@ -4,6 +4,7 @@
 
     session_start();
 
+    var_dump($_SESSION['cart']);
     if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
         return;
     }
@@ -14,7 +15,7 @@
         return;
     }
 
-    $user = $_SESSION['user'];
+    $user = $_SESSION['id'];
 
     if(isset($user)){
         $db = getDatabaseConnection();
