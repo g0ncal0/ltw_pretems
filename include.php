@@ -8,4 +8,4 @@ require_once(__DIR__ . '/templates/items.php');
 require_once(__DIR__ . '/db/connection.php');
 require_once(__DIR__ . '/db/products.php');
 require_once(__DIR__ . '/db/users.php');
-
+require_once(__DIR__ . '/db/images.php');

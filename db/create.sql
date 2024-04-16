@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS brands;
 DROP TABLE IF EXISTS conditions;
+DROP TABLE IF EXISTS condition;
 DROP TABLE IF EXISTS productimgs;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS imgs;
@@ -42,7 +43,7 @@ CREATE TABLE sizes(
 
 CREATE TABLE products (
     name TEXT NOT NULL,
-    id INTEGER NOT NULL PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     date DATETIME NOT NULL,
     category INTEGER NOT NULL REFERENCES categories,
     brand INTEGER REFERENCES brands,
@@ -51,19 +52,15 @@ CREATE TABLE products (
     condition INTEGER REFERENCES conditions,
     price REAL NOT NULL,
     user INTEGER NOT NULL REFERENCES users, 
-    available BOOLEAN NOT NULL,
+    available BOOLEAN DEFAULT 0,
     description TEXT,
     firstImg TEXT
 );
 
-CREATE TABLE imgs(
-    id INTEGER NOT NULL PRIMARY KEY,
-    filename TEXT NOT NULL
-);
-
 CREATE TABLE productimgs (
+    id INTEGER PRIMARY KEY,
     productid INTEGER REFERENCES products,
-    imgid INTEGER REFERENCES imgs
+    path TEXT
 );
 
 CREATE TABLE cart (
@@ -94,7 +91,7 @@ INSERT INTO conditions VALUES (2, 'Used');
 
 INSERT INTO products VALUES ('dress', 0, '2023-11-12', 0, 0, 'modelo2', 0, 0, 80.9, 0, TRUE, 'beautiful dress with some functionality. I guess..', 'img/dress.jpeg');
 
-INSERT INTO imgs VALUES (0, 'img/dress.jpeg');
-INSERT INTO imgs VALUES (1, 'img/dress-beach.jpg');
+INSERT INTO productimgs VALUES (0, 0, 'img/dress.jpeg');
+INSERT INTO productimgs VALUES (1, 0, 'img/dress-beach.jpg');
 
 UPDATE products SET firstImg = 'img/dress.jpeg' WHERE id = 0;

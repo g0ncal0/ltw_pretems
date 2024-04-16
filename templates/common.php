@@ -78,6 +78,7 @@
                     <p>You can also <a href="/register.php">signup</a></p>
                 </div>
             </div>
+            <main>
     <?php }
 
     function simpleheader($title){
@@ -90,6 +91,7 @@
     }
 
     function output_footer() { ?>
+        </main>
         <footer>
             <p>&copy; PRETEMS</p>
         </footer>

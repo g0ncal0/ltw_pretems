@@ -12,7 +12,7 @@
 
     output_header($db, 'Add Product', null); ?>
 
-    <form class="profile-form" action="/actions/action_add_product.php" method="post">
+    <form class="profile-form" action="/actions/action_add_product.php" method="post" enctype="multipart/form-data">
     <label for="name">Product Name:</label>
         <input type="text" id="name" name="name" required>
 
@@ -60,15 +60,15 @@
 
 
         <label for="available">Available:</label>
-        <input type="checkbox" id="available" name="available" value="true">
+        <input type="checkbox" id="available" name="available" checked="false">
 
         <label for="description">Description:</label>
         <textarea id="description" name="description" rows="5" cols="50"></textarea>
 
-        <label for="firstImg">First Picture:</label>
-        <input type="text" id="firstImg" name="firstImg">
+        <label for="images">First Picture:</label>
+        <input type="file" name="images" multiple>
 
-        <input type="submit" value="Add Product">
+        <button class="button" type="submit" value="Add Product">Add Product</button>
     </form>
 
     <?php output_footer();

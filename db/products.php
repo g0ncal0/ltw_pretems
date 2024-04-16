@@ -54,10 +54,20 @@ function searchProducts($db, $query){
     return fetchAll($db, 'SELECT * FROM products WHERE name LIKE ? OR description LIKE ?', array("%$query%", "%$query%"));
 }
 
-function addProduct($db, $name, $date, $category, $brand, $model, $size, $condition, $price, $user, $available, $description, $firstImg) {
+function getProductID($db, $name, $date, $category, $brand, $model, $size, $condition, $price, $user, $available, $description) {
+    return fetch($db, 'SELECT id FROM products WHERE name = ? AND date = ? AND category = ? AND brand = ? AND model = ? AND size = ? AND condition = ? AND price = ? AND user = ? AND available = ? AND description = ?', array($name, $date, $category, $brand, $model, $size, $condition, $price, $user, $available, $description))['id'];
+}
+
+function addProduct($db, $name, $date, $category, $brand, $model, $size, $condition, $price, $user, $available, $description, $images) {
     execute($db, 
-    'INSERT INTO products (name, date, category, brand, model, size, condition, price, user, available, description, firstImg) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-     array($name, $date, $category, $brand, $model, $size, $condition, $price, $user, $available, $description, $firstImg));
+    'INSERT INTO products (name, date, category, brand, model, size, condition, price, user, available, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+     array($name, $date, $category, $brand, $model, $size, $condition, $price, $user, $available, $description));
+    
+    $id = $db->lastInsertId();
+
+    $firstImg = uploadProductImages($db, $images, $id);
+
+    execute($db, 'UPDATE products SET firstImg = ? WHERE id = ?', array($firstImg, $id));
 }
 
 ?>
