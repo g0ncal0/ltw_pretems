@@ -1,5 +1,6 @@
 <?php 
     require_once('include.php');
+    $session = new Session();
 
     $itemname = "Beautiful Dress";
     $itemdescription = "A very beautiful dress only used once.";
@@ -7,7 +8,7 @@
     $db = getDatabaseConnection();
 
 
-    output_header($db, $itemname, $itemdescription);
+    output_header($db, $itemname, $itemdescription, $session->getId());
 
 
     $id = $_GET['id'];

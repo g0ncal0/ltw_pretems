@@ -6,9 +6,17 @@
     $db = getDatabaseConnection();
 
     $id = $_GET['id'];
+    if(!isset($id) || $id === ""){
+        $id = $session->getId();
+    }
+
     $profile = getUser($db, $id);
 
-    output_header($db, 'Profile', null);
+    output_header($db,  $profile['name'] . "'s Profile", null, $session->getId());
+    
+    protectPage();
+
+
     output_profile($profile);
 
     if ($session->isLoggedIn() && ($id == $session->getId())) { ?>

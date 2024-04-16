@@ -3,7 +3,7 @@
         private array $messages;
 
         public function __construct() {
-        session_start();
+        session_status() === PHP_SESSION_ACTIVE ?: session_start();
 
         $this->messages = isset($_SESSION['messages']) ? $_SESSION['messages'] : array();
         unset($_SESSION['messages']);
@@ -31,6 +31,12 @@
 
         public function setName(string $name) {
         $_SESSION['name'] = $name;
+        }
+        public function setCart(array $cart){
+            $_SESSION['cart'] = $cart;
+        }
+        public function getCart() : ?array{
+            return $_SESSION['cart'];
         }
 
         public function addMessage(string $type, string $text) {

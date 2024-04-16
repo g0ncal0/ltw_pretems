@@ -8,7 +8,10 @@
     $id = $session->getId();
     $profile = getUser($db, $id);
 
-    output_header($db, 'Change Profile', null); ?>
+    output_header($db, 'Change Profile', null, $session->getId()); 
+    protectPage();
+    ?>
+
 
     <form class="profile-form" action="/actions/action_change_profile.php" method="post">
         <label for="name">Name:</label>

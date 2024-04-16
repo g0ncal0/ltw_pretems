@@ -1,7 +1,9 @@
 <?php 
     declare(strict_types=1);
     require_once(__DIR__ . '/mixed.php');
-    function output_header($db, $pagetitle, $description) { ?>
+    require_once(__DIR__ . '/../session.php');
+
+    function output_header($db, $pagetitle, $description, $user) { ?>
         <!DOCTYPE html>
         <html>
         <head>
@@ -42,7 +44,7 @@
                     <a href="/"><span>PRETEMS</span></a>
                 </div>
                 <div class="svg-header"> 
-                    <img id="open-profile" class="elements-menu-header" src="img/profile-login.svg" alt="User Profile">
+                    <img class="toggle-login elements-menu-header" src="img/profile-login.svg" alt="User Profile">
                     <a href="/cart.php"><img class="elements-menu-header" src="img/cart.svg" alt="Cart"></a>
                 </div>
             </header>
@@ -57,14 +59,27 @@
                     <input type="text" name="s" title="s">
                     <button type="submit">🔎</button>
                 </form>
-                <div>
-                    <p>Welcome, {name}!</p>
-                    <p>Sign Out</p>
-                </div>
+                <?php
+                    if(isset($user)){
+                        ?>
+                            <div>
+                                <a class="act-logout">Log Out</a>
+                            </div>
+                        <?php
+                    }else{
+                        ?>
+                            <div>
+                                <p class="toggle-login">Log In</p>
+                                <p><a href="/register.php">Sign Up</a></p>
+                            </div>
+                        <?php
+                    }
+                ?>
+                
             </div>
             <div class="login-signup">
                 <div>
-                    <p id="close-login">Close</p>
+                    <p class="toggle-login">Close</p>
                     <p>Get into your account</p>
 
                     <form class="account-form" action="/actions/action_login.php" method="post">

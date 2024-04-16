@@ -15,7 +15,7 @@ function getProductsOfUser($db, $id) {
 }
 
 function getProductsOfCategory($db, $category) {
-    return fetchAll($db, 'SELECT * FROM products JOIN categories ON products.category = categories.id WHERE categories.name = ?', array($category));
+    return fetchAll($db, 'SELECT *  FROM products WHERE  products.category = ?', array($category));
 }
 
 function getCategories($db){
@@ -68,6 +68,18 @@ function addProduct($db, $name, $date, $category, $brand, $model, $size, $condit
     $firstImg = uploadProductImages($db, $images, $id);
 
     execute($db, 'UPDATE products SET firstImg = ? WHERE id = ?', array($firstImg, $id));
+}
+
+
+function getItemsOnIDs($db, $ids){
+    // ids should be an array.
+    if(isset($ids)){
+    if(count($ids) > 0){
+        $in  = str_repeat('?,', count($ids) - 1) . '?'; // GET STRING WITH len($ids) 
+        $items = fetchAll($db, "SELECT * FROM products WHERE id IN ( $in )", $ids);
+    }
+    }
+    return $items;
 }
 
 ?>

@@ -1,10 +1,12 @@
 <?php 
     require_once('include.php');
 
+    $session = new Session();
+
     $db = getDatabaseConnection();
-    output_header($db, null, null);
+    output_header($db, null, null, $session->getId());
 ?>
-<main>
+
     <section class="home-box">
         <div>
             <h1>PRETEMS</h1>
@@ -18,7 +20,7 @@
     <section class="container">
         <?php output_list_categories($db, "category-list", null);?>
     </section>
-</main>
+
 
 <?php
     output_footer();
