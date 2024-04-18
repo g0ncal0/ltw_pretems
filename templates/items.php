@@ -22,11 +22,11 @@
 
         <section class="item-page">
             <div class="item-page-photos">
-                <img src="img/dress.jpeg">                
-                <img src="img/dress-beach.jpeg">
-                <img src="img/dress.jpeg">
-                <img src="img/dress.jpeg">
-                <img src="img/dress-beach.jpeg">
+                <img src="img/products/dress.jpeg">                
+                <img src="img/products/dress-beach.jpeg">
+                <img src="img/products/dress.jpeg">
+                <img src="img/products/dress.jpeg">
+                <img src="img/products/dress-beach.jpeg">
             </div>
         
             <div class="container">
