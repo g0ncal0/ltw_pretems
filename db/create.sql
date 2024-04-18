@@ -58,12 +58,6 @@ CREATE TABLE products (
     firstImg TEXT
 );
 
-CREATE TABLE productImgs (
-    id INTEGER PRIMARY KEY,
-    productid INTEGER REFERENCES products,
-    path TEXT
-);
-
 CREATE TABLE profileImgs (
     id INTEGER PRIMARY KEY,
     userId INTEGER REFERENCES products,
