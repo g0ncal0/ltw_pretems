@@ -23,14 +23,14 @@ function uploadProductImages($db, $images, $id) {
     $img_id = $db->lastInsertId();
 
     // Generate filenames
-    $relative_path = "../img/$id.jpg";
-    $path = "img/$id.jpg";
+    $relative_path = "../img/products/$id.jpg";
+    $path = "img/products/$id.jpg";
 
     updatePath($db, $img_id, $path);
 
     imagejpeg($original, $relative_path);
 
-    return "img/$id.jpg";
+    return $path;
 }
 
 ?>

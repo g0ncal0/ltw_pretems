@@ -4,7 +4,8 @@ DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS brands;
 DROP TABLE IF EXISTS conditions;
 DROP TABLE IF EXISTS condition;
-DROP TABLE IF EXISTS productimgs;
+DROP TABLE IF EXISTS productImgs;
+DROP TABLE IF EXISTS profileImgs;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS imgs;
 DROP TABLE IF EXISTS productimgs;
@@ -57,9 +58,15 @@ CREATE TABLE products (
     firstImg TEXT
 );
 
-CREATE TABLE productimgs (
+CREATE TABLE productImgs (
     id INTEGER PRIMARY KEY,
     productid INTEGER REFERENCES products,
+    path TEXT
+);
+
+CREATE TABLE profileImgs (
+    id INTEGER PRIMARY KEY,
+    userId INTEGER REFERENCES products,
     path TEXT
 );
 
@@ -68,8 +75,8 @@ CREATE TABLE cart (
     user INTEGER NOT NULL REFERENCES users
 );
 
-INSERT INTO users VALUES ('Zé', 0, 'ze@gmail.com', 'zeze', '1234', FALSE, 'img/profile.png');
-INSERT INTO users VALUES ('Maria', 1, 'maria@gmail.com', 'maria', '1234', FALSE, 'img/profile.png');
+INSERT INTO users VALUES ('Zé', 0, 'ze@gmail.com', 'zeze', '1234', FALSE, 'img/profile/profile.png');
+INSERT INTO users VALUES ('Maria', 1, 'maria@gmail.com', 'maria', '1234', FALSE, 'img/profile/profile.png');
 
 
 -- TODO: remove (used for testing shopping cart)
@@ -105,9 +112,9 @@ INSERT INTO conditions VALUES (0, 'New');
 INSERT INTO conditions VALUES (1, 'Nearely used');
 INSERT INTO conditions VALUES (2, 'Used');
 
-INSERT INTO products VALUES ('dress', 0, '2023-11-12', 0, 0, 'modelo2', 0, 0, 80.9, 0, TRUE, 'beautiful dress with some functionality. I guess..', 'img/dress.jpeg');
+INSERT INTO products VALUES ('dress', 0, '2023-11-12', 0, 0, 'modelo2', 0, 0, 80.9, 0, TRUE, 'beautiful dress with some functionality. I guess..', 'img/products/dress.jpeg');
 
-INSERT INTO productimgs VALUES (0, 0, 'img/dress.jpeg');
-INSERT INTO productimgs VALUES (1, 0, 'img/dress-beach.jpg');
+INSERT INTO productImgs VALUES (0, 0, 'img/products/dress.jpeg');
+INSERT INTO productImgs VALUES (1, 0, 'img/products/dress-beach.jpg');
 
-UPDATE products SET firstImg = 'img/dress.jpeg' WHERE id = 0;
+UPDATE products SET firstImg = 'img/products/dress.jpeg' WHERE id = 0;
