@@ -21,7 +21,7 @@
         <input type="email" name="email" id="email" value="<?php echo $profile['email']; ?>">
 
         <label for="password">Password:</label>
-        <input type="password" name="password" id="password">
+        <input type="password" name="password" id="password" value="<?php echo $profile['email']; ?>">
 
         <label for="image">Profile Picture:</label>
         <input type="file" name="image">

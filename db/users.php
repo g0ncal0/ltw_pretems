@@ -5,7 +5,7 @@ function getUser($db, $user) {
 }
 
 function changeProfile($db, $id, $name, $email, $password, $image) {
-    if (!isset($image)) {
+    if ($image['size'] == 0) {
         execute($db, 'UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?', array($name, $email, $password, $id));
     }    
 
