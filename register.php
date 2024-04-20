@@ -16,6 +16,8 @@
             <label for="name">Name</label>
             <input type="text" name="r-name" id="r-name">
 
+            <label for="username">Username</label>
+            <input type="text" name="r-username" id="r-username">
 
             <label for="email">Email</label>
             <input type="email" name="r-email" id="r-email">

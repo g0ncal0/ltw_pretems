@@ -25,6 +25,10 @@
         return isset($_SESSION['name']) ? $_SESSION['name'] : null;
         }
 
+        public function getAdmin() : ?bool {
+        return isset($_SESSION['admin']) ? $_SESSION['admin'] : null;
+        }
+
         public function setId(int $id) {
         $_SESSION['id'] = $id;
         }
@@ -32,6 +36,11 @@
         public function setName(string $name) {
         $_SESSION['name'] = $name;
         }
+
+        public function setAdmin(bool $admin) {
+        $_SESSION['admin'] = $admin;
+        }
+
         public function setCart(array $cart){
             if(!isset($_SESSION['cart'])){
                 $_SESSION['cart'] = array();
