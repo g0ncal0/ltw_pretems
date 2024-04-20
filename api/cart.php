@@ -17,12 +17,18 @@
 
 
     $user = $session->getId();
+    $db = getDatabaseConnection();
 
     if($user !== NULL){
-        $db = getDatabaseConnection();
         if(!isset($type)){
             $ci = fetchAll($db, 'SELECT product FROM cart WHERE user = ?', array($session->getId()));
-            echo json_encode($ci);
+            $elements = array();
+            foreach($ci as $citem){
+                array_push($elements, $citem['product']);
+            }
+            $cart_items = getItemsOnIDs($db, $elements);
+
+            echo json_encode($cart_items);
             return;
         }
         if($type === 'insert'){
@@ -38,6 +44,14 @@
     }else{
         if(!isset($type)){
             $cart = $session->getCart();
+            if(!isset($cart)){
+                echo json_encode(array());
+                return;
+            }
+            if(count($cart) == 0){
+                echo json_encode(array());
+                return;
+            }
             $cart_items = getItemsOnIDs($db, $cart);
             echo json_encode($cart_items);
         }

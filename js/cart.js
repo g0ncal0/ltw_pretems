@@ -21,17 +21,15 @@ function createProduct(product){
     const div = document.createElement('div');
 
     for (const key in product) {
-        if(key != 0){
-            const p = document.createElement('p');
-            p.textContent = key + " - " + product[key];
-            const button = document.createElement('button');
-            button.textContent = "Remove From Cart";
-            button.classList = "remove-cart"
-            button.setAttribute("data-id", product['product']);
-            div.appendChild(p);
-            div.appendChild(button);
-        }
+        const p = document.createElement('p');
+        p.textContent = key + " - " + product[key];
+        div.appendChild(p);
     }
+    const button = document.createElement('button');
+    button.textContent = "Remove From Cart";
+    button.classList = "remove-cart"
+    button.setAttribute("data-id", product['product']);
+    div.appendChild(button);
     cart.appendChild(div);
 }
 

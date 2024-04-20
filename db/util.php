@@ -1,6 +1,8 @@
 <?php 
 
 function fetchAll($db, $query, $array){
+    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
     $stmt = $db->prepare($query);
     if(isset($array)){
         $stmt->execute($array);
@@ -12,6 +14,8 @@ function fetchAll($db, $query, $array){
 }
 
 function fetch($db, $query, $array){
+    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
     $stmt = $db->prepare($query);
     if(isset($array)){
         $stmt->execute($array);

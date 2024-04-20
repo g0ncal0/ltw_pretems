@@ -1,4 +1,5 @@
 <?php 
+  declare(strict_types = 1);
     require_once('templates/common.php');
     require_once('templates/shopping_cart.php'); // TODO: Change name?
     require_once('templates/items.php');
