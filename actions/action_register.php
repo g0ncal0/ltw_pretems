@@ -29,7 +29,7 @@
         $user['username'] = $_POST['r-name']; // TODO: Change form to ask for username
         $user['password'] = $_POST['r-password']; // FIXME: Encrypt password with sha1?
         $user['admin'] = false; // TODO: How does an admin register?
-        $user['profileImg'] = 'img/profile.png'; 
+        $user['profileImg'] = 'img/profile/profile.png'; 
 
         // TODO: Remove (DEBUG)
         echo $user['name']; echo '<br>';

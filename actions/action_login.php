@@ -6,6 +6,13 @@
     require_once(__DIR__ . '/../templates/common.php');
 
     $session = new Session();  // TODO: change
+
+    if($session->isLoggedIn()){
+        header('Location: ' . $_SERVER['HTTP_REFERER']); // TODO: Remove? (Goes back to main page)
+        return;
+    }
+
+
     $db = getDatabaseConnection();
 
     function findUser(PDO $db, string $email, string $password){

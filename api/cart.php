@@ -1,5 +1,9 @@
 <?php
     // ALLOWED: 'insert', 'remove', 'empty'
+
+    // TO-DO: CHECK IF PRODUCT IS STILL AVAILABLE BEFORE RETURNING
+
+
     require_once(__DIR__ . '/../include.php');
     header('Content-Type: application/json');
 

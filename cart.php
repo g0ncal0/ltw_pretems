@@ -22,7 +22,9 @@
     }
 
 
-    ?><link rel="stylesheet" href="cart.css"><?php  // FIXME: Should this be here?
+    ?><link rel="stylesheet" href="cart.css">
+    <script src="/js/cart.js" defer></script>
+    <?php  
 
     $cart_items = get_cart_items_from_user($db, $session);
     $sum = 0;
@@ -36,13 +38,9 @@
 
     <h2>Cart</h2>
     <div class="cart_interface">
-        <?php 
-            if ($cart_items){
-             output_list_cart_items($cart_items); 
-        } else {
-            echo "<p>There are currently no items in your shopping cart</p>";
-        }
-        output_total($sum); ?>
+        <div class="cart">
+        </div>
+        <?php output_total(); ?>
     </div>
 
     <?php
