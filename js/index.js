@@ -50,7 +50,7 @@ document.querySelectorAll(".toggle-login").forEach(function(btn){
 
 
 async function logout(){
-    await fetch('api/logout.php').then(() => {window.location.reload()});
+    await fetch('api/logout.php').then(() => {window.location.replace('/')});
 }
 
 document.querySelectorAll(".act-logout").forEach(function(btn){

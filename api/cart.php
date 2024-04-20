@@ -37,7 +37,7 @@
             $cart_items = getItemsOnIDs($db, $cart);
             echo json_encode($cart_items);
         }
-        if($session->getCart === NULL){
+        if($session->getCart() === NULL){
             $session->setCard(array());
         }
         if($type === 'empty'){
@@ -46,12 +46,14 @@
  
         if($type === 'insert'){
             // we just associate it with session
-            if (!in_array($product, $session->getCart())) {
-                array_push($_SESSION['cart'], $product);
+            $oldcart = $session->getCart();
+            if (!in_array($product, $oldcart)) {
+                array_push($oldcart, $product);
             }
+            $session->setCart($oldcart);
         }
         if($type === 'remove'){
-            $_SESSION['cart'] = array_diff($_SESSION['cart'], [$product]);
+            $session->setCart(array_diff($session->getCart(), [$product]));
         }
     }
 

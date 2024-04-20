@@ -33,9 +33,15 @@
         $_SESSION['name'] = $name;
         }
         public function setCart(array $cart){
+            if(!isset($_SESSION['cart'])){
+                $_SESSION['cart'] = array();
+            }
             $_SESSION['cart'] = $cart;
         }
         public function getCart() : ?array{
+            if(!isset($_SESSION['cart'])){
+                return array();
+            }
             return $_SESSION['cart'];
         }
 
