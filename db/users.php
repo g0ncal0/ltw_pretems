@@ -38,4 +38,9 @@ function addUser($db, $user){
     $stmt->execute(array($user['name'], $user['id'], $user['email'], $user['username'], $user['password'], $user['admin'], $user['profileImg']));
 }
 
+function setAdmin($db, $id){
+    $stmt = $db->prepare('UPDATE users SET admin = TRUE WHERE id = ?');
+    $stmt->execute(array($id));
+}
+
 ?>
