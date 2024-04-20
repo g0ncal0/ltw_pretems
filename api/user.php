@@ -3,7 +3,6 @@
     header('Content-Type: application/json');
 
     $data = array();
-    session_status() === PHP_SESSION_ACTIVE ?: session_start();
     $session = new Session();
     if($session->isLoggedIn()){
         $data['user'] = True;

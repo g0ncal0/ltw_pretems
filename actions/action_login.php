@@ -7,6 +7,13 @@
     require_once(__DIR__ . '/../db/users.php');
 
     $session = new Session();  // TODO: change
+
+    if($session->isLoggedIn()){
+        header('Location: ' . $_SERVER['HTTP_REFERER']); // TODO: Remove? (Goes back to main page)
+        return;
+    }
+
+
     $db = getDatabaseConnection();
 
     $user = getUserWithPassword($db, $_POST['email'], $_POST['password']);

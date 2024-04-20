@@ -20,3 +20,8 @@ by members
 ## FUTURE TODOS
 - Php logic
 - Secondary features
+
+
+## IMPORTANT
+run `sudo apt-get install php-gd` to work with images
+

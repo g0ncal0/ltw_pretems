@@ -1,5 +1,9 @@
 <?php
     // ALLOWED: 'insert', 'remove', 'empty'
+
+    // TO-DO: CHECK IF PRODUCT IS STILL AVAILABLE BEFORE RETURNING
+
+
     require_once(__DIR__ . '/../include.php');
     header('Content-Type: application/json');
 
@@ -13,12 +17,18 @@
 
 
     $user = $session->getId();
+    $db = getDatabaseConnection();
 
     if($user !== NULL){
-        $db = getDatabaseConnection();
         if(!isset($type)){
             $ci = fetchAll($db, 'SELECT product FROM cart WHERE user = ?', array($session->getId()));
-            echo json_encode($ci);
+            $elements = array();
+            foreach($ci as $citem){
+                array_push($elements, $citem['product']);
+            }
+            $cart_items = getItemsOnIDs($db, $elements);
+
+            echo json_encode($cart_items);
             return;
         }
         if($type === 'insert'){
@@ -34,10 +44,18 @@
     }else{
         if(!isset($type)){
             $cart = $session->getCart();
+            if(!isset($cart)){
+                echo json_encode(array());
+                return;
+            }
+            if(count($cart) == 0){
+                echo json_encode(array());
+                return;
+            }
             $cart_items = getItemsOnIDs($db, $cart);
             echo json_encode($cart_items);
         }
-        if($session->getCart === NULL){
+        if($session->getCart() === NULL){
             $session->setCard(array());
         }
         if($type === 'empty'){
@@ -46,12 +64,14 @@
  
         if($type === 'insert'){
             // we just associate it with session
-            if (!in_array($product, $session->getCart())) {
-                array_push($_SESSION['cart'], $product);
+            $oldcart = $session->getCart();
+            if (!in_array($product, $oldcart)) {
+                array_push($oldcart, $product);
             }
+            $session->setCart($oldcart);
         }
         if($type === 'remove'){
-            $_SESSION['cart'] = array_diff($_SESSION['cart'], [$product]);
+            $session->setCart(array_diff($session->getCart(), [$product]));
         }
     }
 

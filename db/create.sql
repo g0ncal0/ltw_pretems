@@ -3,12 +3,10 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS brands;
 DROP TABLE IF EXISTS conditions;
-DROP TABLE IF EXISTS condition;
 DROP TABLE IF EXISTS productImgs;
 DROP TABLE IF EXISTS profileImgs;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS imgs;
-DROP TABLE IF EXISTS productimgs;
 DROP TABLE IF EXISTS cart;
 DROP TABLE IF EXISTS sizes;
 
@@ -67,6 +65,12 @@ CREATE TABLE profileImgs (
 CREATE TABLE cart (
     product INTEGER NOT NULL REFERENCES products,
     user INTEGER NOT NULL REFERENCES users
+);
+
+CREATE TABLE productImgs (
+    id INTEGER NOT NULL,
+    product INTEGER NOT NULL REFERENCES products,
+    path TEXT NOT NULL
 );
 
 INSERT INTO users VALUES ('Zé', 0, 'ze@gmail.com', 'zeze', '1234', FALSE, 'img/profile/profile.png');

@@ -10,6 +10,14 @@ function getProduct($db, $id) {
     return fetch($db, 'SELECT * FROM products WHERE id = ?',array($id));
 }
 
+function getProductsLimitOffset($db, $limit, $offset, $category){
+    if(isset($category)){
+        return fetchAll($db, 'SELECT * FROM products LIMIT ? OFFSET ?', array($limit, $offset));
+    }else{
+        return fetchAll($db, 'SELECT * FROM products WHERE products.category = ? LIMIT ? OFFSET ?', array($category, $limit, $offset));
+    }
+}
+
 function getProductsOfUser($db, $id) {
     return fetch($db, 'SELECT * FROM products JOIN users ON products.user = users.username WHERE users.id = ?', array($id));
 }
