@@ -15,4 +15,23 @@ function changeProfile($db, $id, $name, $email, $password, $image) {
     }
 }
 
+function getUserWithPassword($db, $email, $password){
+    $stmt = $db->prepare('SELECT * FROM users WHERE email = ? AND password = ?');
+    $stmt->execute(array($email, $password));
+    $user = $stmt->fetch(); // Fetch only one row
+    return $user;
+}
+
+function getUserWithEmail($db, $email){
+    $stmt = $db->prepare('SELECT * FROM users WHERE email = ?');
+    $stmt->execute(array($email));
+    $user = $stmt->fetch(); // Fetch only one row
+    return $user;
+}
+
+function addUser($db, $user){
+    $stmt = $db->prepare('INSERT INTO users VALUES(?, ?, ?, ?, ?, ?, ?)');
+    $stmt->execute(array($user['name'], $user['id'], $user['email'], $user['username'], $user['password'], $user['admin'], $user['profileImg']));
+}
+
 ?>
