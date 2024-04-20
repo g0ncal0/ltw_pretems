@@ -38,6 +38,10 @@ function getCategory($db, $id){
     return fetch($db, 'SELECT name FROM categories WHERE id = ?', array($id))['name'];
 }
 
+function getCategoryWithName($db, $name){
+    return fetch($db, 'SELECT name FROM categories WHERE name = ?', array($name));
+}
+
 function getBrand($db, $id){
     return fetch($db, 'SELECT name FROM brands WHERE id = ?', array($id))['name'];
 }
@@ -81,5 +85,9 @@ function getItemsOnIDs($db, $ids){
     }
     return $items;
 }
+
+function addCategory($db, $name){
+    execute($db, 'INSERT INTO categories (name) VALUES (?)', array($name));
+}   
 
 ?>

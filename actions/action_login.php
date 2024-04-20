@@ -14,6 +14,7 @@
     if ($user){ // User found
         $session->setId($user['id']);
         $session->setName($user['name']);
+        $session->setAdmin((bool) $user['admin']);
         $session->addMessage('success', 'Login successful!'); // TODO: use when logged in main page
     }
     else{ // User not found
