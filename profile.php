@@ -20,8 +20,8 @@
         <a href="addProduct.php"><button class="button">Add Product</button></a><?php 
         
         if ($session->getAdmin()){
-            ?><a href="addCategory.php"><button class="button">Add Category</button></a>
-            <a href="manageUsers.php"><button class="button">Manage Users</button></a><?php //TODO: Implement (+ create file) 
+            ?><a href="add_category.php"><button class="button">Add Category</button></a>
+            <a href="manage_users.php"><button class="button">Manage Users</button></a><?php //TODO: Implement (+ create file) 
             echo "<h2>You are an admin</h2>"; // TODO: Temporary
         }
     }

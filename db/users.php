@@ -1,5 +1,9 @@
 <?php 
 
+function getAllUsers($db) {
+    return fetchAll($db, 'SELECT * FROM users', null);
+}
+
 function getUser($db, $user) {
     return fetch($db, 'SELECT * FROM users WHERE id = ?', array($user));
 }

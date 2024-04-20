@@ -8,9 +8,9 @@
 
     if (!getCategoryWithName($db, $_POST['name'])){ // Add if category doesn't already exist
         addCategory($db, $_POST['name']);
-        header('Location: ../addCategory.php?message=Category added successfully!&id=' . $session->getId());
+        header('Location: ../add_category.php?message=Category added successfully!&id=' . $session->getId());
     } else{
-        header('Location: ../addCategory.php?message=This category already exists!&id='. $session->getId());
+        header('Location: ../add_category.php?message=This category already exists!&id='. $session->getId());
     }
 
 ?>
