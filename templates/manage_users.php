@@ -9,7 +9,7 @@
             echo '<td>' . $user['email'] . '</td>';
             if (!$user['admin']) {
                 ?><td> Not an admin </td>
-                <td><a href=/actions/action_elevate_admin.php> Elevate to admin </a></td><?php // TODO: Change link 
+                <td><a href="/actions/action_elevate_admin.php?id=<?php echo $user['id']; ?>">Elevate to admin</a></td><?php
             }
             else {
                 echo '<td> Admin </td>';

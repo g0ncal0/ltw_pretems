@@ -73,7 +73,7 @@ CREATE TABLE productImgs (
     path TEXT NOT NULL
 );
 
-INSERT INTO users VALUES ('Zé', 0, 'ze@gmail.com', 'zeze', '1234', FALSE, 'img/profile/profile.png');
+INSERT INTO users VALUES ('Zé', 0, 'ze@gmail.com', 'zeze', '1234', TRUE, 'img/profile/profile.png');
 INSERT INTO users VALUES ('Maria', 1, 'maria@gmail.com', 'maria', '1234', FALSE, 'img/profile/profile.png');
 
 
