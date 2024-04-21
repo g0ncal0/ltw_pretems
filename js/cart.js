@@ -28,7 +28,7 @@ function createProduct(product){
     const button = document.createElement('button');
     button.textContent = "Remove From Cart";
     button.classList = "remove-cart"
-    button.setAttribute("data-id", product['product']);
+    button.setAttribute("data-id", product['id']);
     div.appendChild(button);
     cart.appendChild(div);
 }

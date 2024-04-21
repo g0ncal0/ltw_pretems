@@ -22,6 +22,14 @@
     if($user !== NULL){
         if(!isset($type)){
             $ci = fetchAll($db, 'SELECT product FROM cart WHERE user = ?', array($session->getId()));
+            if(!isset($ci)){
+                echo json_encode(array());
+                return;
+            }
+            if(count($ci) == 0){
+                echo json_encode(array());
+                return;
+            }
             $elements = array();
             foreach($ci as $citem){
                 array_push($elements, $citem['product']);

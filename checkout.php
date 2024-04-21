@@ -6,7 +6,7 @@
 
   output_header($db,"Checkout", null, $session->getId());
 
-  protectPage();
+  protectPage($session);
 ?>
 
 

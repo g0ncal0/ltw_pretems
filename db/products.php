@@ -107,4 +107,16 @@ function addSize($db, $name){
 }   
 
 
+
+function setItemUnavailable($db, $item){
+    // returns price of item
+    $price = $fetch($db, 'SELECT price FROM products WHERE id =', $item);
+    if(!isset($price['price'])){
+        return -1;
+    }
+    execute($db, 'UPDATE products SET available = 0 WHERE id = ?', array($item));
+
+    return $price;
+}
+
 ?>

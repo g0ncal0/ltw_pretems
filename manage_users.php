@@ -11,7 +11,7 @@ $db = getDatabaseConnection();
 $users = getAllUsers($db);
 
 output_header($db, 'Manage Users', null, $session->getId()); 
-protectPage();
+protectPage($session);
 output_users($users);
 output_footer(); 
 ?>

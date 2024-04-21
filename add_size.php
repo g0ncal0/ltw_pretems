@@ -6,7 +6,7 @@
     $sizes = getSizes($db);
 
     output_header($db, 'Add Size', null, $session->getId()); 
-    protectPage();
+    protectPage($session);
     output_size_form();
     output_existing_sizes($sizes);
     

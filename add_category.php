@@ -12,7 +12,7 @@ $db = getDatabaseConnection();
 $categories = getCategories($db);
 
 output_header($db, 'Add Category', null, $session->getId()); 
-protectPage();
+protectPage($session);
 output_category_form();
 output_existing_categories($categories);
  

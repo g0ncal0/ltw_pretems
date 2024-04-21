@@ -70,7 +70,13 @@ CREATE TABLE cart (
 CREATE TABLE productImgs (
     id INTEGER NOT NULL,
     product INTEGER NOT NULL REFERENCES products,
-    path TEXT NOT NULL
+    path TEXT
+);
+
+CREATE TABLE purchases(
+    id INTEGER NOT NULL,
+    productid INTEGER NOT NULL,
+    buyerid INTEGER NOT NULL REFERENCES users
 );
 
 INSERT INTO users VALUES ('Zé', 0, 'ze@gmail.com', 'zeze', '1234', TRUE, 'img/profile/profile.png');
