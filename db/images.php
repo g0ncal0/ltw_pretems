@@ -1,11 +1,11 @@
 <?php 
 
 function insertProductImage($db, $product_id) {
-    execute($db, 'INSERT INTO productimgs (productid) VALUES (?)', array($product_id));
+    execute($db, 'INSERT INTO productImgs (product) VALUES (?)', array($product_id));
 }
 
 function updatePath($db, $img_id, $path) {
-    execute($db, 'UPDATE productimgs SET path = ? WHERE id = ?', array($path, $img_id));
+    execute($db, 'UPDATE productImgs SET path = ? WHERE id = ?', array($path, $img_id));
 }
 
 function uploadProductImages($db, $images, $id) {

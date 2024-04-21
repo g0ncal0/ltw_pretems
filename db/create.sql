@@ -68,9 +68,9 @@ CREATE TABLE cart (
 );
 
 CREATE TABLE productImgs (
-    id INTEGER NOT NULL,
+    id INTEGER PRIMARY KEY,
     product INTEGER NOT NULL REFERENCES products,
-    path TEXT NOT NULL
+    path TEXT
 );
 
 INSERT INTO users VALUES ('Zé', 0, 'ze@gmail.com', 'zeze', '1234', TRUE, 'img/profile/profile.png');
