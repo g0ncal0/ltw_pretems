@@ -13,21 +13,24 @@
     ?>
 
 
-    <form class="profile-form" action="/actions/action_change_profile.php" method="post" enctype="multipart/form-data">
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name" value="<?php echo $profile['name']; ?>">
+    <section class="container">
+        <h1>Change Profile:</h1>
+        <form class="profile-form" action="/actions/action_change_profile.php" method="post" enctype="multipart/form-data">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" value="<?php echo $profile['name']; ?>">
 
-        <label for="email">E-mail:</label>
-        <input type="email" name="email" id="email" value="<?php echo $profile['email']; ?>">
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" id="email" value="<?php echo $profile['email']; ?>">
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" value="<?php echo $profile['password']; ?>">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" value="<?php echo $profile['password']; ?>">
 
-        <label for="image">Profile Picture:</label>
-        <input type="file" name="image">
+            <label for="image">Profile Picture:</label>
+            <input type="file" name="image">
 
-        <button class="button" type="submit">Save Changes</button>
-    </form>
+            <button class="button" type="submit">Save Changes</button>
+        </form>
+    </section>    
 
     <?php output_footer();
 ?>
