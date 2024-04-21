@@ -58,6 +58,10 @@ function getSize($db, $id){
     return fetch($db, 'SELECT name FROM sizes WHERE id = ?', array($id))['name'];
 }
 
+function getSizeWithName($db, $name){
+    return fetch($db, 'SELECT name FROM sizes WHERE name = ?', array($name));
+}
+
 function getCondition($db, $id){
     return fetch($db, 'SELECT name FROM conditions WHERE id = ?', array($id))['name'];
 }
@@ -97,5 +101,10 @@ function getItemsOnIDs($db, $ids){
 function addCategory($db, $name){
     execute($db, 'INSERT INTO categories (name) VALUES (?)', array($name));
 }   
+
+function addSize($db, $name){
+    execute($db, 'INSERT INTO sizes (name) VALUES (?)', array($name));
+}   
+
 
 ?>

@@ -21,6 +21,7 @@
         
         if ($session->getAdmin()){ // FIXME: Admin in session might be a problem
             ?><a href="add_category.php"><button class="button">Add Category</button></a>
+            <a href="add_size.php"><button class="button">Add Size</button></a>
             <a href="manage_users.php"><button class="button">Manage Users</button></a><?php //TODO: Implement (+ create file) 
             echo "<h2>You are an admin</h2>"; // TODO: Temporary
         }
