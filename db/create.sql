@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS imgs;
 DROP TABLE IF EXISTS cart;
 DROP TABLE IF EXISTS sizes;
+DROP TABLE IF EXISTS messages;
 
 CREATE TABLE users (
     name TEXT NOT NULL,
@@ -77,6 +78,7 @@ CREATE TABLE messages (
     id INTEGER PRIMARY KEY,
     productId INTEGER NOT NULL REFERENCES products,
     buyerId INTEGER NOT NULL REFERENCES users,
+    fromBuyer INTEGER NOT NULL,
     message TEXT NOT NULL,
     date DATETIME
 );
