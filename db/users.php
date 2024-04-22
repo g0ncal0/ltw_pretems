@@ -43,4 +43,11 @@ function setAdmin($db, $id){
     $stmt->execute(array($id));
 }
 
+function isAdmin($db, $id){
+    $stmt = $db->prepare('SELECT admin FROM users WHERE id = ?');
+    $stmt->execute(array($id));
+    $isAdmin = $stmt->fetchColumn();
+    return (bool) $isAdmin;
+}
+
 ?>

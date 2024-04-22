@@ -19,9 +19,10 @@
         <a href="changeProfile.php"><button class="button">Change Profile</button></a>
         <a href="addProduct.php"><button class="button">Add Product</button></a><?php 
         
-        if ($session->getAdmin()){ // FIXME: Admin in session might be a problem
-            ?><a href="add_category.php"><button class="button">Add Category</button></a>
-            <a href="add_size.php"><button class="button">Add Size</button></a>
+        if (isAdmin($db, $session->getId())){ //TODO: remove admin attribute from session (and change login and register)
+            ?><a href="admin_area.php?area=category"><button class="button">Add Category</button></a>
+            <a href="admin_area.php?area=size"><button class="button">Add Size</button></a>
+            <a href="admin_area.php?area=condition"><button class="button">Add Condition</button></a>
             <a href="manage_users.php"><button class="button">Manage Users</button></a><?php //TODO: Implement (+ create file) 
             echo "<h2>You are an admin</h2>"; // TODO: Temporary
         }
