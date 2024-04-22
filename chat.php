@@ -12,7 +12,7 @@
     output_header($db,  "Chat-" . $productId . "-" . $buyerId, null, $session->getId());
     protectPage();
 
-    if (($session->getId() != $buyer) && ($session->getId() != $product['user'])) { ?>
+    if (($session->getId() != $buyerId) && ($session->getId() != $product['user'])) { ?>
         <section class="container protectedpage">
             <h1>You found a protected page</h1>
             <p>Login or register to continue on this page!</p>
@@ -20,7 +20,7 @@
     <?php }  
     
     else {
-        $messages = getMessages($productId, $buyerId);
+        $messages = getMessages($db, $productId, $buyerId);
         $buyer = getUser($db, $buyerId);
         $product = getProduct($db, $productId);
         $seller = getUser($db, $product['user']);
@@ -39,7 +39,7 @@
                     <div class="messageFromSeller">
                         <?php output_message($message, $seller['name']); ?>
                     </div>
-                    
+
                 <?php }
             } ?>
             </section>

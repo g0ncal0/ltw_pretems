@@ -126,3 +126,10 @@ INSERT INTO productImgs VALUES (0, 0, 'img/products/dress.jpeg');
 INSERT INTO productImgs VALUES (1, 0, 'img/products/dress-beach.jpg');
 
 UPDATE products SET firstImg = 'img/products/dress.jpeg' WHERE id = 0;
+
+INSERT INTO messages (productId, buyerId, fromBuyer, message, date) VALUES
+(0, 1, 1, 'Olá! Estou interessado neste produto.', '2024-04-22 15:30'),
+(0, 1, 0, 'Boa tarde! Obrigado pelo seu interesse.', '2024-04-23 10:45'),
+(0, 1, 1, 'Gostaria de saber mais detalhes sobre a entrega.', '2024-04-24 08:20'),
+(0, 1, 0, 'Claro, posso fornecer as informações.', '2024-04-25 14:10'),
+(0, 1, 1, 'Ótimo! Aguardo sua resposta.', '2024-04-26 11:55');
