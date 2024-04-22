@@ -82,14 +82,14 @@
                     <p class="toggle-login">Close</p>
                     <p>Get into your account</p>
 
-                    <form class="account-form" action="/actions/action_login.php" method="post">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password">
-                        <button class="button" type="submit">Login</button>
+                    <form id="login-form" class="account-form" action="/actions/action_login.php" method="post">
+                        <label for="Lemail">Email Address</label>
+                        <input type="email" id="Lemail" name="Lemail">
+                        <label for="Lpassword">Password</label>
+                        <input type="password" id="Lpassword" name="Lpassword">
+                        <button id="login-submit" class="button" type="submit">Login</button>
                     </form>
-
+                    <p id="sucess-login"></p>
                     <p>You can also <a href="/register.php">signup</a></p>
                 </div>
             </div>

@@ -324,7 +324,10 @@ body header{
 
 
 
-/***** SLIDER *****/
+
+/******* PRICE RANGE ******/
+/*INSPIRED FROM https://www.geeksforgeeks.org/price-range-slider-with-min-max-input-using-html-css-and-javascript/
+*/
 
 input::-webkit-outer-spin-button, 
 input::-webkit-inner-spin-button { 
