@@ -47,7 +47,7 @@ function getCategory($db, $id){
 }
 
 function getCategoryWithName($db, $name){
-    return fetch($db, 'SELECT name FROM categories WHERE name = ?', array($name));
+    return fetch($db, 'SELECT * FROM categories WHERE name = ?', array($name));
 }
 
 function getBrand($db, $id){
@@ -59,11 +59,15 @@ function getSize($db, $id){
 }
 
 function getSizeWithName($db, $name){
-    return fetch($db, 'SELECT name FROM sizes WHERE name = ?', array($name));
+    return fetch($db, 'SELECT * FROM sizes WHERE name = ?', array($name));
 }
 
 function getCondition($db, $id){
     return fetch($db, 'SELECT name FROM conditions WHERE id = ?', array($id))['name'];
+}
+
+function getConditionWithName($db, $id){
+    return fetch($db, 'SELECT * FROM conditions WHERE name = ?', array($id));
 }
 
 function searchProducts($db, $query){
@@ -106,11 +110,14 @@ function addSize($db, $name){
     execute($db, 'INSERT INTO sizes (name) VALUES (?)', array($name));
 }   
 
+function addCondition($db, $name){
+    execute($db, 'INSERT INTO conditions (name) VALUES (?)', array($name));
+}
+
 function checkItemAvailable($db, $item){
     $product = getProduct($db, $item);
     return $product['available'];
 }
-
 
 function setItemUnavailable($db, $item){
     // returns price of item
@@ -123,14 +130,11 @@ function setItemUnavailable($db, $item){
     return $price['price'];
 }
 
-
 function getDiscountInfo($db, $discount){
     if(!isset($discount)){
         return array();
     }
     return fetch($db, 'SELECT * FROM discounts WHERE code =?', array($discount));
-
 }
-
 
 ?>

@@ -1,3 +1,10 @@
+function encodeForAjax(data) {
+    return Object.keys(data).map(function(k){
+      return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+    }).join('&')
+  }
+
+
 
 const main = document.querySelector("html main");
 
@@ -181,3 +188,39 @@ for (let i = 0; i < priceInputvalue.length; i++) {
 }
 
 
+
+
+
+/***** LOGIN ******/
+
+const loginButton = document.querySelector("#login-submit");
+const emailLogin = document.querySelector("#login-form input[name='Lemail']");
+const passwordLogin = document.querySelector("#login-form input[name='Lpassword']");
+const infoLogin = document.querySelector("#sucess-login");
+
+async function login(){
+    
+    if(!emailLogin.value.includes("@") || !passwordLogin.value){
+        //password not valid
+        infoLogin.textContent = "Oopss... We don't think that is valid.";
+        return;
+    }
+    const data = {"email": emailLogin.value, "password": passwordLogin.value};
+    fetch('/api/login.php', {method: "post", headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }, body: encodeForAjax(data)}).then((response) =>{
+        response.json().then(
+            async (data)=>{
+                if(data['success']){
+                    infoLogin.textContent = "Success.";
+                    setTimeout(() => location.reload(), 500)
+                }else{
+                    infoLogin.textContent = "Wrong password or username";
+                    passwordLogin.value ="";
+                }
+            }
+        )
+    })
+}
+
+loginButton.addEventListener('click', (e) =>{e.preventDefault(); login();});
