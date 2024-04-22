@@ -72,7 +72,7 @@ CREATE TABLE cart (
 );
 
 CREATE TABLE productImgs (
-    id INTEGER NOT NULL,
+    id INTEGER PRIMARY KEY,
     product INTEGER NOT NULL REFERENCES products,
     path TEXT
 );
