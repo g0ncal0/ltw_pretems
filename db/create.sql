@@ -73,6 +73,14 @@ CREATE TABLE productImgs (
     path TEXT
 );
 
+CREATE TABLE messages (
+    id INTEGER PRIMARY KEY,
+    productId INTEGER NOT NULL REFERENCES products,
+    buyerId INTEGER NOT NULL REFERENCES users,
+    message TEXT NOT NULL,
+    date DATETIME
+);
+
 INSERT INTO users VALUES ('Zé', 0, 'ze@gmail.com', 'zeze', '1234', TRUE, 'img/profile/profile.png');
 INSERT INTO users VALUES ('Maria', 1, 'maria@gmail.com', 'maria', '1234', FALSE, 'img/profile/profile.png');
 
