@@ -8,7 +8,7 @@
     $session = new Session();
     $db = getDatabaseConnection();
 
-    protectPage();
+    protectPage($session);
 
     if ($_GET['area'] == 'category'){
         output_header($db, 'Add Category', null, $session->getId()); 

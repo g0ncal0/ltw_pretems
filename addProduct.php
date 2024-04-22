@@ -11,7 +11,7 @@
     $conditions = getConditions($db);
 
     output_header($db, 'Add Product', null, $session->getId()); 
-    protectPage();
+    protectPage($session);
     ?>
 
 

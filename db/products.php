@@ -114,5 +114,27 @@ function addCondition($db, $name){
     execute($db, 'INSERT INTO conditions (name) VALUES (?)', array($name));
 }
 
+function checkItemAvailable($db, $item){
+    $product = getProduct($db, $item);
+    return $product['available'];
+}
+
+function setItemUnavailable($db, $item){
+    // returns price of item
+    $price = fetch($db, 'SELECT price FROM products WHERE id = ?', array($item));
+    if(!isset($price['price'])){
+        return 0;
+    }
+    execute($db, 'UPDATE products SET available = FALSE WHERE id = ?', array($item));
+
+    return $price['price'];
+}
+
+function getDiscountInfo($db, $discount){
+    if(!isset($discount)){
+        return array();
+    }
+    return fetch($db, 'SELECT * FROM discounts WHERE code =?', array($discount));
+}
 
 ?>

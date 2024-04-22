@@ -30,6 +30,10 @@
     color: var(--main);
 }
 
+.unclickable{
+    pointer-events: none;
+}
+
 /**** PROMOTIONAL ****/
 .promotional{
     padding: 0.4rem;

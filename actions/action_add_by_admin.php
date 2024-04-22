@@ -6,6 +6,7 @@
     $session = new Session();
     $db = getDatabaseConnection();
 
+    // FIXME: Checking should be case insensitive
     if ($_GET['add'] == 'category'){ // Add category
         if (!getCategoryWithName($db, $_POST['name'])){ // Add if category doesn't already exist
             addCategory($db, $_POST['name']);

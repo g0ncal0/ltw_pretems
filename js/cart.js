@@ -1,8 +1,8 @@
 
-
+const cartInterface = document.querySelector(".cart_interface");
 const cart = document.querySelector(".cart");
 const price = document.querySelector("#cart-total-price");
-
+const checkoutDIV = document.querySelector("#checkout");
 
 async function removeFromCart(){
     const productid = this.getAttribute('data-id');
@@ -28,7 +28,7 @@ function createProduct(product){
     const button = document.createElement('button');
     button.textContent = "Remove From Cart";
     button.classList = "remove-cart"
-    button.setAttribute("data-id", product['product']);
+    button.setAttribute("data-id", product['id']);
     div.appendChild(button);
     cart.appendChild(div);
 }
@@ -52,11 +52,12 @@ async function updateCart(){
                         (product) =>{
                             const prodDiv = document.createElement("div");
                             createProduct(product);
-                            price ++;
+                            price += product['price'];
                         }
                     )
                     updateRemoveCarts();
                     setPrice(price);
+                    return price;
                 }
             )
         }
@@ -67,14 +68,21 @@ updateCart(); // on page load
 
 
 async function proceedToCheckout(){
-    const user = await fetch("api/user.php").then(response => {
+    await fetch("api/user.php").then(response => {
         if (!response.ok) {
           console.log("error");
         }
         const user = response.json().then(
-            (u) => {
+            async (u) => {
                 if(u.user){
-                    window.location.replace('checkout.php');
+                    await fetch("api/cart.php").then((r) =>r.json().then(
+                        (products)=>{
+                            if(!(products == undefined || products.length == 0)){
+                                cartInterface.classList.add("unclickable");
+                                checkoutDIV.style.display = "block";
+                            }
+                        }
+                    ))
                 }else{
                     toggleLoginSignup();
                 }

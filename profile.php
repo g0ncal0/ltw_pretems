@@ -12,7 +12,7 @@
     $profile = getUser($db, $id);
 
     output_header($db,  $profile['name'] . "'s Profile", null, $session->getId());
-    protectPage();
+    protectPage($session);
     output_profile($profile);
 
     if ($session->isLoggedIn() && ($id == $session->getId())) { ?>

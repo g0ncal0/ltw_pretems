@@ -9,6 +9,10 @@ DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS imgs;
 DROP TABLE IF EXISTS cart;
 DROP TABLE IF EXISTS sizes;
+DROP TABLE IF EXISTS purchases;
+DROP TABLE IF EXISTS discounts;
+DROP TABLE IF EXISTS purchaseItems;
+
 
 CREATE TABLE users (
     name TEXT NOT NULL,
@@ -73,8 +77,30 @@ CREATE TABLE productImgs (
     path TEXT
 );
 
-INSERT INTO users VALUES ('Zé', 0, 'ze@gmail.com', 'zeze', '1234', TRUE, 'img/profile/profile.png');
-INSERT INTO users VALUES ('Maria', 1, 'maria@gmail.com', 'maria', '1234', FALSE, 'img/profile/profile.png');
+CREATE TABLE purchaseItems(
+    purchaseid TEXT NOT NULL REFERENCES purchases,
+    productid INTEGER NOT NULL
+);
+
+CREATE TABLE purchases(
+    id TEXT NOT NULL,
+    date DATETIME NOT NULL, /* this will be the date it passed to pending (on checkout)*/
+    status INTEGER NOT NULL, /* 0: pending ; 1: sucess (paid) */
+    address TEXT NOT NULL,
+    zipcode TEXT NOT NULL,
+    buyerid INTEGER NOT NULL REFERENCES users
+);
+
+
+CREATE TABLE discounts(
+    code TEXT NOT NULL,
+    minamount INTEGER NOT NULL,
+    percentage INTEGER NOT NULL,
+    maxdiscount INTEGER NOT NULL
+);
+
+INSERT INTO users VALUES ('Zé', 0, 'ze@gmail.com', 'zeze', '1234', 1, 'img/profile/profile.png');
+INSERT INTO users VALUES ('Maria', 1, 'maria@gmail.com', 'maria', '1234', 0, 'img/profile/profile.png');
 
 
 -- TODO: remove (used for testing shopping cart)
@@ -110,7 +136,7 @@ INSERT INTO conditions VALUES (0, 'New');
 INSERT INTO conditions VALUES (1, 'Nearely used');
 INSERT INTO conditions VALUES (2, 'Used');
 
-INSERT INTO products VALUES ('dress', 0, '2023-11-12', 0, 0, 'modelo2', 0, 0, 80.9, 0, TRUE, 'beautiful dress with some functionality. I guess..', 'img/products/dress.jpeg');
+INSERT INTO products VALUES ('dress', 0, '2023-11-12', 0, 0, 'modelo2', 0, 0, 80.9, 0, 1, 'beautiful dress with some functionality. I guess..', 'img/products/dress.jpeg');
 
 INSERT INTO productImgs VALUES (0, 0, 'img/products/dress.jpeg');
 INSERT INTO productImgs VALUES (1, 0, 'img/products/dress-beach.jpg');
