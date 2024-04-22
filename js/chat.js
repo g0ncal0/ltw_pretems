@@ -18,7 +18,6 @@ if (newMessageButton) {
         }
 
         const data = {"productId": productId.value, "buyerId": buyerId.value, "message": newMessage.value};
-        console.log(data);
 
         const response = await fetch('/api/chat.php', {
             method: "post",
@@ -32,7 +31,7 @@ if (newMessageButton) {
 
         const newDiv = document.createElement("div");
         
-        var user = null;
+        let user = null;
 
         if (message.fromBuyer) {
             user = await getUserName(buyerId.value);

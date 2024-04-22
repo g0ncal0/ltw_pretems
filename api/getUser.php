@@ -7,7 +7,7 @@
 
   $db = getDatabaseConnection();
 
-  $user = getProduct($db, $_GET['userId']);
+  $user = getUser($db, $_GET['userId']);
 
   echo json_encode($user);
 ?>
