@@ -33,8 +33,8 @@ function getCart($db, $session){
 }
 
 
-function purchase($db, $idPurchase, $userId, $products){
-    execute($db, 'INSERT INTO purchases VALUES (?, ?, ?, ?)', array($idPurchase, date('Y-m-d H:i:s'), 0, $userId));
+function purchase($db, $idPurchase, $userId, $products, $zipcode, $address){
+    execute($db, 'INSERT INTO purchases VALUES (?, ?, ?, ?, ?, ?)', array($idPurchase, date('Y-m-d H:i:s'), 0, $address, $zipcode, $userId));
     foreach($products as $product){
         execute($db, 'INSERT INTO purchaseItems VALUES (?, ?)', array($idPurchase, $product['id']));
     }

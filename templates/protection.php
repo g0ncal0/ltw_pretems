@@ -48,5 +48,14 @@ function protectAPIadmin($session){
     }
 }
 
+function protectActionloggedIn($session){
+    if(!isset($session)){
+        exit;
+    }
+    if(!$session->isLoggedIn()){
+        // TODO - improve action here
+        exit;
+    }
+}
 
 ?>

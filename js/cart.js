@@ -1,8 +1,8 @@
 
-
+const cartInterface = document.querySelector(".cart_interface");
 const cart = document.querySelector(".cart");
 const price = document.querySelector("#cart-total-price");
-
+const checkoutDIV = document.querySelector("#checkout");
 
 async function removeFromCart(){
     const productid = this.getAttribute('data-id');
@@ -78,7 +78,8 @@ async function proceedToCheckout(){
                     await fetch("api/cart.php").then((r) =>r.json().then(
                         (products)=>{
                             if(!(products == undefined || products.length == 0)){
-                                window.location.replace('checkout.php');
+                                cartInterface.classList.add("unclickable");
+                                checkoutDIV.style.display = "block";
                             }
                         }
                     ))

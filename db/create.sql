@@ -87,7 +87,7 @@ CREATE TABLE purchases(
     date DATETIME NOT NULL, /* this will be the date it passed to pending (on checkout)*/
     status INTEGER NOT NULL, /* 0: pending ; 1: sucess (paid) */
     address TEXT NOT NULL,
-    postalcode TEXT NOT NULL,
+    zipcode TEXT NOT NULL,
     buyerid INTEGER NOT NULL REFERENCES users
 );
 
