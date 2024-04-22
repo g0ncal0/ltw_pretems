@@ -14,6 +14,6 @@
     $id = $_GET['id'];
     $item = getProduct($db, $id);
     
-    output_full_item($item);
+    output_full_item($item, $session->getId());
     output_footer();
 ?>

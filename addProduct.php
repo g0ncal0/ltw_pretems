@@ -72,7 +72,7 @@
             <label for="images">First Picture:</label>
             <input type="file" name="images" multiple>
 
-            <button class="button" type="submit" value="Add Product">Add Product</button>
+            <button class="button" type="submit">Add Product</button>
         </form>
     </section>  
 

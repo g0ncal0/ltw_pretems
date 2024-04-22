@@ -17,7 +17,7 @@
         </div>
     <?php }
 
-    function output_full_item($product) {
+    function output_full_item($product, $id) {
         $db = getDatabaseConnection(); ?>
 
         <section class="item-page">
@@ -39,7 +39,7 @@
                 <p><?php echo $product['price']?></p>
                 <button class="button">FAVORITES</button>
                 <button data-id="<?php echo $product['id'] ?>" class="button">ADD TO CART</button>
-                <button class="button">ASK USER</button>
+                <a href="chat.php?buyerId=<?php echo $id?>&productId=<?php echo $product['id']?>"><button class="button">ASK USER</button></a>
             </div>
         </section>
     <?php }
