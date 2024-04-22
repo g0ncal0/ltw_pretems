@@ -1,4 +1,5 @@
 
+const main = document.querySelector("html main");
 
 function toggleMenu(){
     
@@ -7,9 +8,11 @@ function toggleMenu(){
     document.querySelector(".menu").classList.toggle("visible");
 
     if(!document.querySelector('.menu').classList.contains("visible")){
-        document.querySelector("html main").classList.remove("stop-behavior");
+        main.classList.remove("stop-behavior");
+        main.classList.remove("unclickable");
     }else{
-        document.querySelector("html main").classList.add("stop-behavior");
+        main.classList.add("stop-behavior");
+        main.classList.add("unclickable");
     }
 }
 
@@ -31,9 +34,11 @@ async function toggleLoginSignup(){
                     loginel.classList.toggle("visible");
                 
                     if(!loginel.classList.contains("visible")){
-                        document.querySelector("html main").classList.remove("stop-behavior");
+                        main.classList.remove("stop-behavior");
+                        main.classList.remove("unclickable");
                     }else{
-                        document.querySelector("html main").classList.add("stop-behavior");
+                        main.classList.add("stop-behavior");
+                        main.classList.add("unclickable");
                     }
                 }
             }
@@ -79,7 +84,7 @@ document.querySelectorAll("button.add-cart").forEach(function(btn){
 
 
 /******* PRICE RANGE ******/
-
+// INSPIRED FROM https://www.geeksforgeeks.org/price-range-slider-with-min-max-input-using-html-css-and-javascript/
 
 const rangevalue =  
     document.querySelector(".slider-container .price-slider"); 

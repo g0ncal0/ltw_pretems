@@ -3,7 +3,7 @@
 require_once('util.php');
 
 function getAllProducts($db) {
-    return fetchAll($db, 'SELECT * FROM products', null);
+    return fetchAll($db, 'SELECT * FROM products WHERE available = TRUE', null);
 }
 
 function getProduct($db, $id) {
@@ -12,9 +12,9 @@ function getProduct($db, $id) {
 
 function getProductsLimitOffset($db, $limit, $offset, $category){
     if(isset($category)){
-        return fetchAll($db, 'SELECT * FROM products LIMIT ? OFFSET ?', array($limit, $offset));
+        return fetchAll($db, 'SELECT * FROM products WHERE available = TRUE LIMIT ? OFFSET ?', array($limit, $offset));
     }else{
-        return fetchAll($db, 'SELECT * FROM products WHERE products.category = ? LIMIT ? OFFSET ?', array($category, $limit, $offset));
+        return fetchAll($db, 'SELECT * FROM products WHERE products.category = ? AND available = TRUE LIMIT ? OFFSET ?', array($category, $limit, $offset));
     }
 }
 
@@ -23,7 +23,7 @@ function getProductsOfUser($db, $id) {
 }
 
 function getProductsOfCategory($db, $category) {
-    return fetchAll($db, 'SELECT *  FROM products WHERE  products.category = ?', array($category));
+    return fetchAll($db, 'SELECT *  FROM products WHERE category = ? AND available = TRUE', array($category));
 }
 
 function getCategories($db){
