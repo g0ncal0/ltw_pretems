@@ -9,8 +9,11 @@
 
     $product = getProduct($db, $productId);
 
-    output_header($db,  "Chat-" . $productId . "-" . $buyerId, null, $session->getId());
-    protectPage();
+    output_header($db,  "Chat-" . $productId . "-" . $buyerId, null, $session->getId()); ?>
+
+    <script src="/js/chat.js" defer></script>
+
+    <?php protectPage();
 
     if (($session->getId() != $buyerId) && ($session->getId() != $product['user'])) { ?>
         <section class="container protectedpage">
@@ -43,6 +46,15 @@
                 <?php }
             } ?>
             </section>
+
+            <form id="newCommentForm">
+                <input type="hidden" id="productId" name="productId" value=<?php echo $productId?>>
+                <input type="hidden" id="buyerId" name="buyerId" value=<?php echo $buyerId?>>
+
+                <textarea id="newMessage" name="newMessage" placeholder="Write a message" rows="2" cols="50"></textarea>
+                <button class="button">Submit</button>
+            </form>
+
         </section>    
     <?php }
 
