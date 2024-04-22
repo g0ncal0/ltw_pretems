@@ -14,4 +14,5 @@ require_once(__DIR__ . '/db/products.php');
 require_once(__DIR__ . '/db/users.php');
 require_once(__DIR__ . '/db/images.php');
 require_once(__DIR__ . '/templates/protection.php');
+require_once(__DIR__ . '/db/cart.php');
 ?>

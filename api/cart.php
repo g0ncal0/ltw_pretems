@@ -19,26 +19,14 @@
     $user = $session->getId();
     $db = getDatabaseConnection();
 
-    if($user !== NULL){
-        if(!isset($type)){
-            $ci = fetchAll($db, 'SELECT product FROM cart WHERE user = ?', array($session->getId()));
-            if(!isset($ci)){
-                echo json_encode(array());
-                return;
-            }
-            if(count($ci) == 0){
-                echo json_encode(array());
-                return;
-            }
-            $elements = array();
-            foreach($ci as $citem){
-                array_push($elements, $citem['product']);
-            }
-            $cart_items = getItemsOnIDs($db, $elements);
 
-            echo json_encode($cart_items);
-            return;
-        }
+    if(!isset($type)){
+        echo json_encode(getCart($db, $session));
+    }
+    
+    
+    if($user !== NULL){
+        
         if($type === 'insert'){
             // we want to insert the element on the database
             execute($db, 'INSERT INTO cart VALUES(?,?)', [$product, $user]);
@@ -50,19 +38,7 @@
             execute($db, 'DELETE FROM cart WHERE user = ?', [$user]);
         }
     }else{
-        if(!isset($type)){
-            $cart = $session->getCart();
-            if(!isset($cart)){
-                echo json_encode(array());
-                return;
-            }
-            if(count($cart) == 0){
-                echo json_encode(array());
-                return;
-            }
-            $cart_items = getItemsOnIDs($db, $cart);
-            echo json_encode($cart_items);
-        }
+
         if($session->getCart() === NULL){
             $session->setCard(array());
         }

@@ -5,17 +5,20 @@ $session = new Session();
 
 protectAPIloggedIN($session);
 
+$db = getDatabaseConnection();
 
-$cart = $_POST['cart']; // receive [item1Index, item2Index,...]
+$cart = getCart($db, $session);
+
 $discount = $_POST['discount'];
 
 if(!isset($cart)){
+    errorAPI("No items..");
     exit;
 }
 // check if elements are all available
 
 foreach($cart as $item){
-    if(!$item){ // TODO: correct if
+    if(!checkItemAvailable($db, $item['id'])){
         errorAPI("One or more item is not available anymore!");
         exit;
     }
@@ -25,22 +28,37 @@ foreach($cart as $item){
 // start by setting the elements as unavailable
 $sum = 0;
 foreach($cart as $item){
-    $price = setItemUnavailable($item);
-    if($price === -1){
-        errorAPI("Unexplainable error.");
-    }
-    $sum += $price['price'];
+    $price = setItemUnavailable($db, $item['id']); // returns price of item
+    $sum += $price;
 }
 
 // get the discount code
 
-//$dicountinfo = getDiscountInfo($discount);
+$dicountinfo = getDiscountInfo($db, $discount);
 
 // return how much to pay
 
+if(isset($dicountinfo['percentage'])){
+    $amount_discount = $sum * $discountinfo['percentage'];
+    if($amount_discount > $discountinfo['maxdiscount']){
+        $amount_discount = $discountinfo['maxdiscount'];
+    }
+    if($sum < $discountinfo['minamount']){
+        $amount_discount = 0;
+    }
+    $sum = $sum - $amount_discount;
+}
 
+// Create purchase & set status of purchase as pending
 
-// set status of purchase as pending
+$idpurchase = md5($session->getId() . date("Y-m-d H:i:s"));
 
+purchase($db, $idpurchase, $session->getId(), $cart);
+
+$return['total'] = $sum;
+$return['error'] = "Success. Your purchase awaits payment.";
+$return['code'] = $idpurchase;
+header('Content-Type: application/json');
+echo json_encode($return);
 
 ?>
