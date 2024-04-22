@@ -19,7 +19,33 @@ function getProductsLimitOffset($db, $limit, $offset, $category){
 }
 
 function getProductsOfUser($db, $id) {
-    return fetch($db, 'SELECT * FROM products JOIN users ON products.user = users.username WHERE users.id = ?', array($id));
+    return fetchAll($db, 'SELECT * FROM products WHERE user = ?', array($id));
+}
+
+function getSellingProductsOfUser($db, $id) {
+    return fetchAll($db, 'SELECT * FROM products WHERE user = ? AND available = TRUE', array($id));
+}
+
+function getSellerOfProduct($db, $id) {
+    return fetch($db, 'SELECT user FROM products WHERE id = ?', array($id))['user'];
+}
+
+function getSoldProductsOfUser($db, $id) {
+    return fetchAll($db, 'SELECT * FROM products WHERE user = ? AND available = FALSE', array($id));
+}
+
+function getShippingIds($db, $id) {
+    return fetch($db, 'SELECT purchaseItems.productid AS product_id, purchaseItems.purchaseid AS purchase_id
+                       FROM purchaseItems WHERE product_id = ?;', array($id));
+}
+
+function getShippingWithId($db, $product_id, $purchase_id) {
+    return fetch($db, 'SELECT purchases.date AS date, purchases.address AS address, purchases.zipcode AS zipcode, users.name AS name
+                       FROM purchases
+                       JOIN purchaseItems ON purchases.id = purchaseItems.purchaseid
+                       JOIN products ON purchaseItems.productid = products.id
+                       JOIN users ON purchases.buyerid = users.id
+                       WHERE purchases.id = ? AND purchaseItems.productid = ?;', array($purchase_id, $product_id));
 }
 
 function getProductsOfCategory($db, $category) {
