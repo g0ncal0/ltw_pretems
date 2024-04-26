@@ -49,7 +49,7 @@ function getShippingWithId($db, $product_id, $purchase_id) {
 }
 
 function getProductsOfCategory($db, $category) {
-    return fetchAll($db, 'SELECT *  FROM products WHERE category = ? AND available = TRUE', array($category));
+    return fetchAll($db, 'SELECT * FROM products WHERE category = ? AND available = TRUE', array($category));
 }
 
 function getCategories($db){

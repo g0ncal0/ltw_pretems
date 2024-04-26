@@ -17,16 +17,14 @@
         </div>
     <?php }
 
-    function output_full_item($product, $id) {
+    function output_full_item($product, $id, $images) {
         $db = getDatabaseConnection(); ?>
 
         <section class="item-page">
             <div class="item-page-photos">
-                <img src="img/products/dress.jpeg">                
-                <img src="img/products/dress-beach.jpeg">
-                <img src="img/products/dress.jpeg">
-                <img src="img/products/dress.jpeg">
-                <img src="img/products/dress-beach.jpeg">
+                <?php foreach($images as $image) { ?>
+                    <img src=<?php echo $image['path']?>>
+                <?php } ?>
             </div>
         
             <div class="container">

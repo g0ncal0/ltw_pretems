@@ -76,4 +76,8 @@ function uploadProfileImage($db, $image, $id) {
     return $path;
 }
 
+function getImagesOfProduct($db, $id) {
+    return fetchAll($db, 'SELECT * FROM productImgs WHERE product = ?', array($id));
+}
+
 ?>
