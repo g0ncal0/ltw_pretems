@@ -117,7 +117,7 @@ function addProduct($db, $name, $date, $category, $brand, $model, $size, $condit
 
     execute($db, 'UPDATE products SET firstImg = ? WHERE id = ?', array($firstImgPath, $id));
 
-    uploadProductImages($db, $images, $id);
+    if (isset($images) & ($images['tmp_name'][0]) != '') uploadProductImages($db, $images, $id);
 }
 
 
