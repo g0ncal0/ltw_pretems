@@ -69,8 +69,11 @@
             <label for="description">Description:</label>
             <textarea id="description" name="description" rows="5" cols="50"></textarea>
 
-            <label for="images">First Picture:</label>
-            <input type="file" name="images" multiple>
+            <label for="firstImg">First Picture:</label>
+            <input type="file" name="firstImg" multiple required>
+
+            <label for="images">More Pictures:</label>
+            <input type="file" name="images[]" multiple>
 
             <button class="button" type="submit">Add Product</button>
         </form>

@@ -104,16 +104,20 @@ function getProductID($db, $name, $date, $category, $brand, $model, $size, $cond
     return fetch($db, 'SELECT id FROM products WHERE name = ? AND date = ? AND category = ? AND brand = ? AND model = ? AND size = ? AND condition = ? AND price = ? AND user = ? AND available = ? AND description = ?', array($name, $date, $category, $brand, $model, $size, $condition, $price, $user, $available, $description))['id'];
 }
 
-function addProduct($db, $name, $date, $category, $brand, $model, $size, $condition, $price, $user, $available, $description, $images) {
+function addProduct($db, $name, $date, $category, $brand, $model, $size, $condition, $price, $user, $available, $description, $firstImg, $images) {
+    $available = ($available === "on");
+
     execute($db, 
     'INSERT INTO products (name, date, category, brand, model, size, condition, price, user, available, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
      array($name, $date, $category, $brand, $model, $size, $condition, $price, $user, $available, $description));
     
     $id = $db->lastInsertId();
 
-    $firstImg = uploadProductImages($db, $images, $id);
+    $firstImgPath = uploadProductFirstImage($db, $firstImg, $id);
 
-    execute($db, 'UPDATE products SET firstImg = ? WHERE id = ?', array($firstImg, $id));
+    execute($db, 'UPDATE products SET firstImg = ? WHERE id = ?', array($firstImgPath, $id));
+
+    uploadProductImages($db, $images, $id);
 }
 
 
