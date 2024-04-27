@@ -288,7 +288,7 @@ body header{
 
 /**** LOGIN & REGISTER FORMS ****/
 
-.account-form, .profile-form, .newComment-form{
+.account-form, .profile-form, .category-form, .size-form, .condition-form, .newComment-form{
     & input, select, textarea, file, input::file-selector-button {
         display: block;
         box-sizing: border-box;
