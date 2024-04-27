@@ -277,7 +277,6 @@ body header{
 
     & .item-page-photos img{
         max-height: 450px;
-        max-width: 100vw;
     }
 
     h1{
