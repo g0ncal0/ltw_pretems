@@ -1,22 +1,25 @@
 <?php
     function output_users($users){
-        ?><h2>Users</h2>  
-        <table><?php
-        foreach ($users as $user) {
-            ?><tr><?php 
-            ?><td><img src=<?php echo $user['profileImg']?> alt="Profile Image" id="profile_image"></td><?php
-            echo '<td>' . $user['name'] . '</td>';
-            echo '<td>' . $user['email'] . '</td>';
-            if (!$user['admin']) {
-                ?><td> Not an admin </td>
-                <td><a href="/actions/action_elevate_admin.php?id=<?php echo $user['id']; ?>">Elevate to admin</a></td><?php
-            }
-            else {
-                echo '<td> Admin </td>';
-            }
-            ?></tr><?php 
-        }
-        ?></table>
+        ?><section class="container">
+            <h1>Manage Users</h1>  
+            <div class="manage-users">
+                <?php
+                foreach ($users as $user) { ?> 
+                    <div class="user">
+                        <img src="<?= $user['profileImg'] ?>" alt="Profile Image" class="profile-image">
+                        <p class="user-name">Name: <?= $user['name'] ?></p>
+                        <p class="user-email">Email: <?= $user['email'] ?></p>
+                        <p class="user-role">Role: 
+                            <?php if (!$user['admin']) { ?>
+                                Not an admin <a href="/actions/action_elevate_admin.php?id=<?= $user['id'] ?>">Elevate to admin</a>
+                            <?php } else { ?>
+                                Admin
+                            <?php } ?>
+                        </p>
+                    </div><?php
+                }
+            ?></div>
+        </section>
     <?php }
 
 ?>
