@@ -26,6 +26,7 @@
     $max_price = $_POST['max'];
     
 
+
     // Get offset
     $offset = $_POST['offset'];
 
@@ -39,34 +40,35 @@
 
 
 
-    if(isset($brand)){
+    if(isset($brand) && !empty($brand)){
         $query = $query . ' AND brand = ?';
         array_push($arguments, $brand); 
     }
-    if(isset($category)){
+    if(isset($category) && !empty($category)){
         $query = $query . ' AND category = ?';
         array_push($arguments, $category);
     }
-    if(isset($condition)){
+    if(isset($condition) && !empty($condition)){
         $query = $query . ' AND condition = ?';
         array_push($arguments, $condition);
     }
-    if(isset($min_price)){
+    if(isset($min_price) && !empty($min_price)){
         $query = $query . ' AND price >= ?';
-        array_push($arguments, $condition);
+        array_push($arguments, $min_price);
     }
-    if(isset($max_price)){
+    if(isset($max_price) && !empty($max_price)){
         $query = $query . ' AND price <= ?';
         array_push($arguments, $max_price);
     }
-    if(isset($size)){
+    if(isset($size) && !empty($size)){
         $query = $query . ' AND size = ?';
         array_push($arguments, $size);
     }
 
-    if(isset($offset)){
+    if(isset($offset) && !empty($offset)){
         $query = $query . ' LIMIT 20 OFFSET ?';
-        array_push($offset);
+        $offset = 20 * $offset;
+        array_push($arguments, $offset);
     }else{
         $query = $query . ' LIMIT 20';
     }

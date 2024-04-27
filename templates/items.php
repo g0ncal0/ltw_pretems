@@ -43,7 +43,7 @@
     <?php }
 
     function output_list_items($products) {?>
-        <section class="container products">
+        <section id="products" class="container products">
             <?php foreach($products as $product) output_item($product); ?>
         </section>
     <?php }

@@ -33,18 +33,19 @@
                     <option selected value="<?php echo $element['id']?>"><?php echo $element['name']?></option>
 
                 <?php
-            }
+            }else{
             ?>
                 <option value="<?php echo $element['id']?>"><?php echo $element['name']?></option>
             <?php
+            }
         }
     }
 
 ?>
-
+<script src="js/items.js" defer></script>
 
 <div class="container">
-    <form>
+    <form id="form-filter">
         <label for="size">Size:</label>
         <select name="size" id="size">
             <option value="">Select Size</option>
@@ -108,15 +109,14 @@
                     step="10"> 
         </div> 
 
-        <button>Submit</button>
+        <button id="submit-filter">Submit</button>
     </form>
 </div>
 
 
-<?php
-    output_list_items($items);
-?>
-
+<div id="products">
+</div>
+<button id="more-items">More items</button>
 
 <?php
     output_footer();
