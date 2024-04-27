@@ -13,20 +13,18 @@
 
     output_header($db,  $profile['name'] . "'s Profile", null, $session->getId());
     protectPage($session);
-    output_profile($profile);
 
-    if ($session->isLoggedIn() && ($id == $session->getId())) { ?>
-        <a href="changeProfile.php"><button class="button">Change Profile</button></a>
-        <a href="addProduct.php"><button class="button">Add Product</button></a><?php 
-        
+    if ($session->isLoggedIn() && ($id == $session->getId())) { 
+        output_profile($profile); 
         if (isAdmin($db, $session->getId())){ //TODO: remove admin attribute from session (and change login and register)
-            ?><a href="admin_area.php?area=category"><button class="button">Add Category</button></a>
-            <a href="admin_area.php?area=size"><button class="button">Add Size</button></a>
-            <a href="admin_area.php?area=condition"><button class="button">Add Condition</button></a>
-            <a href="manage_users.php"><button class="button">Manage Users</button></a><?php //TODO: Implement (+ create file) 
-            echo "<h2>You are an admin</h2>"; // TODO: Temporary
+            output_admin_area();
         }
     }
+
+    // Profile items
+    $selling_items = getSellingProductsOfUser($db, $id);
+    $sold_items = getSoldProductsOfUser($db, $id);
+    output_profile_items($selling_items, $sold_items); 
 
     output_footer();
 ?>

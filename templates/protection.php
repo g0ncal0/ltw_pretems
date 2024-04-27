@@ -15,6 +15,18 @@ function protectPage($session) {
     }
 }
 
+function protectPageUser($session, $user_id) { // User is logged in and with the right account
+    if(!isset($session)){
+        exit;
+    }
+    if (!$session->isLoggedIn() || $session->getId() != $user_id) {
+        errorPage("You found a protected page", "Nothing here for you");
+        
+        // header("Location: register.php")
+        exit;
+    }
+}
+
 function protectPageAdmins($session){
     if(!isset($session)){
         exit;

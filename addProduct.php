@@ -31,7 +31,7 @@
             </select>
 
             <label for="brand">Brand:</label>
-            <select id="brand" name="brand">
+            <select id="brand" name="brand" required>
                 <?php
                 foreach ($brands as $brand) {
                     echo "<option value='" . $brand['id'] . "'>" . $brand['name'] . "</option>";
@@ -52,7 +52,7 @@
             </select>
 
             <label for="condition">Condition:</label>
-            <select id="condition" name="condition">
+            <select id="condition" name="condition" required>
                 <?php
                 foreach ($conditions as $condition) {
                     echo "<option value='" . $condition['id'] . "'>" . $condition['name'] . "</option>";
@@ -67,12 +67,15 @@
             <input type="checkbox" id="available" name="available" checked="false">
 
             <label for="description">Description:</label>
-            <textarea id="description" name="description" rows="5" cols="50"></textarea>
+            <textarea id="description" name="description" rows="5" cols="50" required></textarea>
 
-            <label for="images">First Picture:</label>
-            <input type="file" name="images" multiple>
+            <label for="firstImg">First Picture:</label>
+            <input type="file" name="firstImg" required>
 
-            <button class="button" type="submit" value="Add Product">Add Product</button>
+            <label for="images">More Pictures:</label>
+            <input type="file" name="images[]" multiple>
+
+            <button class="button" type="submit">Add Product</button>
         </form>
     </section>  
 

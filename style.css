@@ -289,8 +289,8 @@ body header{
 
 /**** LOGIN & REGISTER FORMS ****/
 
-.account-form, .profile-form{
-    & input, select, textarea, file{
+.account-form, .profile-form, .newComment-form{
+    & input, select, textarea, file, input::file-selector-button {
         display: block;
         box-sizing: border-box;
         width: 100%;
@@ -308,6 +308,11 @@ body header{
         }
     
     }
+
+    input::file-selector-button {
+        cursor: pointer;
+    }
+
     button[type='submit']{
         width: 100%;
         max-width: 21rem;
@@ -379,4 +384,4 @@ input[type="range"]::-webkit-slider-thumb {
     background: #555; 
     pointer-events: auto; 
     -webkit-appearance: none; 
-} 
+}

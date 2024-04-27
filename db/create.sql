@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS imgs;
 DROP TABLE IF EXISTS cart;
 DROP TABLE IF EXISTS sizes;
+DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS purchases;
 DROP TABLE IF EXISTS discounts;
 DROP TABLE IF EXISTS purchaseItems;
@@ -77,6 +78,15 @@ CREATE TABLE productImgs (
     path TEXT
 );
 
+CREATE TABLE messages (
+    id INTEGER PRIMARY KEY,
+    productId INTEGER NOT NULL REFERENCES products,
+    buyerId INTEGER NOT NULL REFERENCES users,
+    fromBuyer INTEGER NOT NULL,
+    message TEXT NOT NULL,
+    date DATETIME
+);
+
 CREATE TABLE purchaseItems(
     purchaseid TEXT NOT NULL REFERENCES purchases,
     productid INTEGER NOT NULL
@@ -139,6 +149,13 @@ INSERT INTO conditions VALUES (2, 'Used');
 INSERT INTO products VALUES ('dress', 0, '2023-11-12', 0, 0, 'modelo2', 0, 0, 80.9, 0, 1, 'beautiful dress with some functionality. I guess..', 'img/products/dress.jpeg');
 
 INSERT INTO productImgs VALUES (0, 0, 'img/products/dress.jpeg');
-INSERT INTO productImgs VALUES (1, 0, 'img/products/dress-beach.jpg');
+INSERT INTO productImgs VALUES (1, 0, 'img/products/dress-beach.jpeg');
 
 UPDATE products SET firstImg = 'img/products/dress.jpeg' WHERE id = 0;
+
+INSERT INTO messages (productId, buyerId, fromBuyer, message, date) VALUES
+(0, 1, 1, 'Olá! Estou interessado neste produto.', '2024-04-22 15:30'),
+(0, 1, 0, 'Boa tarde! Obrigado pelo seu interesse.', '2024-04-23 10:45'),
+(0, 1, 1, 'Gostaria de saber mais detalhes sobre a entrega.', '2024-04-24 08:20'),
+(0, 1, 0, 'Claro, posso fornecer as informações.', '2024-04-25 14:10'),
+(0, 1, 1, 'Ótimo! Aguardo sua resposta.', '2024-04-26 11:55');
