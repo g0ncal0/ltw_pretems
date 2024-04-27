@@ -48,7 +48,7 @@ function protectAPIadmin($session){
     }
 }
 
-function protectActionloggedIn($session){
+function w($session){
     if(!isset($session)){
         exit;
     }

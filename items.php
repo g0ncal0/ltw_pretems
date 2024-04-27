@@ -18,9 +18,6 @@
     }
 
     output_header($db, isset($category) ? $category : " Our catalogue", null, $session->getId());
-?>
-
-<?php
 
     simpleheader($title);
 
@@ -29,8 +26,14 @@
     $sizes = getSizes($db);
     $conditions = getConditions($db);
 
-    function printOptions($elements){
+    function printOptions($elements, $isCategory){
         foreach($elements as $element){
+            if($isCategory && $element['id'] == $_GET['category']){
+                ?>
+                    <option selected value="<?php echo $element['id']?>"><?php echo $element['name']?></option>
+
+                <?php
+            }
             ?>
                 <option value="<?php echo $element['id']?>"><?php echo $element['name']?></option>
             <?php
@@ -41,64 +44,72 @@
 
 
 <div class="container">
+    <form>
+        <label for="size">Size:</label>
+        <select name="size" id="size">
+            <option value="">Select Size</option>
+            <?php printOptions($sizes, false);?>
+        </select>
 
-    <label for="size">Size:</label>
-    <select name="size" id="size">
-        <option value="">Select Size</option>
-        <?php printOptions($sizes);?>
-    </select>
+        <label for="category">Category</label>
+        <select name="category" id="category">
+            <option value="">Select Category</option>
+            <?= printOptions($categories, true)?>
+        </select>
 
-    <label for="brand">Brand:</label>
-    <select name="brand" id="brand">
-      <option value="">Select Brand</option>
-      <?php printOptions($brands);?>
-    </select>
+        <label for="brand">Brand:</label>
+        <select name="brand" id="brand">
+        <option value="">Select Brand</option>
+        <?php printOptions($brands, false);?>
+        </select>
 
-    <label for="condition">Condition:</label>
-    <select name="condition" id="condition">
-      <option value="">Select Condition</option>
-      <?php printOptions($conditions);?>
-    </select>
+        <label for="condition">Condition:</label>
+        <select name="condition" id="condition">
+        <option value="">Select Condition</option>
+        <?php printOptions($conditions, false);?>
+        </select>
 
-    <div class="price-input-container"> 
-        <div class="price-input"> 
-            <div class="price-field"> 
-                <span>Minimum Price</span> 
-                <input type="number" 
-                        class="min-input" 
-                        value="0" readonly> 
+        <div class="price-input-container"> 
+            <div class="price-input"> 
+                <div class="price-field"> 
+                    <span>Minimum Price</span> 
+                    <input type="number" 
+                            name="min-price"
+                            class="min-input" 
+                            value="0" readonly> 
+                </div> 
+                <div class="price-field"> 
+                    <span>Maximum Price</span> 
+                    <input type="number" 
+                            name="max-price"
+                            class="max-input" 
+                            value="700" readonly> 
+                </div> 
             </div> 
-            <div class="price-field"> 
-                <span>Maximum Price</span> 
-                <input type="number" 
-                        class="max-input" 
-                        value="700" readonly> 
+            <div class="slider-container"> 
+                <div class="price-slider"> 
+                </div> 
             </div> 
         </div> 
-        <div class="slider-container"> 
-            <div class="price-slider"> 
-            </div> 
+    
+        <!-- Slider -->
+        <div class="range-input"> 
+            <input type="range" 
+                    class="min-range" 
+                    min="0" 
+                    max="700" 
+                    value="0" 
+                    step="10"> 
+            <input type="range" 
+                    class="max-range" 
+                    min="0" 
+                    max="700" 
+                    value="700" 
+                    step="10"> 
         </div> 
-    </div> 
-  
-    <!-- Slider -->
-    <div class="range-input"> 
-        <input type="range" 
-                class="min-range" 
-                min="0" 
-                max="700" 
-                value="0" 
-                step="10"> 
-        <input type="range" 
-                class="max-range" 
-                min="0" 
-                max="700" 
-                value="700" 
-                step="10"> 
-    </div> 
 
-    <button>Submit</button>
-
+        <button>Submit</button>
+    </form>
 </div>
 
 
