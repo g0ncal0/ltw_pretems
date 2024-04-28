@@ -12,7 +12,18 @@
 
     $db = getDatabaseConnection();
 
-    changeProfile($db, $session->getId(), $_POST['name'], $_POST['email'], $_POST['password'], $_FILES['image']); 
+    $user = getUserWithIdAndPassword($db, $session->getId(), $_POST['currentPassword']);
+    
+    if ($user) {
+        $password = $_POST['newPassword'];
+        if ($password === '') $password = $_POST['currentPassword'];
 
-    header('Location: ../profile.php?id=' . $session->getId());
+        changeProfile($db, $session->getId(), $_POST['name'], $_POST['email'], $password, $_FILES['image']); 
+
+        header('Location: ../profile.php?id=' . $session->getId());
+    }    
+
+    else {
+        header('Location: ../changeProfile.php?error=invalidPassword');
+    }
 ?>

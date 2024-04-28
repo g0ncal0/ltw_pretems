@@ -10,10 +10,15 @@
 
     output_header($db, 'Change Profile', null, $session->getId()); 
     protectPage($session);
+
+    $error = $_GET['error'];
     ?>
 
-
     <section class="container">
+        <?php if ($error) { ?>
+            <h1>Invalid Password. Please try again</h1>
+        <?php } ?>
+        
         <h1>Change Profile:</h1>
         <form class="profile-form" action="/actions/action_change_profile.php" method="post" enctype="multipart/form-data">
             <label for="name">Name:</label>
@@ -22,11 +27,14 @@
             <label for="email">E-mail:</label>
             <input type="email" name="email" id="email" value="<?php echo $profile['email']; ?>">
 
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" value="<?php echo $profile['password']; ?>">
+            <label for="newPassword">Password:</label>
+            <input type="password" name="newPassword" id="newPassword">
 
             <label for="image">Profile Picture:</label>
             <input type="file" name="image">
+
+            <label for="currentPassword">You must type your current password to perform changes:</label>
+            <input type="password" name="currentPassword" id="currentPassword">
 
             <button class="button" type="submit">Save Changes</button>
         </form>
