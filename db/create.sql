@@ -148,8 +148,8 @@ INSERT INTO conditions VALUES (3, 'Used');
 
 INSERT INTO products VALUES ('dress', 1, '2023-11-12', 1, 1, 'modelo2', 1, 1, 80.9, 1, 1, 'beautiful dress with some functionality. I guess..', 'img/products/dress.jpeg');
 
-INSERT INTO productImgs VALUES (1, 0, 'img/products/dress.jpeg');
-INSERT INTO productImgs VALUES (2, 0, 'img/products/dress-beach.jpeg');
+INSERT INTO productImgs VALUES (1, 1, 'img/products/dress.jpeg');
+INSERT INTO productImgs VALUES (2, 1, 'img/products/dress-beach.jpeg');
 
 UPDATE products SET firstImg = 'img/products/dress.jpeg' WHERE id = 1;
 
