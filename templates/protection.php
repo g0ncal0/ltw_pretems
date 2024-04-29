@@ -60,7 +60,7 @@ function protectAPIadmin($session){
     }
 }
 
-function w($session){
+function protectActionloggedIn($session){
     if(!isset($session)){
         exit;
     }
