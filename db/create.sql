@@ -109,8 +109,8 @@ CREATE TABLE discounts(
     maxdiscount INTEGER NOT NULL
 );
 
-INSERT INTO users VALUES ('Zé', 1, 'ze@gmail.com', 'zeze', '1234', 1, 'img/profile/profile.png');
-INSERT INTO users VALUES ('Maria', 2, 'maria@gmail.com', 'maria', '1234', 0, 'img/profile/profile.png');
+INSERT INTO users VALUES ('Zé', 1, 'ze@gmail.com', 'zeze', '$2y$12$2a.K49CYeaBhTKMWVCHDi.3mJEL/vMKzFRsmYa78GbApmGhiNLn9u', 1, 'img/profile/profile.png');
+INSERT INTO users VALUES ('Maria', 2, 'maria@gmail.com', 'maria', '$2y$12$2a.K49CYeaBhTKMWVCHDi.3mJEL/vMKzFRsmYa78GbApmGhiNLn9u', 0, 'img/profile/profile.png');
 
 
 -- TODO: remove (used for testing shopping cart)
