@@ -12,6 +12,18 @@
 
     output_header($db, 'Add Product', null, $session->getId()); 
     protectPage($session);
+
+
+    function printOptions($elements){
+        foreach($elements as $element){
+            ?>
+                <option value="<?php echo $element['id']?>"><?php echo $element['name']?></option>
+            <?php
+        }
+    }
+
+
+
     ?>
 
 
@@ -23,20 +35,12 @@
 
             <label for="category">Category:</label>
             <select id="category" name="category" required>
-                <?php
-                foreach ($categories as $category) {
-                    echo "<option value='" . $category['id'] . "'>" . $category['name'] . "</option>";
-                }
-                ?>
+                <?php printOptions($categories); ?>
             </select>
 
             <label for="brand">Brand:</label>
             <select id="brand" name="brand" required>
-                <?php
-                foreach ($brands as $brand) {
-                    echo "<option value='" . $brand['id'] . "'>" . $brand['name'] . "</option>";
-                }
-                ?>
+                <?php printOptions($brands); ?>
             </select>
 
             <label for="model">Model:</label>
@@ -44,20 +48,12 @@
 
             <label for="size">Size:</label>
             <select id="size" name="size" required>
-                <?php
-                foreach ($sizes as $size) {
-                    echo "<option value='" . $size['id'] . "'>" . $size['name'] . "</option>";
-                }
-                ?>
+                <?php printOptions($sizes); ?>
             </select>
 
             <label for="condition">Condition:</label>
             <select id="condition" name="condition" required>
-                <?php
-                foreach ($conditions as $condition) {
-                    echo "<option value='" . $condition['id'] . "'>" . $condition['name'] . "</option>";
-                }
-                ?>
+                <?php printOptions($conditions) ?>
             </select>
 
             <label for="price">Price:</label>

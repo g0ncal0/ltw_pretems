@@ -24,7 +24,7 @@
     $condition = $_POST['condition'];
     $min_price = $_POST['min'];
     $max_price = $_POST['max'];
-    
+    $searchq = $_POST['q'];
 
 
     // Get offset
@@ -65,7 +65,13 @@
         array_push($arguments, $size);
     }
 
-    if(isset($offset) && !empty($offset)){
+    if(isset($searchq) && !empty($searchq)){
+        $query = $query . ' AND (name LIKE ? OR description LIKE ?)';
+        array_push($arguments, "%" . $searchq . "%");
+        array_push($arguments, "%" . $searchq . "%");
+    }
+
+    if(isset($offset) && strlen($offset) >= 2){
         $query = $query . ' LIMIT 20 OFFSET ?';
         $offset = 20 * $offset;
         array_push($arguments, $offset);

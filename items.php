@@ -14,9 +14,9 @@
     $sizes = getSizes($db);
     $conditions = getConditions($db);
 
-    function printOptions($elements, $isCategory){
+    function printOptions($elements, $idselected){
         foreach($elements as $element){
-            if($isCategory && $element['id'] == $_GET['category']){
+            if($element['id'] == $idselected){
                 ?>
                     <option selected value="<?php echo $element['id']?>"><?php echo $element['name']?></option>
 
@@ -36,25 +36,25 @@
         <label for="size">Size:</label>
         <select name="size" id="size">
             <option value="">Select Size</option>
-            <?php printOptions($sizes, false);?>
+            <?php printOptions($sizes, $_GET['size']);?>
         </select>
 
         <label for="category">Category</label>
         <select name="category" id="category">
             <option value="">Select Category</option>
-            <?= printOptions($categories, true)?>
+            <?= printOptions($categories, $_GET['category'])?>
         </select>
 
         <label for="brand">Brand:</label>
         <select name="brand" id="brand">
         <option value="">Select Brand</option>
-        <?php printOptions($brands, false);?>
+        <?php printOptions($brands, $_GET['brand']);?>
         </select>
 
         <label for="condition">Condition:</label>
         <select name="condition" id="condition">
         <option value="">Select Condition</option>
-        <?php printOptions($conditions, false);?>
+        <?php printOptions($conditions, $_GET['condition']);?>
         </select>
 
         <div class="price-input-container"> 
@@ -95,6 +95,9 @@
                     value="700" 
                     step="10"> 
         </div> 
+
+        <label for="q">Search:</label>
+        <input type="text" value="<?=htmlentities($_GET['q'])?>" name="q" id="q">
 
         <button id="submit-filter">Submit</button>
     </form>

@@ -25,6 +25,9 @@
             <p><?= 'Destination Zip Code: ' . $shippingInfo['zipcode']; ?></p>
             <p><?= 'Buyer Name: ' . $shippingInfo['name']; ?></p>
         </div>
+        <script>
+            window.print();
+        </script>
     </html><?php
 
 

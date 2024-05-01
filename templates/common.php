@@ -55,7 +55,7 @@
                     output_list_categories($db, "", "");
                 ?>
                 
-                <form action="search.php" method="get">
+                <form action="items.php" method="get">
                     <input type="text" name="q" title="q">
                     <button type="submit">🔎</button>
                 </form>

@@ -310,7 +310,7 @@ const conditionE = document.querySelector("#form-filter #condition");
 const minpriceE = document.querySelector("#form-filter .min-input");
 const maxpriceE = document.querySelector("#form-filter .max-input");
 const button_continue = document.querySelector('#more-items');
-
+const searchI = document.querySelector("#form-filter input[name='q']")
 
 // Function
 let offset = 0; // the current offset
@@ -352,7 +352,7 @@ async function get_items(){
         // we want to clean out everything.
         list_items.innerHTML = "";
     }
-    data = {'category': categoryE.value, 'brand': brandE.value, 'size': sizeE.value, 'condition': conditionE.value, 'min': minpriceE.value, 'max': maxpriceE.value, 'offset': offset}; // define the data
+    data = {'category': categoryE.value, 'brand': brandE.value, 'size': sizeE.value, 'condition': conditionE.value, 'min': minpriceE.value, 'max': maxpriceE.value, 'offset': offset, 'q': searchI.value}; // define the data
     await fetch('/api/products.php', {method: "post", headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }, body: encodeForAjax(data)}).then((r)=>r.json().then(
