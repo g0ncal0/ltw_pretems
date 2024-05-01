@@ -32,7 +32,7 @@
 
 
     
-    $query = 'SELECT * FROM products WHERE 1 = 1';
+    $query = 'SELECT * FROM products WHERE available = true';
     $arguments = array();
 
     // Conditionally update the query::

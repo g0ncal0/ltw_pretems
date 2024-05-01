@@ -26,6 +26,13 @@ function getUserWithPassword($db, $email, $password){
     return $user;
 }
 
+function getUserWithIdAndPassword($db, $id, $password){
+    $stmt = $db->prepare('SELECT * FROM users WHERE id = ? AND password = ?');
+    $stmt->execute(array($id, $password));
+    $user = $stmt->fetch(); // Fetch only one row
+    return $user;
+}
+
 function getUserWithEmail($db, $email){
     $stmt = $db->prepare('SELECT * FROM users WHERE email = ?');
     $stmt->execute(array($email));

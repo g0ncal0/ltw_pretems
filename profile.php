@@ -14,17 +14,19 @@
     output_header($db,  $profile['name'] . "'s Profile", null, $session->getId());
     protectPage($session);
 
-    if ($session->isLoggedIn() && ($id == $session->getId())) { 
+    
         output_profile($profile); 
         if (isAdmin($db, $session->getId())){ //TODO: remove admin attribute from session (and change login and register)
             output_admin_area();
         }
+    if ($session->isLoggedIn() && ($id == $session->getId())) { 
+         // Profile items
+        $selling_items = getSellingProductsOfUser($db, $id);
+        $sold_items = getSoldProductsOfUser($db, $id);
+        output_profile_items($selling_items, $sold_items); 
+
     }
 
-    // Profile items
-    $selling_items = getSellingProductsOfUser($db, $id);
-    $sold_items = getSoldProductsOfUser($db, $id);
-    output_profile_items($selling_items, $sold_items); 
-
+   
     output_footer();
 ?>

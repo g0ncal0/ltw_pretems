@@ -224,3 +224,49 @@ async function login(){
 }
 
 loginButton.addEventListener('click', (e) =>{e.preventDefault(); login();});
+
+
+
+const registerFormPassword = document.querySelector("#register-account input[type='password']");
+
+function handlePasswordSecurity(){
+    if(registerFormPassword){
+        let security = 0;
+        const pw = registerFormPassword.value;
+        if (pw.match(/[a-z]+/)) {
+            security += 1;
+        }
+        if (pw.match(/[A-Z]+/)) {
+            security += 1;
+        }
+        if (pw.match(/[0-9]+/)) {
+            security += 1;
+        }
+        if (pw.match(/[$@#&!]+/)) {
+            security += 1;
+        }
+        if(pw.length > 5){
+            security += 2;
+        }
+        if(pw.length > 12){
+            security += 4;
+        }
+        if(pw.length > 15){
+            security = 10;
+        }
+
+        const progress = document.querySelector("#info-password");
+        progress.value = security * 10;
+        if(security < 5){
+            document.querySelector("#register-account button[type='submit']").disabled = true;
+        }else{
+            document.querySelector("#register-account button[type='submit']").disabled = false;
+
+        }
+    }
+}
+
+
+if(registerFormPassword){
+    registerFormPassword.addEventListener("input", handlePasswordSecurity)
+}

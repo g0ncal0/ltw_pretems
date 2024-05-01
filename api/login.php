@@ -13,6 +13,8 @@
         return;
     }
 
+    sleep(1.5);
+
     $email = $_POST['email'];
     $password = $_POST['password'];
 

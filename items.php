@@ -3,21 +3,9 @@
     $session = new Session();
 
     $db = getDatabaseConnection();
-    $title = "Products";
-    $items = array();
-    $category = "";
-    if(isset($_GET['category'])){
-        // the user is searching for category
-        $catgid = $_GET['category'];
-        $category = getCategory($db, $catgid);
-        $title = $category;
-        $items = getProductsOfCategory($db, $catgid);
-    }
-    else{
-        $items = getAllProducts($db);
-    }
-
-    output_header($db, isset($category) ? $category : " Our catalogue", null, $session->getId());
+    
+   
+    output_header($db, "Our catalogue", null, $session->getId());
 
     simpleheader($title);
 

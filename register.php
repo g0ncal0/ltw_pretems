@@ -12,19 +12,23 @@
 
     <section class="container" >
         <h1>Register a new account</h1>
-        <form class="account-form" action="actions/action_register.php" method="post">
+        <form id="register-account" class="account-form" action="actions/action_register.php" method="post">
             <label for="name">Name</label>
-            <input type="text" name="r-name" id="r-name">
+            <input required type="text" name="r-name" id="r-name">
 
             <label for="username">Username</label>
-            <input type="text" name="r-username" id="r-username">
+            <input required type="text" name="r-username" id="r-username">
 
             <label for="email">Email</label>
-            <input type="email" name="r-email" id="r-email">
+            <input required type="email" name="r-email" id="r-email">
 
             <label for="password">Password</label>
-            <input type="password" name="r-password" id="r-password">
+            <input required type="password" name="r-password" id="r-password">
 
+            <div>
+                <label for="info-password">Password Strength</label>
+                <progress max="100" value="0" id="info-password"></progress>
+            </div>
             <button class="button" type="submit">Register</button>
         </form>
     </section>
