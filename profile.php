@@ -15,10 +15,13 @@
     protectPage($session);
 
     
-        output_profile($profile); 
-        if (isAdmin($db, $session->getId())){ //TODO: remove admin attribute from session (and change login and register)
-            output_admin_area();
-        }
+    output_profile($profile); 
+    if ($session->isLoggedIn() && ($id == $session->getId())) {
+        output_user_area();
+    }
+    if (isAdmin($db, $session->getId())){ //TODO: remove admin attribute from session (and change login and register)
+        output_admin_area();
+    }
     if ($session->isLoggedIn() && ($id == $session->getId())) { 
          // Profile items
         $selling_items = getSellingProductsOfUser($db, $id);

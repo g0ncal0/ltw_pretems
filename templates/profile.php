@@ -7,6 +7,9 @@
             <label>Email: <span id="email"><?php echo $profile['email']?></span></label>
             <img src=<?php echo $profile['profileImg']?> alt="Profile Image" id="profile_image">
         </section>
+    <?php }
+
+    function output_user_area() { ?>
         <a href="changeProfile.php"><button class="button">Change Profile</button></a>
         <a href="addProduct.php"><button class="button">Add Product</button></a>
     <?php }
