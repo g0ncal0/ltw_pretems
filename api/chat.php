@@ -16,12 +16,12 @@
     return;
   }
 
-  if((int)$_POST['buyerId'] !== $session->getId()){
+  if(((int)$_POST['buyerId'] !== $session->getId()) && ($session->getId() !== $product['user'])){
     errorAPI("Unauthorized");
     die();
   }
   
-  if ($product['user'] == $_POST['buyerId']) $fromBuyer = 0;
+  if ($product['user'] == $session->getId()) $fromBuyer = 0;
   else $fromBuyer = 1;
 
   addMessage($db, $_POST['productId'], $_POST['buyerId'], $fromBuyer, $_POST['message']);

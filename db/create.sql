@@ -113,6 +113,11 @@ INSERT INTO users VALUES ('Zé', 1, 'ze@gmail.com', 'zeze', '$2y$12$2a.K49CYeaBh
 INSERT INTO users VALUES ('Maria', 2, 'maria@gmail.com', 'maria', '$2y$12$2a.K49CYeaBhTKMWVCHDi.3mJEL/vMKzFRsmYa78GbApmGhiNLn9u', 0, 'img/profile/profile.png');
 
 
+INSERT INTO users VALUES ('Zé', 3, '1@', '1', '$2y$12$2a.K49CYeaBhTKMWVCHDi.3mJEL/vMKzFRsmYa78GbApmGhiNLn9u', 1, 'img/profile/profile.png');
+INSERT INTO users VALUES ('Maria', 4, '2@', '2', '$2y$12$2a.K49CYeaBhTKMWVCHDi.3mJEL/vMKzFRsmYa78GbApmGhiNLn9u', 0, 'img/profile/profile.png');
+INSERT INTO users VALUES ('Zé', 5, '3@', '3', '$2y$12$2a.K49CYeaBhTKMWVCHDi.3mJEL/vMKzFRsmYa78GbApmGhiNLn9u', 1, 'img/profile/profile.png');
+INSERT INTO users VALUES ('Maria', 6, '4@', '4', '$2y$12$2a.K49CYeaBhTKMWVCHDi.3mJEL/vMKzFRsmYa78GbApmGhiNLn9u', 0, 'img/profile/profile.png');
+
 -- TODO: remove (used for testing shopping cart)
 /*
 INSERT INTO products (name, id, date, category, brand, model, size, condition, price, user, available, description) VALUES 
@@ -158,4 +163,28 @@ INSERT INTO messages (productId, buyerId, fromBuyer, message, date) VALUES
 (1, 2, 0, 'Boa tarde! Obrigado pelo seu interesse.', '2024-04-23 10:45'),
 (1, 2, 1, 'Gostaria de saber mais detalhes sobre a entrega.', '2024-04-24 08:20'),
 (1, 2, 0, 'Claro, posso fornecer as informações.', '2024-04-25 14:10'),
-(1, 2, 1, 'Ótimo! Aguardo sua resposta.', '2024-04-26 11:55');
+(1, 2, 1, 'Ótimo! Aguardo sua resposta.', '2024-04-26 11:55'),
+
+(1, 3, 1, 'Olá! Estou interessado neste produto.', '2024-04-22 15:30'),
+(1, 3, 0, 'Boa tarde! Obrigado pelo seu interesse.', '2024-04-23 10:45'),
+(1, 3, 1, 'Gostaria de saber mais detalhes sobre a entrega.', '2024-04-24 08:20'),
+(1, 3, 0, 'Claro, posso fornecer as informações.', '2024-04-25 14:10'),
+(1, 3, 1, 'Ótimo! Aguardo sua resposta.', '2024-04-26 11:55'),
+
+(1, 4, 1, 'Olá! Estou interessado neste produto.', '2024-04-22 15:30'),
+(1, 4, 0, 'Boa tarde! Obrigado pelo seu interesse.', '2024-04-23 10:45'),
+(1, 4, 1, 'Gostaria de saber mais detalhes sobre a entrega.', '2024-04-24 08:20'),
+(1, 4, 0, 'Claro, posso fornecer as informações.', '2024-04-25 14:10'),
+(1, 4, 1, 'Ótimo! Aguardo sua resposta.', '2024-04-26 11:55'),
+
+(1, 5, 1, 'Olá! Estou interessado neste produto.', '2024-04-22 15:30'),
+(1, 5, 0, 'Boa tarde! Obrigado pelo seu interesse.', '2024-04-23 10:45'),
+(1, 5, 1, 'Gostaria de saber mais detalhes sobre a entrega.', '2024-04-24 08:20'),
+(1, 5, 0, 'Claro, posso fornecer as informações.', '2024-04-25 14:10'),
+(1, 5, 1, 'Ótimo! Aguardo sua resposta.', '2024-04-26 11:55'),
+
+(1, 6, 1, 'Olá! Estou interessado neste produto.', '2024-04-22 15:30'),
+(1, 6, 0, 'Boa tarde! Obrigado pelo seu interesse.', '2024-04-23 10:45'),
+(1, 6, 1, 'Gostaria de saber mais detalhes sobre a entrega.', '2024-04-24 08:20'),
+(1, 6, 0, 'Claro, posso fornecer as informações.', '2024-04-25 14:10'),
+(1, 6, 1, 'Ótimo! Aguardo sua resposta.', '2024-04-26 11:55');

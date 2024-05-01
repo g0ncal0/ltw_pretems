@@ -13,4 +13,9 @@ function addMessage($db, $productId, $buyerId, $fromBuyer, $message) {
 function getMessage($db, $productId, $buyerId, $fromBuyer, $message) {
     return fetch($db, 'SELECT * FROM messages WHERE productId = ? AND buyerId = ? AND fromBuyer = ? AND message = ? ORDER BY id DESC', array($productId, $buyerId, $fromBuyer, $message));
 }    
+
+function getChats($db, $productId) {
+    return fetchAll($db, 'SELECT DISTINCT users.id, users.username, users.profileImg FROM users JOIN messages ON users.id = messages.buyerId WHERE messages.productId = ?', array($productId));
+}
+
 ?>

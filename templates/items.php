@@ -51,7 +51,9 @@
                     <div>
                         <button class="button">FAVORITES</button>
                         <button data-id="<?php echo $product['id'] ?>" class="button add-cart">ADD TO CART</button>
-                        <a href="chat.php?buyerId=<?php echo $id?>&productId=<?php echo $product['id']?>"><button class="button">ASK USER</button></a>
+
+                        <?php if ($id !== $product['user']) echo '<a href=chat.php?buyerId=' . $id . '&productId=' . $product['id'] . '><button class="button">ASK USER</button></a>';
+                        else echo '<a href=listChats.php?productId=' . $product['id'] . '><button class="button">SEE CHATS</button></a>'; ?>
                     </div>
                 </div>
             </div>
