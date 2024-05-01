@@ -13,13 +13,10 @@
 
     <script src="/js/chat.js" defer></script>
 
-    <?php protectPage();
+    <?php protectPage($session);
 
     if (($session->getId() != $buyerId) && ($session->getId() != $product['user'])) { ?>
-        <section class="container protectedpage">
-            <h1>You found a protected page</h1>
-            <p>Login or register to continue on this page!</p>
-        </section>
+        <?php errorPage("Access Forbidden","You can not access this url.");?>
     <?php }  
     
     else {

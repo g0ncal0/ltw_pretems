@@ -70,12 +70,14 @@ document.querySelectorAll(".act-logout").forEach(function(btn){
 })
 
 
+async function addToCartProductId(id){
+    await fetch(`/api/cart.php?type=insert&product=${encodeURIComponent(id)}`);
+
+}
 
 async function addToCart(){
     const productid = this.getAttribute('data-id');
-
-    await fetch(`/api/cart.php?type=insert&product=${encodeURIComponent(productid)}`);
-    
+    addToCartProductId(productid);
 }
 
 document.querySelectorAll("button.add-cart").forEach(function(btn){
@@ -206,14 +208,34 @@ async function login(){
         return;
     }
     const data = {"email": emailLogin.value, "password": passwordLogin.value};
-    fetch('/api/login.php', {method: "post", headers: {
+
+    let cart = [];
+
+    await fetch('/api/cart.php').then((response) =>{
+        response.json().then(
+            async (data)=>{
+                data.forEach(
+                    (product)=>{
+                        cart.push(product['id']);
+                    }
+                )
+            }
+        )
+    })
+   
+
+    await fetch('/api/login.php', {method: "post", headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }, body: encodeForAjax(data)}).then((response) =>{
         response.json().then(
             async (data)=>{
                 if(data['success']){
                     infoLogin.textContent = "Success.";
+                    cart.forEach(
+                        (product)=>{addToCartProductId(product);}
+                    )
                     setTimeout(() => location.reload(), 500)
+                    
                 }else{
                     infoLogin.textContent = "Wrong password or username";
                     passwordLogin.value ="";
@@ -221,6 +243,9 @@ async function login(){
             }
         )
     })
+    
+
+
 }
 
 loginButton.addEventListener('click', (e) =>{e.preventDefault(); login();});
@@ -269,4 +294,123 @@ function handlePasswordSecurity(){
 
 if(registerFormPassword){
     registerFormPassword.addEventListener("input", handlePasswordSecurity)
+}
+
+
+
+/**** ITEMS *****/
+
+
+const list_items = document.querySelector("#products");
+const button_filter = document.querySelector('#submit-filter');
+const sizeE = document.querySelector("#form-filter #size");
+const categoryE = document.querySelector("#form-filter #category");
+const brandE = document.querySelector("#form-filter #brand");
+const conditionE = document.querySelector("#form-filter #condition");
+const minpriceE = document.querySelector("#form-filter .min-input");
+const maxpriceE = document.querySelector("#form-filter .max-input");
+const button_continue = document.querySelector('#more-items');
+
+
+// Function
+let offset = 0; // the current offset
+
+
+function build_item(prod){
+    let item = document.createElement('div');
+
+    let img = document.createElement('img');
+    img.setAttribute('src', prod['firstImg']);
+    item.appendChild(img);
+
+    item.setAttribute('class', 'box-item');
+    let linkitem = document.createElement('a');
+    linkitem.href = 'item.php?id=' + prod['id'];
+    let h3e = document.createElement('h3');
+    h3e.textContent = prod['name'];
+    linkitem.appendChild(h3e);
+    item.appendChild(linkitem);
+
+    let dbuy = document.createElement('div');
+    let p = document.createElement('p');
+    let bu = document.createElement('button');
+    bu.textContent = 'Add to cart';
+    bu.setAttribute('class', 'add-cart');
+    bu.setAttribute('data-id', prod['id']);
+    p.textContent = prod['price'];
+    dbuy.appendChild(p);
+    dbuy.appendChild(bu);
+
+    item.appendChild(dbuy);
+
+    return item
+}
+
+
+async function get_items(){
+    if(offset == 0){
+        // we want to clean out everything.
+        list_items.innerHTML = "";
+    }
+    data = {'category': categoryE.value, 'brand': brandE.value, 'size': sizeE.value, 'condition': conditionE.value, 'min': minpriceE.value, 'max': maxpriceE.value, 'offset': offset}; // define the data
+    await fetch('/api/products.php', {method: "post", headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }, body: encodeForAjax(data)}).then((r)=>r.json().then(
+        (d) =>{
+            let count = d['products'].length;
+            d['products'].forEach((element) => {
+                const t = build_item(element);
+                list_items.appendChild(t);
+            });
+
+            document.querySelectorAll("button.add-cart").forEach(function(btn){
+                btn.addEventListener('click', addToCart)
+            })
+            if(count != 20){
+                button_continue.style.display= "none";
+            }else{
+                button_continue.style.display = 'block';
+            }
+        }
+      ))
+}
+if(button_filter){
+    button_filter.addEventListener('click', (e) =>{e.preventDefault(); offset = 0; get_items();});
+    get_items();
+}
+if(button_continue){
+    button_continue.addEventListener('click', (e) =>{e.preventDefault(); offset++; get_items();})
+    button_continue.style.display = 'block';
+}
+
+
+
+
+
+/**** SEARCH *****/
+
+
+const searchE = document.querySelector("#search-form input");
+const searchB = document.querySelector("#search-form button");
+const searchlist = document.querySelector("#search-results");
+
+
+async function search(){
+    await fetch('/api/search.php',{method: "post", headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }, body: encodeForAjax({'q': searchE.value})}).then((response) =>{
+        response.json().then(
+            async (data)=>{
+                searchlist.innerHTML = "";
+                data['products'].forEach((element) => {
+                    const t = build_item(element);
+                    searchlist.appendChild(t);
+                });
+            }
+        )})
+
+    }
+
+if(searchB != null){
+    searchB.addEventListener('click', (e)=>{e.preventDefault(); search();})
 }

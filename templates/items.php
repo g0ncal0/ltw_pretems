@@ -50,7 +50,7 @@
                     </div>
                     <div>
                         <button class="button">FAVORITES</button>
-                        <button data-id="<?php echo $product['id'] ?>" class="button">ADD TO CART</button>
+                        <button data-id="<?php echo $product['id'] ?>" class="button add-cart">ADD TO CART</button>
                         <a href="chat.php?buyerId=<?php echo $id?>&productId=<?php echo $product['id']?>"><button class="button">ASK USER</button></a>
                     </div>
                 </div>

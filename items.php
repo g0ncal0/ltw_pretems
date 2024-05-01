@@ -7,7 +7,7 @@
    
     output_header($db, "Our catalogue", null, $session->getId());
 
-    simpleheader($title);
+    simpleheader("Our catalogue");
 
     $categories = getCategories($db);
     $brands = getBrands($db);
@@ -30,7 +30,6 @@
     }
 
 ?>
-<script src="js/items.js" defer></script>
 
 <div class="container">
     <form id="form-filter">

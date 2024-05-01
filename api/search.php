@@ -1,16 +1,22 @@
 <?php
     require_once(__DIR__ . '/../include.php');
-    $query = $_GET['q'];
-    if(!isset($query)){
+    header('Content-Type: application/json');
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        errorAPI("Invalid");
         return;
     }
 
+    $query = $_POST['q'];
+    if(!isset($query)){
+        errorAPI("Nothing to search.");
+    }
     $db = getDatabaseConnection();
 
 
-    $products = searchProducts($db, $query);
+    $products['products'] = searchProducts($db, $query);
 
-    var_dump($products);
+    echo json_encode($products);
 
 
 ?>

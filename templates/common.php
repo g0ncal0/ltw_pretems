@@ -56,7 +56,7 @@
                 ?>
                 
                 <form action="search.php" method="get">
-                    <input type="text" name="s" title="s">
+                    <input type="text" name="q" title="q">
                     <button type="submit">🔎</button>
                 </form>
                 <?php

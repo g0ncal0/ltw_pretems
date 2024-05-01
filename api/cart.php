@@ -14,6 +14,7 @@
     $type = $_GET["type"];
     $product = $_GET["product"];
 
+    
 
 
     $user = $session->getId();
@@ -29,6 +30,7 @@
         
         if($type === 'insert'){
             // we want to insert the element on the database
+            
             execute($db, 'INSERT INTO cart VALUES(?,?)', [$product, $user]);
         }
         if($type === 'remove'){
