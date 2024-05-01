@@ -109,8 +109,8 @@ CREATE TABLE discounts(
     maxdiscount INTEGER NOT NULL
 );
 
-INSERT INTO users VALUES ('Zé', 0, 'ze@gmail.com', 'zeze', '1234', 1, 'img/profile/profile.png');
-INSERT INTO users VALUES ('Maria', 1, 'maria@gmail.com', 'maria', '1234', 0, 'img/profile/profile.png');
+INSERT INTO users VALUES ('Zé', 1, 'ze@gmail.com', 'zeze', '$2y$12$2a.K49CYeaBhTKMWVCHDi.3mJEL/vMKzFRsmYa78GbApmGhiNLn9u', 1, 'img/profile/profile.png');
+INSERT INTO users VALUES ('Maria', 2, 'maria@gmail.com', 'maria', '$2y$12$2a.K49CYeaBhTKMWVCHDi.3mJEL/vMKzFRsmYa78GbApmGhiNLn9u', 0, 'img/profile/profile.png');
 
 
 -- TODO: remove (used for testing shopping cart)
@@ -128,34 +128,34 @@ INSERT INTO cart (product, user) VALUES (3, 1); -- Link product 3 to user 1
 */
 
 
-INSERT INTO categories VALUES (0, 'Pretty');
-INSERT INTO categories VALUES (1, 'Party');
-INSERT INTO categories VALUES (2, 'Sports');
+INSERT INTO categories VALUES (1, 'Pretty');
+INSERT INTO categories VALUES (2, 'Party');
+INSERT INTO categories VALUES (3, 'Sports');
 
-INSERT INTO sizes VALUES (0, 'XS');
-INSERT INTO sizes VALUES (1, 'S');
-INSERT INTO sizes VALUES (2, 'M');
-INSERT INTO sizes VALUES (3, 'L');
-INSERT INTO sizes VALUES (4, 'XL');
+INSERT INTO sizes VALUES (1, 'XS');
+INSERT INTO sizes VALUES (2, 'S');
+INSERT INTO sizes VALUES (3, 'M');
+INSERT INTO sizes VALUES (4, 'L');
+INSERT INTO sizes VALUES (5, 'XL');
 
-INSERT INTO brands VALUES (0, 'Nike');
-INSERT INTO brands VALUES (1, 'Adidas');
-INSERT INTO brands VALUES (2, 'Pull n Bear');
+INSERT INTO brands VALUES (1, 'Nike');
+INSERT INTO brands VALUES (2, 'Adidas');
+INSERT INTO brands VALUES (3, 'Pull n Bear');
 
-INSERT INTO conditions VALUES (0, 'New');
-INSERT INTO conditions VALUES (1, 'Nearely used');
-INSERT INTO conditions VALUES (2, 'Used');
+INSERT INTO conditions VALUES (1, 'New');
+INSERT INTO conditions VALUES (2, 'Nearely used');
+INSERT INTO conditions VALUES (3, 'Used');
 
-INSERT INTO products VALUES ('dress', 0, '2023-11-12', 0, 0, 'modelo2', 0, 0, 80.9, 0, 1, 'beautiful dress with some functionality. I guess..', 'img/products/dress.jpeg');
+INSERT INTO products VALUES ('dress', 1, '2023-11-12', 1, 1, 'modelo2', 1, 1, 80.9, 1, 1, 'beautiful dress with some functionality. I guess..', 'img/products/dress.jpeg');
 
-INSERT INTO productImgs VALUES (0, 0, 'img/products/dress.jpeg');
-INSERT INTO productImgs VALUES (1, 0, 'img/products/dress-beach.jpeg');
+INSERT INTO productImgs VALUES (1, 1, 'img/products/dress.jpeg');
+INSERT INTO productImgs VALUES (2, 1, 'img/products/dress-beach.jpeg');
 
-UPDATE products SET firstImg = 'img/products/dress.jpeg' WHERE id = 0;
+UPDATE products SET firstImg = 'img/products/dress.jpeg' WHERE id = 1;
 
 INSERT INTO messages (productId, buyerId, fromBuyer, message, date) VALUES
-(0, 1, 1, 'Olá! Estou interessado neste produto.', '2024-04-22 15:30'),
-(0, 1, 0, 'Boa tarde! Obrigado pelo seu interesse.', '2024-04-23 10:45'),
-(0, 1, 1, 'Gostaria de saber mais detalhes sobre a entrega.', '2024-04-24 08:20'),
-(0, 1, 0, 'Claro, posso fornecer as informações.', '2024-04-25 14:10'),
-(0, 1, 1, 'Ótimo! Aguardo sua resposta.', '2024-04-26 11:55');
+(1, 2, 1, 'Olá! Estou interessado neste produto.', '2024-04-22 15:30'),
+(1, 2, 0, 'Boa tarde! Obrigado pelo seu interesse.', '2024-04-23 10:45'),
+(1, 2, 1, 'Gostaria de saber mais detalhes sobre a entrega.', '2024-04-24 08:20'),
+(1, 2, 0, 'Claro, posso fornecer as informações.', '2024-04-25 14:10'),
+(1, 2, 1, 'Ótimo! Aguardo sua resposta.', '2024-04-26 11:55');

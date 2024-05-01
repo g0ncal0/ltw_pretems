@@ -9,6 +9,9 @@ function getUser($db, $user) {
 }
 
 function changeProfile($db, $id, $name, $email, $password, $image) {
+    $options = ['cost' => 12];
+    $password = password_hash($password, PASSWORD_DEFAULT, $options);
+
     if ($image['size'] == 0) {
         execute($db, 'UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?', array($name, $email, $password, $id));
     }    
@@ -20,29 +23,42 @@ function changeProfile($db, $id, $name, $email, $password, $image) {
 }
 
 function getUserWithPassword($db, $email, $password){
-    $stmt = $db->prepare('SELECT * FROM users WHERE email = ? AND password = ?');
-    $stmt->execute(array($email, $password));
+    $stmt = $db->prepare('SELECT * FROM users WHERE email = ?');
+    $stmt->execute(array($email));
     $user = $stmt->fetch(); // Fetch only one row
-    return $user;
+
+    if ($user && password_verify($password, $user['password'])) {
+        return $user;
+    }
+
+    return false;
 }
 
 function getUserWithIdAndPassword($db, $id, $password){
-    $stmt = $db->prepare('SELECT * FROM users WHERE id = ? AND password = ?');
-    $stmt->execute(array($id, $password));
+    $stmt = $db->prepare('SELECT * FROM users WHERE id = ?');
+    $stmt->execute(array($id));
     $user = $stmt->fetch(); // Fetch only one row
-    return $user;
+
+    if ($user && password_verify($password, $user['password'])) {
+        return $user;
+    }
+
+    return false;
 }
 
 function getUserWithEmail($db, $email){
     $stmt = $db->prepare('SELECT * FROM users WHERE email = ?');
     $stmt->execute(array($email));
     $user = $stmt->fetch(); // Fetch only one row
+
     return $user;
 }
 
 function addUser($db, $user){
+    $options = ['cost' => 12];
+    $password = password_hash($user['password'], PASSWORD_DEFAULT, $options);
     $stmt = $db->prepare('INSERT INTO users VALUES(?, ?, ?, ?, ?, ?, ?)');
-    $stmt->execute(array($user['name'], $user['id'], $user['email'], $user['username'], $user['password'], $user['admin'], $user['profileImg']));
+    $stmt->execute(array($user['name'], $user['id'], $user['email'], $user['username'], $password, $user['admin'], $user['profileImg']));
 }
 
 function setAdmin($db, $id){
