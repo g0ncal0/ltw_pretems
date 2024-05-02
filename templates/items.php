@@ -45,7 +45,7 @@
                         <p><span class="special">Brand:</span> <?php echo getBrand($db, $product['brand'])?></p>
                         <p><span class="special">Size:</span> <?php echo getSize($db, $product['size'])?></p>
                         <p><span class="special">Model:</span> <?= $product['model']?></p>
-                        <p><span class="special">Condition:</span> <?= $product['condition']?></span> 
+                        <p><span class="special">Condition:</span> <?php echo getCondition($db, $product['condition'])?></span> 
                         <p><span class="special">Uploaded:</span> <?= $product['date']?></span> 
                     </div>
                     <div>
