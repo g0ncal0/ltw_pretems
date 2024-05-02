@@ -69,7 +69,7 @@
             </select>
 
             <label for="price">Price:</label>
-            <input type="text" id="price" name="price" title="price" value="<?php echo $product['price']; ?>" required>
+            <input type="text" id="price" name="price" pattern="\d+(\.\d{1,2})?" title="price" value="<?php echo $product['price']; ?>" required>
 
             <label for="available">Available:</label>
             <input type="checkbox" id="available" name="available" checked="<?php if ($product['available']) echo "true"; else echo "false"; ?>">

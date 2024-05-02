@@ -57,7 +57,7 @@
             </select>
 
             <label for="price">Price:</label>
-            <input type="text" id="price" name="price" pattern="\d+(\.\d{2})?" title="price" placeholder="ex: 9.99" required>
+            <input type="text" id="price" name="price" pattern="\d+(\.\d{1,2})?" title="price" placeholder="ex: 9.99" required>
 
             <label for="available">Available:</label>
             <input type="checkbox" id="available" name="available" checked="false">
