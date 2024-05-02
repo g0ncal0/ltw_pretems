@@ -63,7 +63,7 @@ CREATE TABLE products (
 
 CREATE TABLE profileImgs (
     id INTEGER PRIMARY KEY,
-    userId INTEGER REFERENCES products,
+    userId INTEGER REFERENCES users,
     path TEXT
 );
 

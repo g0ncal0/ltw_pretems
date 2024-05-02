@@ -29,8 +29,8 @@
 
     <section class="container">
         <h1>Add Product:</h1>
-        <form class="profile-form" action="/actions/action_add_product.php" method="post" enctype="multipart/form-data">
-        <label for="name">Product Name:</label>
+        <form class="product-form" action="/actions/action_add_product.php" method="post" enctype="multipart/form-data">
+            <label for="name">Product Name:</label>
             <input type="text" id="name" name="name" required>
 
             <label for="category">Category:</label>

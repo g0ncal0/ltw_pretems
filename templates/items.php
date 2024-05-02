@@ -53,7 +53,14 @@
                         <button data-id="<?php echo $product['id'] ?>" class="button add-cart">ADD TO CART</button>
 
                         <?php if ($id !== $product['user']) echo '<a href=chat.php?buyerId=' . $id . '&productId=' . $product['id'] . '><button class="button">ASK USER</button></a>';
-                        else echo '<a href=listChats.php?productId=' . $product['id'] . '><button class="button">SEE CHATS</button></a>'; ?>
+                        else {echo '<a href=listChats.php?productId=' . $product['id'] . '><button class="button">SEE CHATS</button></a>';
+                            echo '<a href=changeProduct.php?productId=' . $product['id'] . '><button class="button">EDIT PRODUCT</button></a>'; 
+
+                            echo '<form action="/actions/action_delete_product.php" method="post">';
+                            echo '<input type="hidden" name="productId" value="' . $product['id'] . '">';
+                            echo '<button type="submit" class="button" onclick="return confirm(\'Are you sure you want to delete this product?\')">DELETE PRODUCT</button>';
+                            echo '</form>';
+                        } ?>
                     </div>
                 </div>
             </div>

@@ -120,6 +120,20 @@ function addProduct($db, $name, $date, $category, $brand, $model, $size, $condit
     if (isset($images) & ($images['tmp_name'][0]) != '') uploadProductImages($db, $images, $id);
 }
 
+function changeProduct($db, $id, $name, $category, $brand, $model, $size, $condition, $price, $available, $description) {
+    $available = ($available === "on");
+
+    execute($db,
+    'UPDATE products SET name = ?, category = ?, brand = ?, model = ?, size = ?, condition = ?, price = ?, available = ?, description = ? WHERE id = ?',
+    array($name, $category, $brand, $model, $size, $condition, $price, $available, $description, $id));
+}
+
+function deleteProduct($db, $id) {
+    execute($db, 'DELETE FROM cart WHERE product = ?', array($id));
+    execute($db, 'DELETE FROM productImgs WHERE product = ?', array($id));
+    execute($db, 'DELETE FROM messages WHERE productId = ?', array($id));
+    execute($db, 'DELETE FROM products WHERE id = ?', array($id));
+}
 
 function getItemsOnIDs($db, $ids){
     // ids should be an array.
