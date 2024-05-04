@@ -466,10 +466,65 @@ input[type="range"]::-webkit-slider-thumb {
 
 
 /****** PROFILE IMGS*****/
-
 .profile-img{
     border-radius: 50%;
     width: 4rem;
     height: 4rem;
     margin: 1rem;
 }
+
+/***** User profile *****/
+.profile-page{
+    padding: 0 6rem;
+
+    & .profile-top{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    & #profile_info{
+        display: flex;
+        flex-wrap: wrap;
+        text-decoration: none;
+        align-items: center;
+    }
+
+    & #profile_image{
+        border-radius: 50%;
+        width: 15rem;
+        height: 15rem;
+    }
+
+    & .user-profile-info{
+        display: grid;
+        padding-left: 3rem;
+        padding-right: 3rem;
+        & #name{
+            font-size: 3rem;
+            padding-bottom: 20px;
+        }
+        & #username{
+            color: rgb(136, 136, 136);
+            font-size: 2rem;
+            padding-bottom: 20px;
+        }
+        & #email{
+            font-size: 1.2rem;
+            padding-bottom: 2rem;
+        }
+    }
+
+    & .admin-area-buttons{
+        display: flex;
+        flex-wrap: wrap;
+
+        & .button {
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+}
+
