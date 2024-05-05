@@ -80,15 +80,31 @@ function getImagesOfProduct($db, $id) {
     return fetchAll($db, 'SELECT * FROM productImgs WHERE product = ?', array($id));
 }
 
+function getImage($db, $id) {
+    return fetch($db, 'SELECT * FROM productImgs WHERE id = ?', array($id));
+}
+
+function deleteImage($db, $path) {
+    execute($db, 'DELETE FROM productImgs WHERE path = ?', array($path));
+    unlink('../' . $path);
+}
+
 function changeFirstImage($db, $id, $firstImg) {
     $product = getProduct($db, $id);
     $path = $product['firstImg'];
-    execute($db, 'DELETE FROM productImgs WHERE path = ?', array($path));
-    unlink('../' . $path);
+
+    deleteImage($db, $path);
 
     $newPath = uploadProductFirstImage($db, $firstImg, $id);
 
     execute($db, 'UPDATE products SET firstImg = ? WHERE id = ?', array($newPath, $id));
+}
+
+function deleteProductImages($db, $id, $deleted_images) {
+    foreach ($deleted_images as $imageId) {
+        $path = getImage($db, $imageId)['path'];
+        deleteImage($db, $path);
+    }
 }
 
 ?>

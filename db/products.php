@@ -121,9 +121,15 @@ function addProduct($db, $name, $date, $category, $brand, $model, $size, $condit
 }
 
 function changeProduct($db, $id, $name, $category, $brand, $model, $size, $condition, $price, $available, $description, $firstImg, $deleted_images, $images) {
-    if (isset($firstImg)) {
+    if (isset($firstImg) && ($firstImg['tmp_name'] !== "")) {
         changeFirstImage($db, $id, $firstImg);
     }
+
+    if (isset($deleted_images)) {
+        deleteProductImages($db, $id, $deleted_images);
+    }
+
+    if (isset($images) & ($images['tmp_name'][0]) != '') uploadProductImages($db, $images, $id);
 
     $available = ($available === "on");
 
