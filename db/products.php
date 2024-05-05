@@ -139,6 +139,13 @@ function changeProduct($db, $id, $name, $category, $brand, $model, $size, $condi
 }
 
 function deleteProduct($db, $id) {
+    $images = getImagesOfProduct($db, $id);
+    $product = getProduct($db, $id);
+
+    foreach ($images as $image) {
+        deleteImage($db, $image['path']);
+    }
+
     execute($db, 'DELETE FROM cart WHERE product = ?', array($id));
     execute($db, 'DELETE FROM productImgs WHERE product = ?', array($id));
     execute($db, 'DELETE FROM messages WHERE productId = ?', array($id));
