@@ -12,6 +12,7 @@
     $conditions = getConditions($db);
 
     $product = getProduct($db, $_GET['productId']);
+    $images = getImagesOfProduct($db, $_GET['productId']);
 
     output_header($db, 'Change Product', null, $session->getId()); 
     protectPage($session);
@@ -76,6 +77,23 @@
 
             <label for="description">Description:</label>
             <textarea id="description" name="description" rows="5" cols="50" required><?php echo $product['description']; ?></textarea>
+
+            <label for="current_first_img">Current First Image:</label>
+            <img src="<?php echo $product['firstImg']; ?>" alt="Product First Image" width="100">
+            <br>
+            <label for="firstImg">If you want to change your first image, please load a new one:</label>
+            <input type="file" name="firstImg">
+
+            <?php foreach ($images as $image) { 
+                if ($image['path'] != $product['firstImg']) { ?>
+                <label for="delete_image_<?php echo $image['id']; ?>">Delete this image?</label>
+                <img src="<?php echo $image['path']; ?>" alt="Product Image" width="100">
+                <input type="checkbox" name="deleted_images[]" id="delete_image_<?php echo $image['id']; ?>" value="<?php echo $image['id']; ?>">
+            <?php }
+            } ?>
+
+            <label for="images">More Pictures:</label>
+            <input type="file" name="images[]" multiple>
 
             <label for="currentPassword">You must type your current password to perform changes:</label>
             <input type="password" name="currentPassword" id="currentPassword">

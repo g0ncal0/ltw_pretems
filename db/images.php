@@ -80,4 +80,15 @@ function getImagesOfProduct($db, $id) {
     return fetchAll($db, 'SELECT * FROM productImgs WHERE product = ?', array($id));
 }
 
+function changeFirstImage($db, $id, $firstImg) {
+    $product = getProduct($db, $id);
+    $path = $product['firstImg'];
+    execute($db, 'DELETE FROM productImgs WHERE path = ?', array($path));
+    unlink('../' . $path);
+
+    $newPath = uploadProductFirstImage($db, $firstImg, $id);
+
+    execute($db, 'UPDATE products SET firstImg = ? WHERE id = ?', array($newPath, $id));
+}
+
 ?>
