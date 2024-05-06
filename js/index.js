@@ -286,7 +286,6 @@ function handlePasswordSecurity(){
             document.querySelector("#register-account button[type='submit']").disabled = true;
         }else{
             document.querySelector("#register-account button[type='submit']").disabled = false;
-
         }
     }
 }
@@ -414,3 +413,48 @@ async function search(){
 if(searchB != null){
     searchB.addEventListener('click', (e)=>{e.preventDefault(); search();})
 }
+
+
+
+
+
+
+/** OPENING PRODUCT IMAGES LARGE ***/
+
+
+function closeBigImg(){
+    const bimg = document.querySelector('.photo-display-large');
+    if(bimg){
+        bimg.remove();
+    }
+}
+
+function stop(e){
+    e.stopPropagation();
+}
+
+function buildBigImg(src){
+    const b = document.querySelector('.photo-display-large');
+    if(b){
+        closeBigImg();
+    }
+    const bimg = document.createElement('div');
+    bimg.setAttribute('onclick', "closeBigImg()");
+    const img = document.createElement('img');
+    img.setAttribute('src', src);
+    img.setAttribute('onclick', 'event.stopPropagation()')
+
+    bimg.append(img);
+    bimg.classList.add('photo-display-large');
+    document.querySelector('main').append(bimg);
+}
+
+
+function openLarge(){
+    const imgsrc = this.src;
+    buildBigImg(imgsrc);
+}
+
+document.querySelectorAll(".product-imgs").forEach(function(img){
+    img.addEventListener('click', openLarge);
+})

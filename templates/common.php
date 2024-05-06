@@ -41,7 +41,7 @@
             <header>
                 <span class="menu-header">Menu</span>
                 <div class="websiteheader">
-                    <a href="/"><span>PRETEMS</span></a>
+                    <a  href="/"><img class="logo-img" src="/img/logo.png"></a>
                 </div>
                 <div class="svg-header"> 
                     <img class="toggle-login elements-menu-header" src="img/profile-login.svg" alt="User Profile">
@@ -49,32 +49,28 @@
                 </div>
             </header>
             <div class="menu"> <!-- MENU -->
-                <span id="close-menu" >Close</span>
-                <p class="logo-text">PRETEMS</p>
+                <p id="close-menu" >Close</p>
+                <img class="logo-img" src="/img/logo.png">
                 <?php 
-                    output_list_categories($db, "", "");
+                    output_list_categories($db, "", "nolink");
                 ?>
                 
-                <form action="items.php" method="get">
-                    <input type="text" name="q" title="q">
-                    <button type="submit">🔎</button>
+                <div class="svg-header"> 
+                        <?php
+                            if(isset($user)){
+                                ?>
+                                    <img class="act-logout elements-menu-header" src="img/logout.svg" alt="Log Out">
+                                <?php
+                            }
+                        ?>
+                        <img class="toggle-login elements-menu-header" src="img/profile-login.svg" alt="User Profile">
+                        <a href="/cart.php"><img class="elements-menu-header" src="img/cart.svg" alt="Cart"></a>
+                </div>
+                
+                
+                <form  class="bottom-side-menu" action="items.php" method="get">
+                    <input type="text" placeholder="Search (ENTER)" name="q" title="q">
                 </form>
-                <?php
-                    if(isset($user)){
-                        ?>
-                            <div>
-                                <a class="act-logout">Log Out</a>
-                            </div>
-                        <?php
-                    }else{
-                        ?>
-                            <div>
-                                <p class="toggle-login">Log In</p>
-                                <p><a href="/register.php">Sign Up</a></p>
-                            </div>
-                        <?php
-                    }
-                ?>
                 
             </div>
             <div class="login-signup">

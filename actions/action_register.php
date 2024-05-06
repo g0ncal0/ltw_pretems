@@ -7,12 +7,14 @@
     require_once(__DIR__ . '/../db/users.php');
 
     $session = new Session();
+    if($session->isLoggedIn()){
+        header('Location: /../index.php'); // Go back to main page
+    }
     $db = getDatabaseConnection();
 
     $user = getUserWithEmail($db, $_POST['r-email']);
     if (!$user){ // User does not already exist (success)
-        echo "<h2>User registered successfully</h2>";  // TODO: Remove (DEBUG)
-
+       
         $user['name'] = $_POST['r-name'];
         $user['email'] = $_POST['r-email'];
         $user['username'] = $_POST['r-username'];
@@ -21,7 +23,10 @@
         $user['profileImg'] = 'img/profile/profile.png'; 
         
         // TODO: Check if a field is empty
-        // FIXME: A user that is already logged in can log in again (and register) 
+        if(empty($user['name']) || empty($user['email']) || empty($user['username']) || empty($user['password']) || strlen($user['password']) < 6){
+            header('Location: /../register.php?error=Invalid%20Data');
+            exit();
+        }
 
         addUser($db, $user);
         $user = getUserWithPassword($db, $user['email'], $user['password']); // Necessary in order to get ID
@@ -29,10 +34,8 @@
         $session->setId($user['id']);
         $session->setName($user['name']);
         $session->setAdmin((bool) $user['admin']);
-        $session->addMessage('success', 'Login successful!');
         header('Location: /../index.php'); // Go back to main page
     } else { // User found
-        echo "<h2>A user with this email already exists</h2>";
-        $session->addMessage('error', 'This user already exists');
+        header('Location: /../register.php?error=Invalid%20Email');
     }
 ?>

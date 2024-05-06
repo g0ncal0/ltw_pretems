@@ -19,7 +19,7 @@ function output_list_categories($db, $parentclass, $childclass){
     $categories = getCategories($db);
     echo "<ul class='$parentclass'>";
     foreach($categories as $category){?>
-        <li><a href="/items.php?category=<?php echo $category['id'] ?>"><?php echo $category["name"] ?></a></li>
+        <li class="<?=$childclass?>"><a href="/items.php?category=<?php echo $category['id'] ?>"><?php echo $category["name"] ?></a></li>
     <?php }
     echo "</ul>";
 }

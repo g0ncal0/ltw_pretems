@@ -23,7 +23,7 @@
         <section class="item-page">
             <div class="item-page-photos">
                 <?php foreach($images as $image) { ?>
-                    <img src=<?php echo $image['path']?>>
+                    <img class="product-imgs" src=<?php echo $image['path']?>>
                 <?php } ?>
             </div>
         
