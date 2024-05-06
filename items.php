@@ -99,14 +99,13 @@
         <label for="q">Search:</label>
         <input type="text" value="<?=htmlentities($_GET['q'])?>" name="q" id="q">
 
-        <button id="submit-filter">Submit</button>
+        <button id="submit-filter" class="button">Submit</button>
     </form>
-</div>
-
 
 <div id="products">
 </div>
 <button id="more-items">More items</button>
+</div>
 
 <?php
     output_footer();
