@@ -185,6 +185,11 @@ body header{
     padding: 1rem;
 }
 
+.box-item a{
+    text-decoration: none;
+    color: var(--black);
+}
+
 .box-item{
     border-radius: 12px;
     width: 24rem;
@@ -395,8 +400,26 @@ body header{
 
 
 
+/****** Items Catalogue *****/
+#form-filter{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    margin-bottom: 3rem;
+}
 
+.price-input{
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.price-input > div{
+    margin-right: 2rem;
+}
+
+#submit-filter{
+    max-width: 10rem;
+}
 
 /******* PRICE RANGE ******/
 /*INSPIRED FROM https://www.geeksforgeeks.org/price-range-slider-with-min-max-input-using-html-css-and-javascript/
@@ -414,6 +437,7 @@ input::-webkit-inner-spin-button {
   
 .slider-container { 
     height: 6px; 
+    top: 10px;
     position: relative; 
     background: #e4e4e4; 
     border-radius: 5px; 
@@ -575,7 +599,6 @@ input[type="range"]::-webkit-slider-thumb {
     }
 
 }
-
 
 /*** PRODUCT IMG FULL WIDTH ***/
 

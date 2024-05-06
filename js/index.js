@@ -323,24 +323,30 @@ function build_item(prod){
     item.appendChild(img);
 
     item.setAttribute('class', 'box-item');
+    let item_info = document.createElement('div');
+    item_info.setAttribute('class', 'box-details');
     let linkitem = document.createElement('a');
     linkitem.href = 'item.php?id=' + prod['id'];
     let h3e = document.createElement('h3');
     h3e.textContent = prod['name'];
     linkitem.appendChild(h3e);
-    item.appendChild(linkitem);
+    item.appendChild(item_info);
+    item_info.appendChild(linkitem);
 
     let dbuy = document.createElement('div');
     let p = document.createElement('p');
+    p.setAttribute('class', 'price');
     let bu = document.createElement('button');
     bu.textContent = 'Add to cart';
-    bu.setAttribute('class', 'add-cart');
+    bu.setAttribute('class', 'add-cart button');
     bu.setAttribute('data-id', prod['id']);
-    p.textContent = prod['price'];
+    p.textContent = prod['price'] + '€';
     dbuy.appendChild(p);
     dbuy.appendChild(bu);
+    item_info.appendChild(dbuy);
 
-    item.appendChild(dbuy);
+
+    //item.appendChild(dbuy);
 
     return item
 }
