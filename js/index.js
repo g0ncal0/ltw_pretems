@@ -286,8 +286,10 @@ function handlePasswordSecurity(){
         progress.value = security * 10;
         if(security < 5){
             document.querySelector("#register-account button[type='submit']").disabled = true;
+            document.querySelector("#password-message").innerText = "Please choose a better password.";
         }else{
             document.querySelector("#register-account button[type='submit']").disabled = false;
+            document.querySelector("#password-message").innerText = "";
         }
     }
 }

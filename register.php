@@ -30,6 +30,7 @@
                 <progress max="100" value="0" id="info-password"></progress>
             </div>
             <button class="button" type="submit">Register</button>
+            <p id="password-message"></p>
         </form>
     </section>
 
