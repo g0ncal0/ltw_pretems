@@ -8,6 +8,7 @@ function errorPage($error, $description){
         <a href="/">Head home</a>
     </section>
     <?php
+    die();
 }
 
 function errorAPI($error){

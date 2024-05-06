@@ -98,7 +98,8 @@ CREATE TABLE purchases(
     status INTEGER NOT NULL, /* 0: pending ; 1: sucess (paid) */
     address TEXT NOT NULL,
     zipcode TEXT NOT NULL,
-    buyerid INTEGER NOT NULL REFERENCES users
+    buyerid INTEGER NOT NULL REFERENCES users,
+    cost INTEGER NOT NULL
 );
 
 

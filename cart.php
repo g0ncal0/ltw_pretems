@@ -11,31 +11,8 @@
     output_header($db, "Your shopping Cart", null, $session->getId());    
 
 
-    function get_cart_items_from_user($db, $ses) {  // FIXME: Fix query 
-
-        if($ses->getId() !== null){
-            $cart_items = fetchAll($db, 'SELECT * FROM products WHERE id IN (SELECT product FROM cart WHERE user = ?)', array($ses->getId()));
-        }else{
-            $cart = $ses->getCart();
-            $cart_items = getItemsOnIDs($db, $cart);
-        }
-        return $cart_items;
-    }
-
-
     ?><link rel="stylesheet" href="cart.css">
     <script src="/js/cart.js" defer></script>
-    <?php  
-
-    $cart_items = get_cart_items_from_user($db, $session);
-    $sum = 0;
-    
-    foreach($cart_items as $ci){
-        $sum += $ci['price'];
-    }
-
-    // Output cart interface
-    ?>
 
     <h1>Cart</h1>
     <div class="cart_interface">

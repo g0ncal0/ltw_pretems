@@ -71,7 +71,9 @@ document.querySelectorAll(".act-logout").forEach(function(btn){
 
 
 async function addToCartProductId(id){
-    await fetch(`/api/cart.php?type=insert&product=${encodeURIComponent(id)}`);
+    await fetch('/api/cart.php', {method: 'PUT', headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }, body: encodeForAjax({'product': id})});
 
 }
 
@@ -211,7 +213,7 @@ async function login(){
 
     let cart = [];
 
-    await fetch('/api/cart.php').then((response) =>{
+    await fetch('/api/cart.php', {method: "POST"}).then((response) =>{
         response.json().then(
             async (data)=>{
                 data.forEach(

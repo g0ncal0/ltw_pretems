@@ -1,6 +1,6 @@
 <?php 
-    function output_item($product) {
-        $db = getDatabaseConnection(); ?>
+    function output_item($product, $db) {
+     ?>
         
         <div class="box-item">             
             <img src="<?php echo $product['firstImg'] ?>">
@@ -17,8 +17,8 @@
         </div>
     <?php }
 
-    function output_full_item($product, $id, $images) {
-        $db = getDatabaseConnection(); ?>
+    function output_full_item($product, $id, $images, $db) {
+        ?>
 
         <section class="item-page">
             <div class="item-page-photos">
@@ -41,6 +41,7 @@
                 </div>
                 <div>
                     <div>
+                        <p><?=$product['description']?></p>
                         <p><span class="special">Category:</span> <?php echo getCategory($db, $product['category'])?></p>
                         <p><span class="special">Brand:</span> <?php echo getBrand($db, $product['brand'])?></p>
                         <p><span class="special">Size:</span> <?php echo getSize($db, $product['size'])?></p>
@@ -67,9 +68,9 @@
         </section>
     <?php }
 
-    function output_list_items($products) {?>
+    function output_list_items($products, $db) {?>
         <section id="products" class="container products">
-            <?php foreach($products as $product) output_item($product); ?>
+            <?php foreach($products as $product) output_item($product, $db); ?>
         </section>
     <?php }
 

@@ -10,7 +10,7 @@ function output_featured($db) {
     ?>
     <section class="container">
         <h2><span class="special">Featured</span> Items</h2>
-        <?php output_list_items($featured); ?>
+        <?php output_list_items($featured, $db); ?>
     </section>
 
 <?php }

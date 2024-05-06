@@ -157,7 +157,7 @@ function getItemsOnIDs($db, $ids){
     if(isset($ids)){
     if(count($ids) > 0){
         $in  = str_repeat('?,', count($ids) - 1) . '?'; // GET STRING WITH len($ids) 
-        $items = fetchAll($db, "SELECT * FROM products WHERE id IN ( $in )", $ids);
+        $items = fetchAll($db, "SELECT * FROM products WHERE id IN ( $in ) AND available = 1", $ids);
     }
     }
     return $items;
@@ -196,6 +196,18 @@ function getDiscountInfo($db, $discount){
         return array();
     }
     return fetch($db, 'SELECT * FROM discounts WHERE code =?', array($discount));
+}
+
+
+function getPurchase($db, $id, $buyerid){
+    return fetch($db, 'SELECT * FROM purchases WHERE id = ? AND buyerid = ?', array($id, $buyerid));
+}
+function getPurchases($db, $buyerid){
+    return fetchAll($db, 'SELECT * FROM purchases WHERE buyerid = ?', array($buyerid));
+}
+
+function setpaidPurchase($db, $id){
+    execute($db, 'UPDATE purchases SET status = 1 WHERE id = ?', array($id));
 }
 
 ?>

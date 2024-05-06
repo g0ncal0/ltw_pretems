@@ -7,7 +7,9 @@ const checkoutDIV = document.querySelector("#checkout");
 async function removeFromCart(){
     const productid = this.getAttribute('data-id');
 
-    await fetch(`/api/cart.php?type=remove&product=${encodeURIComponent(productid)}`).then((e) => updateCart());
+    await fetch(`/api/cart.php`, {method: "DELETE", headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }, body: encodeForAjax({'product': productid})}).then((e) => updateCart());
 }
 
 function updateRemoveCarts(){
@@ -38,7 +40,7 @@ function setPrice(value){
 }
 
 async function updateCart(){
-    await fetch('api/cart.php').then(
+    await fetch('api/cart.php', {method: "POST"}).then(
         (re) =>{
             re.json().then(
                 (products) =>{
@@ -75,7 +77,7 @@ async function proceedToCheckout(){
         const user = response.json().then(
             async (u) => {
                 if(u.user){
-                    await fetch("api/cart.php").then((r) =>r.json().then(
+                    await fetch("api/cart.php", {method:"POST"}).then((r) =>r.json().then(
                         (products)=>{
                             if(!(products == undefined || products.length == 0)){
                                 cartInterface.classList.add("unclickable");

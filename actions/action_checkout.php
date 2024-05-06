@@ -13,7 +13,7 @@ $discount = $_POST['discount'];
 $address = $_POST['delivery'];
 $zipcode = $_POST['zipcode'];
 
-if(!isset($cart)){
+if(!isset($cart) || empty($cart)){
     errorAPI("No items..");
     exit;
 }
@@ -55,12 +55,10 @@ if(isset($dicountinfo['percentage'])){
 
 $idpurchase = md5($session->getId() . date("Y-m-d H:i:s"));
 
-purchase($db, $idpurchase, $session->getId(), $cart, $zipcode, $address);
+purchase($db, $idpurchase, $session->getId(), $cart, $zipcode, $address, $sum);
+emptyCart($db, $session->getId());
 
-$return['total'] = $sum;
-$return['error'] = "Success. Your purchase awaits payment.";
-$return['code'] = $idpurchase;
-header('Content-Type: application/json');
-echo json_encode($return);
+header('Location: /purchase.php?id='. $idpurchase);
+
 
 ?>

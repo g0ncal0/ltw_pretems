@@ -8,13 +8,19 @@
     $db = getDatabaseConnection();
 
 
-    output_header($db, $itemname, $itemdescription, $session->getId());
 
 
     $id = $_GET['id'];
     $item = getProduct($db, $id);
+ 
+    output_header($db, $item['name'], $item['description'], $session->getId());
+    
+    if(empty($item)){
+        errorPage("No item", "The product may have been deleted");
+    }
+
     $images = getImagesOfProduct($db, $id);
     
-    output_full_item($item, $session->getId(), $images);
+    output_full_item($item, $session->getId(), $images, $db);
     output_footer();
 ?>

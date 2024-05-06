@@ -22,7 +22,8 @@
 
     function output_user_area() { ?>
         <h2>User Actions</h2>
-        <a href="addProduct.php"><button class="button">Add Product</button></a>
+        <a href="addProduct.php"><button class="button">Add Product</button>
+    </a>
     <?php }
 
     function output_admin_area() { ?>
@@ -114,4 +115,15 @@
         </section><?php
     }
 
+
+
+    function output_profile_purchases($purchases){
+        foreach($purchases as $purchase){
+        ?>
+            <p><a href="/purchase.php?id=<?= $purchase['id']?>">Purchase on <?= $purchase['date']?> | <?= $purchase['cost']?></a></p>
+        <?php
+        }
+    }
+
 ?>
+

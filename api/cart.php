@@ -1,54 +1,47 @@
 <?php
     // ALLOWED: 'insert', 'remove', 'empty'
 
-    // TO-DO: CHECK IF PRODUCT IS STILL AVAILABLE BEFORE RETURNING
-
-
     require_once(__DIR__ . '/../include.php');
     header('Content-Type: application/json');
 
     $session = new Session();
-    if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-        return;
-    }
-    $type = $_GET["type"];
-    $product = $_GET["product"];
-
     
+    parse_str(file_get_contents('php://input'), $_PUT);
+
+
+    $type = $_SERVER['REQUEST_METHOD'];
+    $product = $_PUT["product"];
+
 
 
     $user = $session->getId();
     $db = getDatabaseConnection();
 
 
-    if(!isset($type)){
+    if($type == 'POST'){
         echo json_encode(getCart($db, $session));
+        return;
     }
     
     
     if($user !== NULL){
         
-        if($type === 'insert'){
+        if($type == 'PUT'){
             // we want to insert the element on the database
             
             execute($db, 'INSERT INTO cart VALUES(?,?)', [$product, $user]);
         }
-        if($type === 'remove'){
+        if($type == 'DELETE'){
             execute($db, 'DELETE FROM cart WHERE user = ? AND product = ?', [$user, $product]);
-        }
-        if($type === 'empty'){
-            execute($db, 'DELETE FROM cart WHERE user = ?', [$user]);
         }
     }else{
 
         if($session->getCart() === NULL){
             $session->setCard(array());
         }
-        if($type === 'empty'){
-            $session->setCard(array());
-        }
+        
  
-        if($type === 'insert'){
+        if($type == 'PUT'){
             // we just associate it with session
             $oldcart = $session->getCart();
             if (!in_array($product, $oldcart)) {
@@ -56,7 +49,7 @@
             }
             $session->setCart($oldcart);
         }
-        if($type === 'remove'){
+        if($type == 'DELETE'){
             $session->setCart(array_diff($session->getCart(), [$product]));
         }
     }
