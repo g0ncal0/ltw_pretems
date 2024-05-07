@@ -92,9 +92,26 @@ async function addToFavoritesProductId(id){
       }, body: encodeForAjax({'product': id})});
 }
 
+async function removeFromFavoritesProductId(id){
+    await fetch(`/api/favorites.php`, {method: "DELETE", headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }, body: encodeForAjax({'product': id})});
+}
+
 async function addToFavorites(){
     const productid = this.getAttribute('data-id');
-    addToFavoritesProductId(productid);
+
+    if (!this.classList.contains("favorited")) {
+        await addToFavoritesProductId(productid);
+        this.innerHTML = "REMOVE FAVS";
+        this.classList.add("favorited");
+    }
+
+    else {
+        await removeFromFavoritesProductId(productid);
+        this.innerHTML = "FAVORITES";
+        this.classList.remove("favorited");
+    }
 }
 
 document.querySelectorAll("button.add-favorites").forEach(function(btn){

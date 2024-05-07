@@ -237,7 +237,10 @@ function getFavorites($db, $session){
         $favorite_items = getItemsOnIDs($db, $favorites);
         return $favorite_items;
     }
+}
 
+function getFav($db, $product, $user) {
+    return fetch($db, 'SELECT * FROM favorites WHERE product = ? AND user = ?', array($product, $user));
 }
 
 ?>

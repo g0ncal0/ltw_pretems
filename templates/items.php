@@ -50,8 +50,13 @@
                         <p><span class="special">Uploaded:</span> <?= $product['date']?></span> 
                     </div>
                     <div>
-                        <?php if ($id !== $product['user']) { ?>
-                            <button data-id="<?php echo $product['id']?>" class="button add-favorites">FAVORITES</button>
+                        <?php if ($id !== $product['user']) {
+                            $fav = getFav($db, $product['id'], $id);
+                            if (!$fav) { ?>
+                                <button data-id="<?php echo $product['id']?>" class="button add-favorites">FAVORITES</button>
+                            <?php } else { ?>
+                                <button data-id="<?php echo $product['id']?>" class="button add-favorites favorited">REMOVE FAVS</button>
+                            <?php } ?>
                             <button data-id="<?php echo $product['id']?>" class="button add-cart">ADD TO CART</button>
                             <a href="chat.php?buyerId=<?php echo $id ?>&productId=<?php echo $product['id']?>"><button class="button">ASK USER</button></a>
                         <?php }    
