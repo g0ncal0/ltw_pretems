@@ -51,7 +51,7 @@
                     </div>
                     <div>
                         <?php if ($id !== $product['user']) { ?>
-                            <button class="button">FAVORITES</button>
+                            <button data-id="<?php echo $product['id']?>" class="button add-favorites">FAVORITES</button>
                             <button data-id="<?php echo $product['id']?>" class="button add-cart">ADD TO CART</button>
                             <a href="chat.php?buyerId=<?php echo $id ?>&productId=<?php echo $product['id']?>"><button class="button">ASK USER</button></a>
                         <?php }    

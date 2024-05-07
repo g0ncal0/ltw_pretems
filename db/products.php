@@ -210,4 +210,34 @@ function setpaidPurchase($db, $id){
     execute($db, 'UPDATE purchases SET status = 1 WHERE id = ?', array($id));
 }
 
+function getFavorites($db, $session){
+    if($session->isLoggedIn()){
+        $ci = fetchAll($db, 'SELECT product FROM favorites WHERE user = ?', array($session->getId()));
+        if(!isset($ci)){
+            return array();
+        }
+        if(count($ci) == 0){
+            return array();
+        }
+        $elements = array();
+        foreach($ci as $citem){
+            array_push($elements, $citem['product']);
+        }
+        $favorite_items = getItemsOnIDs($db, $elements);
+
+        return $favorite_items;
+    }else{
+        $favorites = $session->getFavorites();
+        if(!isset($favorites)){
+            return array();
+        }
+        if(count($favorites) == 0){
+            return array();
+        }
+        $favorite_items = getItemsOnIDs($db, $favorites);
+        return $favorite_items;
+    }
+
+}
+
 ?>

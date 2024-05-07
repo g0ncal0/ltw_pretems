@@ -86,6 +86,20 @@ document.querySelectorAll("button.add-cart").forEach(function(btn){
     btn.addEventListener('click', addToCart)
 })
 
+async function addToFavoritesProductId(id){
+    await fetch('/api/favorites.php', {method: 'PUT', headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }, body: encodeForAjax({'product': id})});
+}
+
+async function addToFavorites(){
+    const productid = this.getAttribute('data-id');
+    addToFavoritesProductId(productid);
+}
+
+document.querySelectorAll("button.add-favorites").forEach(function(btn){
+    btn.addEventListener('click', addToFavorites)
+})
 
 
 
@@ -224,6 +238,20 @@ async function login(){
             }
         )
     })
+
+    let favorites = [];
+
+    await fetch('/api/favorites.php', {method: "POST"}).then((response) =>{
+        response.json().then(
+            async (data)=>{
+                data.forEach(
+                    (product)=>{
+                        favorites.push(product['id']);
+                    }
+                )
+            }
+        )
+    })
    
 
     await fetch('/api/login.php', {method: "post", headers: {
@@ -235,6 +263,9 @@ async function login(){
                     infoLogin.textContent = "Success.";
                     cart.forEach(
                         (product)=>{addToCartProductId(product);}
+                    )
+                    favorites.forEach(
+                        (product)=>{addToFavoritesProductId(product);}
                     )
                     setTimeout(() => location.reload(), 500)
                     

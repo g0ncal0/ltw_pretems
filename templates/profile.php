@@ -36,7 +36,16 @@
         </div>
     <?php }
 
-    function output_profile_items($selling_items, $sold_items){
+    function output_profile_items($favorites, $selling_items, $sold_items){ ?> 
+        <h2> Favorites Items </h2> <?php
+        if($favorites){
+            foreach ($favorites as $favorite_item) {
+                output_profile_selling_item($favorite_item);
+            }
+        } else {
+            echo "<p> No items </p>";
+        }
+        
         ?> <h2> Items that you are selling </h2> <?php
         if($selling_items){
             foreach ($selling_items as $selling_item) {
@@ -92,20 +101,20 @@
     <?php }
     
 
-    function output_profile_logged($profile, $selling_items, $sold_items) { ?>
+    function output_profile_logged($profile, $favorites, $selling_items, $sold_items) { ?>
         <section class="profile-page"><?php
             output_profile_top($profile);
             output_user_area();
-            output_profile_items($selling_items, $sold_items); ?>
+            output_profile_items($favorites, $selling_items, $sold_items); ?>
         </section><?php
     }
-    function output_profile_logged_admin($profile, $selling_items, $sold_items) { ?>
+    function output_profile_logged_admin($profile, $favorites, $selling_items, $sold_items) { ?>
         <section class="profile-page"><?php
             output_profile_top($profile);?>
             <p>You are an admin</p><?php
             output_user_area();
             output_admin_area();
-            output_profile_items($selling_items, $sold_items); ?>
+            output_profile_items($favorites, $selling_items, $sold_items); ?>
         </section><?php
     }
 

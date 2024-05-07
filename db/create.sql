@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS profileImgs;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS imgs;
 DROP TABLE IF EXISTS cart;
+DROP TABLE IF EXISTS favorites;
 DROP TABLE IF EXISTS sizes;
 DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS purchases;
@@ -68,6 +69,11 @@ CREATE TABLE profileImgs (
 );
 
 CREATE TABLE cart (
+    product INTEGER NOT NULL REFERENCES products,
+    user INTEGER NOT NULL REFERENCES users
+);
+
+CREATE TABLE favorites (
     product INTEGER NOT NULL REFERENCES products,
     user INTEGER NOT NULL REFERENCES users
 );
