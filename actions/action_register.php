@@ -14,7 +14,9 @@
 
     $userWithMail = getUserWithEmail($db, $_POST['r-email']);
     $userWithUsername = getUserWithUsername($db, $_POST['r-username']);
-    if ((!$userWithMail) && (!$userWithUsername)){ // User does not already exist (success)
+    $blockedUser = getBlockedUser($db, $_POST['r-email']);
+
+    if ((!$userWithMail) && (!$userWithUsername) && (!$blockedUser)){ // User does not already exist (success)
        
         $user['name'] = $_POST['r-name'];
         $user['email'] = $_POST['r-email'];
@@ -44,7 +46,10 @@
             header('Location: /../register.php?error=InvalidEmail');
         }
     }
-    else {
+    else if ($userWithUsername) {
         header('Location: /../register.php?error=InvalidUsername');
+    }
+    else if ($blockedUser) {
+        header('Location: /../register.php?error=InvalidBlockedUser');
     }
 ?>

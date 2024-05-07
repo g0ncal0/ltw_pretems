@@ -1,0 +1,24 @@
+<?php
+    declare(strict_types = 1);
+
+    require_once('../include.php');
+
+    $session = new Session();  // TODO: change
+
+
+    if(!$session->isLoggedIn()){
+        header('Location: /'); 
+    }
+
+    $db = getDatabaseConnection();
+    
+    if ($session->getAdmin()) {
+        blockUser($db, $_POST['userId']);
+
+        header('Location: ../profile.php?id=' . $session->getId());
+    }
+
+    else {
+        header('Location: ../profile.php?id=' . $_POST['userId'] . 'error=invalidAdmin');
+    }
+?>
