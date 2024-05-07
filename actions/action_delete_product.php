@@ -14,10 +14,10 @@
 
     $product = getProduct($db, $_POST['productId']);
     
-    if ($session->getId() === $product['user']) {
+    if (($session->getId() === $product['user']) || ($session->getAdmin())) {
         deleteProduct($db, $_POST['productId']); 
 
-        header('Location: ../profile.php?id=' . $product['user']);
+        header('Location: ../profile.php?id=' . $session->getId());
     }
 
     else {

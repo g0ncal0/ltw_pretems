@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS purchases;
 DROP TABLE IF EXISTS discounts;
 DROP TABLE IF EXISTS purchaseItems;
+DROP TABLE IF EXISTS blockedUsers;
 
 
 CREATE TABLE users (
@@ -114,6 +115,10 @@ CREATE TABLE discounts(
     minamount INTEGER NOT NULL,
     percentage INTEGER NOT NULL,
     maxdiscount INTEGER NOT NULL
+);
+
+CREATE TABLE blockedUsers (
+    user INTEGER NOT NULL
 );
 
 INSERT INTO users VALUES ('Zé', 1, 'ze@gmail.com', 'zeze', '$2y$12$2a.K49CYeaBhTKMWVCHDi.3mJEL/vMKzFRsmYa78GbApmGhiNLn9u', 1, 'img/profile/profile.png');

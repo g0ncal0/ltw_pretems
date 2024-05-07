@@ -18,6 +18,7 @@
     <?php }
 
     function output_full_item($product, $id, $images, $db) {
+        $session = new Session();
         ?>
 
         <section class="item-page">
@@ -68,6 +69,14 @@
                                 <input type="hidden" name="productId" value="<?php echo $product['id']?>">
                                 <button type="submit" class="button" onclick="return confirm('Are you sure you want to delete this product?')">DELETE PRODUCT</button>
                             </form>    
+                        <?php } ?>
+                        <?php if ($session->getAdmin()) { ?>
+                            <h3>Admin Actions:</h3>
+
+                            <form action="/actions/action_delete_product.php" method="post">
+                                <input type="hidden" name="productId" value="<?php echo $product['id']?>">
+                                <button type="submit" class="button" onclick="return confirm('Are you sure you want to delete this product?')">DELETE PRODUCT</button>
+                            </form> 
                         <?php } ?>
                     </div>
                 </div>
