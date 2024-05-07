@@ -12,7 +12,6 @@
     $profile = getUser($db, $id);
 
     output_header($db,  $profile['name'] . "'s Profile", null, $session->getId());
-    protectPage($session);
 
     if ($session->isLoggedIn() && ($id == $session->getId())) {
         $purchases = getPurchases($db, $session->getId());
@@ -28,7 +27,8 @@
         output_profile_purchases($purchases);
     }
     else{
-        output_profile_other_user($profile);
+        $selling_items = getSellingProductsOfUser($db, $id);
+        output_profile_other_user($profile, $selling_items);
     }
 
    

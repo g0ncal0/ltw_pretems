@@ -1,9 +1,13 @@
 <?php 
-    function output_profile_top($profile){ ?>
+    function output_profile_top($profile){
+        $session = new Session(); ?>
+
         <h1>User Profile</h1>
         <div class="profile-top"><?php 
-            output_profile($profile); ?>
-            <a href="changeProfile.php"><button class="button">✏️ Edit Profile</button></a>
+            output_profile($profile); 
+            if ($profile['id'] == $session->getId()) {?>
+                <a href="changeProfile.php"><button class="button">✏️ Edit Profile</button></a>
+            <?php } ?>    
         </div>
     <?php } 
 
@@ -118,9 +122,19 @@
         </section><?php
     }
 
-    function output_profile_other_user($profile){ ?>
+    function output_profile_other_user($profile, $selling_items){ ?>
         <section class="profile-page"><?php
             output_profile_top($profile);?>
+
+            <h2> Items that the user is selling </h2> <?php
+            if($selling_items){
+                foreach ($selling_items as $selling_item) {
+                    output_profile_selling_item($selling_item);
+                }
+            } else {
+                echo "<p> No items </p>";
+            } ?>
+
         </section><?php
     }
 
