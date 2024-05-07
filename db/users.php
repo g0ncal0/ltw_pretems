@@ -54,6 +54,14 @@ function getUserWithEmail($db, $email){
     return $user;
 }
 
+function getUserWithUsername($db, $username){
+    $stmt = $db->prepare('SELECT * FROM users WHERE username = ?');
+    $stmt->execute(array($username));
+    $user = $stmt->fetch(); // Fetch only one row
+
+    return $user;
+}
+
 function addUser($db, $user){
     $options = ['cost' => 12];
     $password = password_hash($user['password'], PASSWORD_DEFAULT, $options);

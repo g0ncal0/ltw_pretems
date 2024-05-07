@@ -12,8 +12,9 @@
     }
     $db = getDatabaseConnection();
 
-    $user = getUserWithEmail($db, $_POST['r-email']);
-    if (!$user){ // User does not already exist (success)
+    $userWithMail = getUserWithEmail($db, $_POST['r-email']);
+    $userWithUsername = getUserWithUsername($db, $_POST['r-username']);
+    if ((!$userWithMail) && (!$userWithUsername)){ // User does not already exist (success)
        
         $user['name'] = $_POST['r-name'];
         $user['email'] = $_POST['r-email'];
@@ -35,7 +36,15 @@
         $session->setName($user['name']);
         $session->setAdmin((bool) $user['admin']);
         header('Location: /../index.php'); // Go back to main page
-    } else { // User found
-        header('Location: /../register.php?error=Invalid%20Email');
+    } else if ($userWithMail){ // User found
+        if ($userWithUsername) {
+            header('Location: /../register.php?error=InvalidEmailAndUsername');
+        }
+        else {
+            header('Location: /../register.php?error=InvalidEmail');
+        }
+    }
+    else {
+        header('Location: /../register.php?error=InvalidUsername');
     }
 ?>

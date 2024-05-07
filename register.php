@@ -12,6 +12,11 @@
 
     <section class="container" >
         <h1>Register a new account</h1>
+        <?php 
+        $error = $_GET['error'];
+        if (($error == 'InvalidEmail') || ($error == 'InvalidEmailAndUsername')) echo '<p class="error-message">Sorry, that email is already being used.';
+        if (($error == 'InvalidUsername') || ($error == 'InvalidEmailAndUsername')) echo '<p class="error-message">Sorry, that username is already being used.';
+        ?>
         <form id="register-account" class="account-form" action="actions/action_register.php" method="post">
             <label for="name">Name</label>
             <input required type="text" name="r-name" id="r-name">
