@@ -627,6 +627,91 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 
+/***** Chat *****/
+.fromBuyer, .fromSeller{
+    display: flex;
+    align-items: center;
+
+    & img{
+        border-radius: 50%;
+        width: 5rem;
+        height: 5rem;
+    }
+}
+
+.fromBuyer img{
+    margin-left: 3rem;
+    margin-right: 0;
+}
+
+.fromSeller img{
+    margin-left: 0;
+    margin-right: 3rem;
+}
+
+.fromBuyer{
+    flex-direction: row-reverse;
+}
+
+/* Speech bubbles inspired from https://codingislove.com/css-speech-bubbles/ */
+.messageFromBuyer, .messageFromSeller{
+    width: 70rem;
+    margin: 20px auto;
+    background-color: rgb(231, 229, 229);
+    padding: 20px;
+    font-weight: 650;
+    color: var(--black);
+    position: relative;
+    border-radius: 1.5rem;
+
+    & :before{
+        content: "";
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        top: 3rem;
+    }
+}
+
+.messageFromBuyer{
+    margin-right: 0;
+
+    & :before {
+        border-left: 10px solid rgb(231, 229, 229);
+        border-right: 10px solid transparent;
+        border-top: 10px solid rgb(231, 229, 229);
+        border-bottom: 10px solid transparent;
+        right: -20px;
+    }
+}
+
+.messageFromSeller{
+    margin-left: 0;
+
+    & :before {
+        border-left: 10px solid transparent;
+        border-right: 10px solid rgb(231, 229, 229);
+        border-top: 10px solid rgb(231, 229, 229);
+        border-bottom: 10px solid transparent;
+        left: -19px;
+    }
+}
+
+div .message-from{
+    color: var(--main);
+}
+
+#newMessage {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--grey);
+    border-radius: 5px;
+    resize: none; 
+    font-size: 16px;
+    box-sizing: border-box; 
+  }
+
+
 /** FOOTER **/
 html footer{
     background-color: var(--main);
