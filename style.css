@@ -657,7 +657,7 @@ input[type="range"]::-webkit-slider-thumb {
 .messageFromBuyer, .messageFromSeller{
     width: 70rem;
     margin: 20px auto;
-    background-color: rgb(231, 229, 229);
+    background: rgb(231, 229, 229);
     padding: 20px;
     font-weight: 650;
     color: var(--black);
@@ -681,7 +681,7 @@ input[type="range"]::-webkit-slider-thumb {
         border-right: 10px solid transparent;
         border-top: 10px solid rgb(231, 229, 229);
         border-bottom: 10px solid transparent;
-        right: -20px;
+        right: -19px;
     }
 }
 
