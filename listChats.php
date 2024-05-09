@@ -20,13 +20,13 @@
 
 <div class="container">
     <?php foreach($chats as $chat) { ?>
-        <a href="chat.php?buyerId=<?php echo $chat['id']?>&productId=<?php echo $_GET['productId']?>">
         <div id="chat">
+            <a href="chat.php?buyerId=<?php echo $chat['id']?>&productId=<?php echo $_GET['productId']?>">
             <img src="<?php echo $chat['profileImg'] ?>"  width="100" height="100">
 
             <h2><?php echo $chat['username']?></h2>
+            </a>        
         </div>
-        </a>        
     <?php } ?>
 </div>    
 <?php } ?>

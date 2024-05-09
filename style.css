@@ -725,6 +725,28 @@ div .message-from{
   }
 
 
+/** List of chats **/
+#chat{
+    margin-bottom: 1rem;
+
+    & a{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-decoration: none;
+        color: var(--black);
+    
+        & img{
+            border-radius: 50%;
+            width: 8rem;
+            height: 8rem;
+            margin-right: 3rem;
+        }
+    }
+}
+
+
+
 /** FOOTER **/
 html footer{
     background-color: var(--main);
