@@ -501,19 +501,26 @@ input[type="range"]::-webkit-slider-thumb {
 
 .manage-users .user {
     background-color: var(--grey);
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
     align-items: center;
     margin-bottom: 10px;
     padding: 2em;
     border-radius: 2em;
 }
 
+.manage-users .manage-user-info{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 4;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
 .manage-users .profile-image {
     border-radius: 50%;
     width: 100px;
-    height: auto;
+    height: 100px;
     margin-right: 20px;
 }
 
@@ -521,6 +528,12 @@ input[type="range"]::-webkit-slider-thumb {
 .manage-users .user-email,
 .manage-users .user-role {
     margin: 5px 0;
+}
+
+.manage-users .user-role{
+    display: flex;
+    flex-direction: column;
+    line-height: 2rem;
 }
 
 .manage-users a {
