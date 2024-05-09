@@ -70,7 +70,7 @@
                                 <button type="submit" class="button" onclick="return confirm('Are you sure you want to delete this product?')">DELETE PRODUCT</button>
                             </form>    
                         <?php } ?>
-                        <?php if ($session->getAdmin()) { ?>
+                        <?php if ($session->getAdmin() && $id !== $product['user']) { ?>
                             <h3>Admin Actions:</h3>
 
                             <form action="/actions/action_delete_product.php" method="post">
