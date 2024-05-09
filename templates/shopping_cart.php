@@ -1,16 +1,21 @@
 <?php
     function output_total() { ?>
-        <div class="total">
-            <div>  <!-- TODO: implement (change name) -->
-                <h3>Total:</h3><br>    
-                <p id="cart-total-price"></p>
-                <button class="proceed-checkout button" type="button">Checkout</button>
+        <div class="cart_interface">
+        <div class="cart">
+        </div>
+            <div class="total">
+                <div>
+                    <h3>Total:</h3><br>    
+                    <p id="cart-total-price"></p>
+                    <button class="proceed-checkout button" type="button">Checkout</button>
+                </div>
             </div>
         </div>
     <?php }
+
+
     function output_list_cart_items($products) { ?>
         <section class="cart">
-            <!-- <h2>Cart</h2> -->
             <?php foreach($products as $product) output_cart_item($product); ?>
         </section>
     <?php }
@@ -31,6 +36,19 @@
                 </div>
             </div>
         </div>
+    <?php }
+
+
+    function output_checkout(){ ?>
+        <div class="container" id="checkout" style="display: none">
+            <p class="special">Checkout</p>
+            <h2>In one step, everything will be yours..</h2>
+            <form method="post" action="/actions/action_checkout.php">
+                <input name="delivery" id="delivery" type="text" placeholder="Delivery Spot">
+                <input name="zipcode" id="zipcode" type="text" pattern="[0-9]{4}-[0-9]{3}" placeholder="ZipCode">
+                <button type="submit">Pay</button>
+            </form>
+        </div> 
     <?php }
 
 ?>
