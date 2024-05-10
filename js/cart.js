@@ -23,17 +23,42 @@ updateRemoveCarts();
 
 function createProduct(product){
     const div = document.createElement('div');
+    div.setAttribute('class', 'box-item');
 
-    for (const key in product) {
-        const p = document.createElement('p');
-        p.textContent = key + " - " + product[key];
-        div.appendChild(p);
-    }
+    const boxDetails = document.createElement('div');
+    boxDetails.setAttribute('class', 'box-details');
+
+    const productImg = document.createElement('img');
+    productImg.setAttribute('src', product['firstImg']);
+    div.appendChild(productImg);
+
+    const nameLink = document.createElement('a');
+    const productId = product['id'];
+    nameLink.setAttribute('href', `item.php?id=${productId}`);
+    boxDetails.appendChild(nameLink);
+    
+    const productName = document.createElement('h3');
+    productName.textContent = product['name'];
+    nameLink.appendChild(productName);
+
+    const productDescription = document.createElement('p');
+    productDescription.textContent = product['description'];
+    boxDetails.appendChild(productDescription);
+
+    const divPriceButton = document.createElement('div');
+    boxDetails.appendChild(divPriceButton);
+
+    const productPrice = document.createElement('p');
+    productPrice.textContent = product['price'] + '€';
+    divPriceButton.appendChild(productPrice);
+
     const button = document.createElement('button');
     button.textContent = "Remove From Cart";
-    button.classList = "remove-cart"
+    button.classList = "remove-cart button";
     button.setAttribute("data-id", product['id']);
-    div.appendChild(button);
+    divPriceButton.appendChild(button);
+
+    div.appendChild(boxDetails);
     cart.appendChild(div);
 }
 
@@ -60,7 +85,7 @@ async function updateCart(){
                         }
                     )
                     updateRemoveCarts();
-                    setPrice(price);
+                    setPrice(price.toFixed(2));
                     INITIALprice = price;
                     return price;
                 }

@@ -54,6 +54,19 @@
             return $_SESSION['cart'];
         }
 
+        public function setFavorites(array $favorites){
+            if(!isset($_SESSION['favorites'])){
+                $_SESSION['favorites'] = array();
+            }
+            $_SESSION['favorites'] = $favorites;
+        }
+        public function getFavorites() : ?array{
+            if(!isset($_SESSION['favorites'])){
+                return array();
+            }
+            return $_SESSION['favorites'];
+        }
+
         public function addMessage(string $type, string $text) {
         $_SESSION['messages'][] = array('type' => $type, 'text' => $text);
         }

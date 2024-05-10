@@ -107,16 +107,18 @@ body header{
         text-decoration: underline;
     }
 }
-.menu{
-    display: none;
-    box-sizing: border-box;
+
+.menu {
     position: fixed;
+    padding: 2rem;
     top: 0;
-    padding: 3.5rem;
-    max-width: 100vw;
-    height: 100vh;
+    left: -400px;
+    width: 250px;
+    height: 100%;
     background-color: var(--background-color);
-    z-index: 10;
+    color: var(--black);
+    transition: left 0.3s ease;
+    z-index: 1000;
     & > ul{
         padding-left: 0;
         list-style: none;
@@ -129,9 +131,9 @@ body header{
         text-align: center;
     }
 }
-.bottom-side-menu{
-    position: absolute;
-    bottom: 3rem;
+
+.menu.visible {
+    left: 0;
 }
 
 
@@ -499,19 +501,26 @@ input[type="range"]::-webkit-slider-thumb {
 
 .manage-users .user {
     background-color: var(--grey);
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
     align-items: center;
     margin-bottom: 10px;
     padding: 2em;
     border-radius: 2em;
 }
 
+.manage-users .manage-user-info{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 4;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
 .manage-users .profile-image {
     border-radius: 50%;
     width: 100px;
-    height: auto;
+    height: 100px;
     margin-right: 20px;
 }
 
@@ -519,6 +528,12 @@ input[type="range"]::-webkit-slider-thumb {
 .manage-users .user-email,
 .manage-users .user-role {
     margin: 5px 0;
+}
+
+.manage-users .user-role{
+    display: flex;
+    flex-direction: column;
+    line-height: 2rem;
 }
 
 .manage-users a {
@@ -621,6 +636,162 @@ input[type="range"]::-webkit-slider-thumb {
     }
 
 
+}
+
+
+/***** Chat *****/
+.fromBuyer, .fromSeller{
+    display: flex;
+    align-items: center;
+
+    & img{
+        border-radius: 50%;
+        width: 5rem;
+        height: 5rem;
+    }
+}
+
+.fromBuyer img{
+    margin-left: 3rem;
+    margin-right: 0;
+}
+
+.fromSeller img{
+    margin-left: 0;
+    margin-right: 3rem;
+}
+
+.fromBuyer{
+    flex-direction: row-reverse;
+}
+
+/* Speech bubbles inspired from https://codingislove.com/css-speech-bubbles/ */
+.messageFromBuyer, .messageFromSeller{
+    width: 70rem;
+    margin: 20px auto;
+    background: rgb(231, 229, 229);
+    padding: 20px;
+    font-weight: 650;
+    color: var(--black);
+    position: relative;
+    border-radius: 1.5rem;
+
+    & :before{
+        content: "";
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        top: 3rem;
+    }
+}
+
+.messageFromBuyer{
+    margin-right: 0;
+
+    & :before {
+        border-left: 10px solid rgb(231, 229, 229);
+        border-right: 10px solid transparent;
+        border-top: 10px solid rgb(231, 229, 229);
+        border-bottom: 10px solid transparent;
+        right: -19px;
+    }
+}
+
+.messageFromSeller{
+    margin-left: 0;
+
+    & :before {
+        border-left: 10px solid transparent;
+        border-right: 10px solid rgb(231, 229, 229);
+        border-top: 10px solid rgb(231, 229, 229);
+        border-bottom: 10px solid transparent;
+        left: -19px;
+    }
+}
+
+div .message-from{
+    color: var(--main);
+}
+
+#newMessage {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--grey);
+    border-radius: 5px;
+    resize: none; 
+    font-size: 16px;
+    box-sizing: border-box; 
+  }
+
+
+/** List of chats **/
+#chat{
+    margin-bottom: 1rem;
+
+    & a{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-decoration: none;
+        color: var(--black);
+    
+        & img{
+            border-radius: 50%;
+            width: 8rem;
+            height: 8rem;
+            margin-right: 3rem;
+        }
+    }
+}
+
+
+/*** Shopping Cart ***/
+.cart_interface {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-left: 3rem;
+
+    & .total{
+        /* flex-grow: 1; */
+        margin-right: 4rem;
+        margin-bottom: 1rem;
+
+        & div{
+            padding: 3rem;
+            box-shadow: rgba(149, 157, 165, 0.1) 0px 2px 23px;
+            border-radius: 8px;
+        }
+
+        &  #cart-total-price::after{
+            content: '€';
+        }
+    }
+
+    & .cart{
+        flex-grow: 1;
+
+        & .box-item{
+            display: flex;
+            width: 80rem;
+            padding-right: 1rem;
+
+            & img{
+                width: 30rem;
+            }
+        }
+    }
+
+    & .box-details{
+        flex-grow: 1;
+        width: 350%;
+        align-self: center;
+        overflow: hidden;   
+    }
+
+    & .box-item{
+        margin-bottom: 1rem;
+    }
 }
 
 

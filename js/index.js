@@ -88,6 +88,37 @@ document.querySelectorAll("button.add-cart").forEach(function(btn){
     btn.addEventListener('click', addToCart)
 })
 
+async function addToFavoritesProductId(id){
+    await fetch('/api/favorites.php', {method: 'PUT', headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }, body: encodeForAjax({'product': id})});
+}
+
+async function removeFromFavoritesProductId(id){
+    await fetch(`/api/favorites.php`, {method: "DELETE", headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }, body: encodeForAjax({'product': id})});
+}
+
+async function addToFavorites(){
+    const productid = this.getAttribute('data-id');
+
+    if (!this.classList.contains("favorited")) {
+        await addToFavoritesProductId(productid);
+        this.innerHTML = "REMOVE FAVS";
+        this.classList.add("favorited");
+    }
+
+    else {
+        await removeFromFavoritesProductId(productid);
+        this.innerHTML = "FAVORITES";
+        this.classList.remove("favorited");
+    }
+}
+
+document.querySelectorAll("button.add-favorites").forEach(function(btn){
+    btn.addEventListener('click', addToFavorites)
+})
 
 
 
@@ -226,6 +257,20 @@ async function login(){
             }
         )
     })
+
+    let favorites = [];
+
+    await fetch('/api/favorites.php', {method: "POST"}).then((response) =>{
+        response.json().then(
+            async (data)=>{
+                data.forEach(
+                    (product)=>{
+                        favorites.push(product['id']);
+                    }
+                )
+            }
+        )
+    })
    
 
     await fetch('/api/login.php', {method: "post", headers: {
@@ -237,6 +282,9 @@ async function login(){
                     infoLogin.textContent = "Success.";
                     cart.forEach(
                         (product)=>{addToCartProductId(product);}
+                    )
+                    favorites.forEach(
+                        (product)=>{addToFavoritesProductId(product);}
                     )
                     setTimeout(() => location.reload(), 500)
                     
@@ -288,8 +336,10 @@ function handlePasswordSecurity(){
         progress.value = security * 10;
         if(security < 5){
             document.querySelector("#register-account button[type='submit']").disabled = true;
+            document.querySelector("#password-message").innerText = "Please choose a better password.";
         }else{
             document.querySelector("#register-account button[type='submit']").disabled = false;
+            document.querySelector("#password-message").innerText = "";
         }
     }
 }

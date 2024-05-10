@@ -12,6 +12,12 @@
 
     <section class="container" >
         <h1>Register a new account</h1>
+        <?php 
+        $error = $_GET['error'];
+        if (($error == 'InvalidEmail') || ($error == 'InvalidEmailAndUsername')) echo '<p class="error-message">Sorry, that email is already being used.';
+        if (($error == 'InvalidUsername') || ($error == 'InvalidEmailAndUsername')) echo '<p class="error-message">Sorry, that username is already being used.';
+        if ($error == 'InvalidBlockedUser') echo '<p class="error-message">Sorry, you are blocked for not respecting the rules of our site.';
+        ?>
         <form id="register-account" class="account-form" action="actions/action_register.php" method="post">
             <label for="name">Name</label>
             <input required type="text" name="r-name" id="r-name">
@@ -30,6 +36,7 @@
                 <progress max="100" value="0" id="info-password"></progress>
             </div>
             <button class="button" type="submit">Register</button>
+            <p id="password-message"></p>
         </form>
     </section>
 

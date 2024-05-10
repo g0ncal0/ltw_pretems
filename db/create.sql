@@ -8,11 +8,13 @@ DROP TABLE IF EXISTS profileImgs;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS imgs;
 DROP TABLE IF EXISTS cart;
+DROP TABLE IF EXISTS favorites;
 DROP TABLE IF EXISTS sizes;
 DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS purchases;
 DROP TABLE IF EXISTS discounts;
 DROP TABLE IF EXISTS purchaseItems;
+DROP TABLE IF EXISTS blockedUsers;
 
 
 CREATE TABLE users (
@@ -72,6 +74,11 @@ CREATE TABLE cart (
     user INTEGER NOT NULL REFERENCES users
 );
 
+CREATE TABLE favorites (
+    product INTEGER NOT NULL REFERENCES products,
+    user INTEGER NOT NULL REFERENCES users
+);
+
 CREATE TABLE productImgs (
     id INTEGER PRIMARY KEY,
     product INTEGER NOT NULL REFERENCES products,
@@ -108,6 +115,10 @@ CREATE TABLE discounts(
     minamount INTEGER NOT NULL,
     percentage INTEGER NOT NULL,
     maxdiscount INTEGER NOT NULL
+);
+
+CREATE TABLE blockedUsers (
+    user INTEGER NOT NULL
 );
 
 INSERT INTO users VALUES ('Zé', 1, 'ze@gmail.com', 'zeze', '$2y$12$2a.K49CYeaBhTKMWVCHDi.3mJEL/vMKzFRsmYa78GbApmGhiNLn9u', 1, 'img/profile/profile.png');

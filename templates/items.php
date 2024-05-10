@@ -18,6 +18,7 @@
     <?php }
 
     function output_full_item($product, $id, $images, $db) {
+        $session = new Session();
         ?>
 
         <section class="item-page">
@@ -50,18 +51,33 @@
                         <p><span class="special">Uploaded:</span> <?= $product['date']?></span> 
                     </div>
                     <div>
-                        <button class="button">FAVORITES</button>
-                        <button data-id="<?php echo $product['id'] ?>" class="button add-cart">ADD TO CART</button>
+                        <?php if ($id !== $product['user']) {
+                            $fav = getFav($db, $product['id'], $id);
+                            if (!$fav) { ?>
+                                <button data-id="<?php echo $product['id']?>" class="button add-favorites">FAVORITES</button>
+                            <?php } else { ?>
+                                <button data-id="<?php echo $product['id']?>" class="button add-favorites favorited">REMOVE FAVS</button>
+                            <?php } ?>
+                            <button data-id="<?php echo $product['id']?>" class="button add-cart">ADD TO CART</button>
+                            <a href="chat.php?buyerId=<?php echo $id ?>&productId=<?php echo $product['id']?>"><button class="button">ASK USER</button></a>
+                        <?php }    
+                        else { ?>
+                            <a href="listChats.php?productId=<?php echo $product['id']?>"><button class="button">SEE CHATS</button></a>
+                            <a href="changeProduct.php?productId=<?php echo $product['id']?>"><button class="button">EDIT PRODUCT</button></a>
 
-                        <?php if ($id !== $product['user']) echo '<a href=chat.php?buyerId=' . $id . '&productId=' . $product['id'] . '><button class="button">ASK USER</button></a>';
-                        else {echo '<a href=listChats.php?productId=' . $product['id'] . '><button class="button">SEE CHATS</button></a>';
-                            echo '<a href=changeProduct.php?productId=' . $product['id'] . '><button class="button">EDIT PRODUCT</button></a>'; 
+                            <form action="/actions/action_delete_product.php" method="post">
+                                <input type="hidden" name="productId" value="<?php echo $product['id']?>">
+                                <button type="submit" class="button" onclick="return confirm('Are you sure you want to delete this product?')">DELETE PRODUCT</button>
+                            </form>    
+                        <?php } ?>
+                        <?php if ($session->getAdmin() && $id !== $product['user']) { ?>
+                            <h3>Admin Actions:</h3>
 
-                            echo '<form action="/actions/action_delete_product.php" method="post">';
-                            echo '<input type="hidden" name="productId" value="' . $product['id'] . '">';
-                            echo '<button type="submit" class="button" onclick="return confirm(\'Are you sure you want to delete this product?\')">DELETE PRODUCT</button>';
-                            echo '</form>';
-                        } ?>
+                            <form action="/actions/action_delete_product.php" method="post">
+                                <input type="hidden" name="productId" value="<?php echo $product['id']?>">
+                                <button type="submit" class="button" onclick="return confirm('Are you sure you want to delete this product?')">DELETE PRODUCT</button>
+                            </form> 
+                        <?php } ?>
                     </div>
                 </div>
             </div>

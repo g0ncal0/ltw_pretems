@@ -31,13 +31,13 @@
             <section class="messages">            
             <?php foreach($messages as $message) {
                 if ($message['fromBuyer']) { ?>
-                    <div class="messageFromBuyer">
-                        <?php output_message($message, $buyer['name']); ?>
+                    <div class="fromBuyer">
+                        <?php output_message($message, $buyer, true); ?>
                     </div>    
                 <?php }
                 else { ?>
-                    <div class="messageFromSeller">
-                        <?php output_message($message, $seller['name']); ?>
+                    <div class="fromSeller">
+                        <?php output_message($message, $seller, false); ?>
                     </div>
 
                 <?php }

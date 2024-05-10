@@ -1,10 +1,16 @@
 <?php 
-    function output_message($message, $name) { ?>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-        <p> <?php echo $message['message'] ?> </p>
-        
-        <footer>
-            <?php echo $name ?>
-            <?php echo $message['date'] ?>
-        </footer>    
+    function output_message($message, $user, $isBuyer) { ?>
+        <img src="<?= $user['profileImg'] ?>" alt="Profile Image" class="profile-image"> <?php
+        if ($isBuyer){ ?>
+            <div class="messageFromBuyer"><?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+        } else{ ?>
+            <div class="messageFromSeller"><?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+        } ?>
+            <p> <?php echo $message['message'] ?> </p>
+            <p class="message-from">
+                <?php echo $user['name'] ?>
+                <?php echo $message['date'] ?>
+            </p>
+        </div>    
     <?php }
 ?>    

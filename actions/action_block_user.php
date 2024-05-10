@@ -11,16 +11,14 @@
     }
 
     $db = getDatabaseConnection();
-
-    $product = getProduct($db, $_POST['productId']);
     
-    if (($session->getId() === $product['user']) || ($session->getAdmin())) {
-        deleteProduct($db, $_POST['productId']); 
+    if ($session->getAdmin()) {
+        blockUser($db, $_POST['userId']);
 
         header('Location: ../profile.php?id=' . $session->getId());
     }
 
     else {
-        header('Location: ../item.php?id=' . $product['id'] . 'error=invalidPassword');
+        header('Location: ../profile.php?id=' . $_POST['userId'] . 'error=invalidAdmin');
     }
 ?>

@@ -1,9 +1,21 @@
 <?php 
-    function output_profile_top($profile){ ?>
+    function output_profile_top($profile){
+        $session = new Session(); ?>
+
         <h1>User Profile</h1>
         <div class="profile-top"><?php 
-            output_profile($profile); ?>
-            <a href="changeProfile.php"><button class="button">✏️ Edit Profile</button></a>
+            output_profile($profile); 
+            if ($profile['id'] == $session->getId()) {?>
+                <a href="changeProfile.php"><button class="button">✏️ Edit Profile</button></a>
+            <?php }
+            else if ($session->getAdmin()) { ?>
+               <h3>Admin Actions:</h3>
+
+                <form action="/actions/action_block_user.php" method="post">
+                    <input type="hidden" name="userId" value="<?php echo $profile['id']?>">
+                    <button type="submit" class="button" onclick="return confirm('Are you sure you want to block this user?')">BLOCK USER</button>
+                </form>
+            <?php } ?>
         </div>
     <?php } 
 
@@ -36,7 +48,16 @@
         </div>
     <?php }
 
-    function output_profile_items($selling_items, $sold_items){
+    function output_profile_items($favorites, $selling_items, $sold_items){ ?> 
+        <h2> Favorites Items </h2> <?php
+        if($favorites){
+            foreach ($favorites as $favorite_item) {
+                output_profile_selling_item($favorite_item);
+            }
+        } else {
+            echo "<p> No items </p>";
+        }
+        
         ?> <h2> Items that you are selling </h2> <?php
         if($selling_items){
             foreach ($selling_items as $selling_item) {
@@ -92,26 +113,36 @@
     <?php }
     
 
-    function output_profile_logged($profile, $selling_items, $sold_items) { ?>
-        <section class="profile-page container"><?php
+    function output_profile_logged($profile, $favorites, $selling_items, $sold_items) { ?>
+        <section class="profile-page"><?php
             output_profile_top($profile);
             output_user_area();
-            output_profile_items($selling_items, $sold_items); ?>
+            output_profile_items($favorites, $selling_items, $sold_items); ?>
         </section><?php
     }
-    function output_profile_logged_admin($profile, $selling_items, $sold_items) { ?>
-        <section class="profile-page container"><?php
+    function output_profile_logged_admin($profile, $favorites, $selling_items, $sold_items) { ?>
+        <section class="profile-page"><?php
             output_profile_top($profile);?>
             <p>You are an admin</p><?php
             output_user_area();
             output_admin_area();
-            output_profile_items($selling_items, $sold_items); ?>
+            output_profile_items($favorites, $selling_items, $sold_items); ?>
         </section><?php
     }
 
-    function output_profile_other_user($profile){ ?>
-        <section class="profile-page container"><?php
+    function output_profile_other_user($profile, $selling_items){ ?>
+        <section class="profile-page"><?php
             output_profile_top($profile);?>
+
+            <h2> Items that the user is selling </h2> <?php
+            if($selling_items){
+                foreach ($selling_items as $selling_item) {
+                    output_profile_selling_item($selling_item);
+                }
+            } else {
+                echo "<p> No items </p>";
+            } ?>
+
         </section><?php
     }
 
