@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
+@font-face {
+    font-family: Now;
+    src: url("img/now.otf") format("opentype");
+}
+
 :root {
     --main: #1e90ff;
     --secondary: #cecece;
@@ -18,6 +23,21 @@
     font-style: normal;
     font-variation-settings: "wdth" 100;
 }
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Now', 'Open Sans';
+}
+
+.special-font{
+    font-family: 'Now', 'Open Sans';
+}
+
+.hover-underline{
+    text-underline-offset: 4px;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
 main{
     min-height: 80vh;
 }
@@ -64,7 +84,7 @@ main{
 /**** HEADER ****/
 body header{
     position: sticky;
-    padding: 1.2rem 0; 
+    padding: 0.5rem 0; 
     top: 0;
     display: flex;
     justify-content: space-around;
@@ -76,11 +96,7 @@ body header{
     max-height: 90px;
     max-width: 90%;
 }
-@media screen and (max-width: 600px) {
-    header .svg-header{
-        display: none;
-    }
-}
+
 .svg-header img{
     width: 2rem;
     height: 2rem;
@@ -102,10 +118,6 @@ body header{
 .menu-header{
     padding: 8px;
     border-radius: 3px;
-    text-underline-offset: 4px;
-    &:hover{
-        text-decoration: underline;
-    }
 }
 
 .menu {
@@ -171,6 +183,7 @@ body header{
 .container{
     padding: 5rem;
 }
+
 
 
 
@@ -272,12 +285,28 @@ body header{
 
 
 .home-box{
-    box-sizing: border-box;
-    width: 100%;
-    padding: 14vw 19vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & h1{
+        font-size: max(8vw, 2.5rem);
+    }
+    & p{
+        font-weight: 300;
+        font-size: max(1.7vw, 1rem);
+    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.55)), url('img/home-page.jpeg');
+    background-size: cover;
+    margin: 10px;
+    height: 80vh;
+    width: calc(100% - 20px);
+    text-align: center;
+    padding: 2px;
     box-shadow: rgba(149, 157, 165, 0.1) 0px 2px 23px;
-    border-bottom-left-radius: 45px;
-    border-bottom-right-radius: 45px;
+    border-radius: 45px;
 }
 
 
@@ -365,7 +394,7 @@ body header{
 /**** LOGIN & REGISTER FORMS ****/
 
 .account-form, .menu, .profile-form, .product-form, .category-form, .size-form, .condition-form, #checkout, .styled-input, .newComment-form{
-    & input, select, textarea, file, input::file-selector-button {
+    & > input, & > select, & > textarea, & > file, & > input::file-selector-button {
         display: block;
         box-sizing: border-box;
         width: 100%;
@@ -396,6 +425,10 @@ body header{
 }
 
 .header-content{
+    background-color: var(--main);
+    color: white;
+    border-radius: 16px;
+    margin: 8px;
     padding: 2rem 4rem;
     text-align: center;
 }
@@ -451,7 +484,7 @@ input::-webkit-inner-spin-button {
     right: 0%; 
     position: absolute; 
     border-radius: 5px; 
-    background: #01940b; 
+    background: var(--main); 
 } 
   
 .range-input { 
@@ -750,10 +783,9 @@ div .message-from{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin-left: 3rem;
 
     & .total{
-        /* flex-grow: 1; */
+        flex-grow: 1;
         margin-right: 4rem;
         margin-bottom: 1rem;
 
@@ -769,24 +801,19 @@ div .message-from{
     }
 
     & .cart{
-        flex-grow: 1;
+        flex-grow: 4;
+        max-width: 60rem;
 
         & .box-item{
             display: flex;
-            width: 80rem;
             padding-right: 1rem;
-
-            & img{
-                width: 30rem;
-            }
+            flex-wrap: wrap;
         }
     }
 
     & .box-details{
         flex-grow: 1;
-        width: 350%;
         align-self: center;
-        overflow: hidden;   
     }
 
     & .box-item{
@@ -801,4 +828,18 @@ html footer{
     color: var(--white);
     padding: 0.5rem;
     text-align: center;
+}
+
+
+
+
+/* MOBILE OPTIMIZATIONS **/
+
+@media screen and (max-width: 600px) {
+    header .svg-header{
+        display: none;
+    }
+    .container{
+        padding: 1rem;
+    }
 }

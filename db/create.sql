@@ -117,6 +117,13 @@ CREATE TABLE discounts(
     maxdiscount INTEGER NOT NULL
 );
 
+
+CREATE TABLE featured(
+    product INTEGER NOT NULL REFERENCES products,
+    date DATETIME NOT NULL,
+    duration INTEGER NOT NULL /* in days */
+)
+
 CREATE TABLE blockedUsers (
     user INTEGER NOT NULL
 );

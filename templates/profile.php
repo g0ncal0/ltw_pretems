@@ -1,8 +1,6 @@
 <?php 
     function output_profile_top($profile){
         $session = new Session(); ?>
-
-        <h1>User Profile</h1>
         <div class="profile-top"><?php 
             output_profile($profile); 
             if ($profile['id'] == $session->getId()) {?>
@@ -114,14 +112,14 @@
     
 
     function output_profile_logged($profile, $favorites, $selling_items, $sold_items) { ?>
-        <section class="profile-page"><?php
+        <section class="profile-page container"><?php
             output_profile_top($profile);
             output_user_area();
             output_profile_items($favorites, $selling_items, $sold_items); ?>
         </section><?php
     }
     function output_profile_logged_admin($profile, $favorites, $selling_items, $sold_items) { ?>
-        <section class="profile-page"><?php
+        <section class="profile-page container"><?php
             output_profile_top($profile);?>
             <p>You are an admin</p><?php
             output_user_area();
@@ -131,7 +129,7 @@
     }
 
     function output_profile_other_user($profile, $selling_items){ ?>
-        <section class="profile-page"><?php
+        <section class="profile-page container"><?php
             output_profile_top($profile);?>
 
             <h2> Items that the user is selling </h2> <?php

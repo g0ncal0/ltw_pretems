@@ -85,7 +85,7 @@ async function updateCart(){
                         }
                     )
                     updateRemoveCarts();
-                    setPrice(price.toFixed(2));
+                    setPrice(price);
                     INITIALprice = price;
                     return price;
                 }

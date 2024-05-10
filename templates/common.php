@@ -14,7 +14,7 @@
         <link rel="manifest" href="/img/site.webmanifest">
             <?php
             if($pagetitle != null){
-                echo "<title>$pagetitle | PRETEMS</title>";
+                ?><title><?=htmlentities($pagetitle)?> | PRETEMS</title><?php
             }else{
                 echo "<title>PRETEMS</title>";
             }
@@ -44,7 +44,7 @@
                 <span>Use Code '1234' for 30% OFF</span>
             </section>
             <header>
-                <span class="menu-header">Menu</span>
+                <span class="hover-underline special-font menu-header">Menu</span>
                 <div class="websiteheader">
                     <a  href="/"><img class="logo-img" src="/img/logo.png"></a>
                 </div>
@@ -54,7 +54,7 @@
                 </div>
             </header>
             <div class="menu"> <!-- MENU -->
-                <p id="close-menu" >Close</p>
+                <span class="special-font hover-underline" id="close-menu" >Close</span>
                 <img class="logo-img" src="/img/logo.png">
                 <?php 
                     output_list_categories($db, "", "nolink");
@@ -73,14 +73,14 @@
                 </div>
                 
                 
-                <form  class="bottom-side-menu" action="items.php" method="get">
+                <form class="styled-input bottom-side-menu" action="items.php" method="get">
                     <input type="text" placeholder="Search (ENTER)" name="q" title="q">
                 </form>
                 
             </div>
             <div class="login-signup">
                 <div>
-                    <p class="toggle-login">Close</p>
+                    <span class="special-font hover-underline toggle-login">Close</span>
                     <p>Get into your account</p>
 
                     <form id="login-form" class="account-form" action="/actions/action_login.php" method="post">

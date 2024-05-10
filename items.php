@@ -32,7 +32,7 @@
 ?>
 
 <div class="container">
-    <form id="form-filter">
+    <form id="form-filter" class="styled-input">
         <label for="size">Size:</label>
         <select name="size" id="size">
             <option value="">Select Size</option>
@@ -60,18 +60,12 @@
         <div class="price-input-container"> 
             <div class="price-input"> 
                 <div class="price-field"> 
-                    <span>Minimum Price</span> 
-                    <input type="number" 
-                            name="min-price"
-                            class="min-input" 
-                            value="0" readonly> 
+                    <span>Minimum Price: </span> 
+                    <span class="pr min-input">0</span>
                 </div> 
                 <div class="price-field"> 
-                    <span>Maximum Price</span> 
-                    <input type="number" 
-                            name="max-price"
-                            class="max-input" 
-                            value="700" readonly> 
+                    <span>Maximum Price: </span> 
+                    <span class="pr max-price">700</span>
                 </div> 
             </div> 
             <div class="slider-container"> 

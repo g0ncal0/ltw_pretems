@@ -16,10 +16,11 @@
     }
     
 
+    simpleheader("Your Purchase");
+
     ?>
    
     <div class="container">
-    <h1>Purchase</h1>
     <p><?=$purchaseId?></p>
     <p><span class="special">Address:</span> <?=$purchase['address']?></p>
     <p><span class="special">ZipCode:</span> <?=$purchase['zipcode']?></p>
@@ -31,12 +32,12 @@
             ?>
             <p>Your purchase awaits payment</p>
             <h2>Pay</h2>
-            <form method="post" action="/actions/action_pay.php">
+            <form class="styled-input" method="post" action="/actions/action_pay.php">
                 <label for="card">Credit Card</label>
                 <input type="text" name="card" id="card">
 
                 <input type="hidden" name='id' value='<?=$purchaseId?>'>
-                <button type="submit">PAY</a>
+                <button class="button" type="submit">PAY</a>
             </form>
             <?php
         }else{

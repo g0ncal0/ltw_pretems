@@ -14,14 +14,13 @@
     ?>
     <script src="/js/cart.js" defer></script>
 
-    <h1>Cart</h1>
-    <div class="cart_interface">
+    <div class="cart_interface container">
         <div class="cart">
         </div>
         <?php output_total(); ?>
     </div>
 
-
+<?php
     output_checkout();
     output_footer();
 ?>

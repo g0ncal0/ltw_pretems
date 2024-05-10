@@ -9,11 +9,9 @@
 
     <section class="home-box">
         <div>
-            <h1>PRETEMS</h1>
+            <h1>pretems.</h1>
             <p>The website where you can find preloved items with quality</p>
-            <p>Pre-loved items you will adore at a price that will blow you away..</p>
         </div>
-        <img src="">
     </section>
 
    

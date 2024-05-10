@@ -13,6 +13,8 @@
 
     output_header($db,  $profile['name'] . "'s Profile", null, $session->getId());
 
+    simpleheader("User Profile");
+
     if ($session->isLoggedIn() && ($id == $session->getId())) {
         $purchases = getPurchases($db, $session->getId());
         $favorites = getFavorites($db, $session);

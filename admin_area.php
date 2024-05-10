@@ -33,7 +33,7 @@
     }
 
     if (isset($_GET['message'])) {
-        ?><p><?php echo $_GET['message']?></p><?php // Print if it was added successfully
+        ?><p><?php echo htmlentities($_GET['message'])?></p><?php // Print if it was added successfully
     } 
     ?></section><?php
 
