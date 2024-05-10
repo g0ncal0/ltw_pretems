@@ -93,14 +93,14 @@
     
 
     function output_profile_logged($profile, $selling_items, $sold_items) { ?>
-        <section class="profile-page"><?php
+        <section class="profile-page container"><?php
             output_profile_top($profile);
             output_user_area();
             output_profile_items($selling_items, $sold_items); ?>
         </section><?php
     }
     function output_profile_logged_admin($profile, $selling_items, $sold_items) { ?>
-        <section class="profile-page"><?php
+        <section class="profile-page container"><?php
             output_profile_top($profile);?>
             <p>You are an admin</p><?php
             output_user_area();
@@ -110,7 +110,7 @@
     }
 
     function output_profile_other_user($profile){ ?>
-        <section class="profile-page"><?php
+        <section class="profile-page container"><?php
             output_profile_top($profile);?>
         </section><?php
     }
@@ -118,11 +118,21 @@
 
 
     function output_profile_purchases($purchases){
+        ?>
+        <div class="container">
+        <h2>Purchases</h2>
+        
+        <?php
+        if(empty($purchases)){echo "<p>You have no purchases.. yet! Start buying!! </p>";}
+
         foreach($purchases as $purchase){
         ?>
-            <p><a href="/purchase.php?id=<?= $purchase['id']?>">Purchase on <?= $purchase['date']?> | <?= $purchase['cost']?></a></p>
+            <p><a href="/purchase.php?id=<?=$purchase['id']?>">Purchase on <?= $purchase['date']?> | <?= $purchase['cost']?></a></p>
         <?php
         }
+        ?>
+        </div>
+        <?php
     }
 
 ?>

@@ -362,7 +362,7 @@ body header{
 
 /**** LOGIN & REGISTER FORMS ****/
 
-.account-form, .menu, .profile-form, .product-form, .category-form, .size-form, .condition-form, .newComment-form{
+.account-form, .menu, .profile-form, .product-form, .category-form, .size-form, .condition-form, #checkout, .styled-input, .newComment-form{
     & input, select, textarea, file, input::file-selector-button {
         display: block;
         box-sizing: border-box;
@@ -547,7 +547,6 @@ input[type="range"]::-webkit-slider-thumb {
 
 /***** User profile *****/
 .profile-page{
-    padding: 0 6rem;
 
     & .profile-top{
         display: flex;

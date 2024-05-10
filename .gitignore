@@ -1,3 +1,5 @@
 db/database.db 
 img/products/*
 img/profile/*
+.DS_Store
+*/.*

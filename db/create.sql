@@ -189,3 +189,6 @@ INSERT INTO messages (productId, buyerId, fromBuyer, message, date) VALUES
 (1, 6, 1, 'Gostaria de saber mais detalhes sobre a entrega.', '2024-04-24 08:20'),
 (1, 6, 0, 'Claro, posso fornecer as informações.', '2024-04-25 14:10'),
 (1, 6, 1, 'Ótimo! Aguardo sua resposta.', '2024-04-26 11:55');
+
+
+insert into discounts values ('1234', 30, 15, 50);

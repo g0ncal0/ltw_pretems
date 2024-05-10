@@ -3,6 +3,8 @@ const cartInterface = document.querySelector(".cart_interface");
 const cart = document.querySelector(".cart");
 const price = document.querySelector("#cart-total-price");
 const checkoutDIV = document.querySelector("#checkout");
+const discountInput = document.querySelector("input#discount");
+let INITIALprice = 0;
 
 async function removeFromCart(){
     const productid = this.getAttribute('data-id');
@@ -36,7 +38,7 @@ function createProduct(product){
 }
 
 function setPrice(value){
-    price.textContent = value;
+    price.textContent = value.toFixed(2);
 }
 
 async function updateCart(){
@@ -59,6 +61,7 @@ async function updateCart(){
                     )
                     updateRemoveCarts();
                     setPrice(price);
+                    INITIALprice = price;
                     return price;
                 }
             )
@@ -98,3 +101,28 @@ const checkout = document.querySelector("button.proceed-checkout");
 if(checkout){
     checkout.addEventListener('click', proceedToCheckout);
 }
+
+
+
+
+const discountcode = document.querySelector("input#discount-code");
+const discountSubmit = document.querySelector("button#discount-submit");
+const messageDiscount = document.querySelector("#info-discount")
+
+async function addDiscount(){
+    const code = discountcode.value;
+    await fetch(`/api/discount.php`, {method: "POST", headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }, body: encodeForAjax({'value': INITIALprice, 'discount': code})}).then((e) => e.json().then((content) =>{
+        
+        if(content['result']){
+            setPrice(content['result']);
+            discountInput.value = code;
+        }else{
+            setPrice(INITIALprice);
+        }
+        messageDiscount.innerHTML = content['error'];
+      }));
+}
+
+discountSubmit.addEventListener('click', addDiscount);

@@ -36,12 +36,12 @@ foreach($cart as $item){
 
 // get the discount code
 
-$dicountinfo = getDiscountInfo($db, $discount);
+$discountinfo = getDiscountInfo($db, $discount);
 
 // return how much to pay
 
-if(isset($dicountinfo['percentage'])){
-    $amount_discount = $sum * $discountinfo['percentage'];
+if(isset($discountinfo['percentage'])){
+    $amount_discount = $sum * ($discountinfo['percentage'] / 100);
     if($amount_discount > $discountinfo['maxdiscount']){
         $amount_discount = $discountinfo['maxdiscount'];
     }
@@ -50,6 +50,7 @@ if(isset($dicountinfo['percentage'])){
     }
     $sum = $sum - $amount_discount;
 }
+$sum = round($sum, 2);
 
 // Create purchase & set status of purchase as pending
 

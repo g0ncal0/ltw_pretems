@@ -7,6 +7,11 @@
         <!DOCTYPE html>
         <html>
         <head>
+        <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+        <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+        <link rel="manifest" href="/img/site.webmanifest">
             <?php
             if($pagetitle != null){
                 echo "<title>$pagetitle | PRETEMS</title>";
@@ -36,7 +41,7 @@
         </head>
         <body>
             <section class="promotional">
-                <span>Entregas Grátis para pedidos >50€</span>
+                <span>Use Code '1234' for 30% OFF</span>
             </section>
             <header>
                 <span class="menu-header">Menu</span>

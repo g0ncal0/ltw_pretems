@@ -210,4 +210,5 @@ function setpaidPurchase($db, $id){
     execute($db, 'UPDATE purchases SET status = 1 WHERE id = ?', array($id));
 }
 
+
 ?>

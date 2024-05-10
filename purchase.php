@@ -23,13 +23,14 @@
     <p><?=$purchaseId?></p>
     <p><span class="special">Address:</span> <?=$purchase['address']?></p>
     <p><span class="special">ZipCode:</span> <?=$purchase['zipcode']?></p>
+    <p><span class="special">Total amount:</span> <?=$purchase['cost']?>€</p>
+
     <?php
 
         if($purchase['status'] == 0){
             ?>
             <p>Your purchase awaits payment</p>
             <h2>Pay</h2>
-            <p>Total amount: <?=$purchase['cost']?></p>
             <form method="post" action="/actions/action_pay.php">
                 <label for="card">Credit Card</label>
                 <input type="text" name="card" id="card">

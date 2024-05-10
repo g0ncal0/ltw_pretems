@@ -71,9 +71,11 @@ document.querySelectorAll(".act-logout").forEach(function(btn){
 
 
 async function addToCartProductId(id){
+    const audio = new Audio("/img/ping.mp3");
     await fetch('/api/cart.php', {method: 'PUT', headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }, body: encodeForAjax({'product': id})});
+    audio.play();
 
 }
 
