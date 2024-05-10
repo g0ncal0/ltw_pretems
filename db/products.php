@@ -243,4 +243,8 @@ function getFav($db, $product, $user) {
     return fetch($db, 'SELECT * FROM favorites WHERE product = ? AND user = ?', array($product, $user));
 }
 
+function getFeaturedItems($db){
+    return fetchAll($db, 'SELECT * FROM products WHERE id in (SELECT product FROM featured WHERE enddate  >= CURRENT_TIMESTAMP)', array());
+}
+
 ?>

@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS purchases;
 DROP TABLE IF EXISTS discounts;
 DROP TABLE IF EXISTS purchaseItems;
 DROP TABLE IF EXISTS blockedUsers;
-
+DROP TABLE IF EXISTS featured;
 
 CREATE TABLE users (
     name TEXT NOT NULL,
@@ -120,9 +120,8 @@ CREATE TABLE discounts(
 
 CREATE TABLE featured(
     product INTEGER NOT NULL REFERENCES products,
-    date DATETIME NOT NULL,
-    duration INTEGER NOT NULL /* in days */
-)
+    enddate DATETIME NOT NULL
+);
 
 CREATE TABLE blockedUsers (
     user INTEGER NOT NULL
@@ -210,3 +209,4 @@ INSERT INTO messages (productId, buyerId, fromBuyer, message, date) VALUES
 
 
 insert into discounts values ('1234', 30, 15, 50);
+insert into featured values (1, "2024-05-15 11:22:05")

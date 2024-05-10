@@ -14,8 +14,16 @@
         </div>
     </section>
 
+
+    <section class="container">
+        <span class="special">You will love this...</span>
+        <h2>Featured Items</h2>
+        <?php output_list_items(getFeaturedItems($db), $db); ?>
+    </section>
    
     <section class="container">
+        <span>Search around! The perfect clothes are waiting for you!</span>
+        <h2>All Categories</h2>
         <?php output_list_categories($db, "category-list", null);?>
     </section>
 
