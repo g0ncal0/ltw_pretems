@@ -24,10 +24,9 @@
         $buyer = getUser($db, $buyerId);
         $product = getProduct($db, $productId);
         $seller = getUser($db, $product['user']);
-
+        simpleheader("Chat");
         ?>
         <section class="container">
-            <h1>Chat</h1>
             <section class="messages">            
             <?php foreach($messages as $message) {
                 if ($message['fromBuyer']) { ?>

@@ -1,7 +1,6 @@
 <?php
     function output_users($users){
         ?><section class="container">
-            <h1>Manage Users</h1>  
             <div class="manage-users">
                 <?php
                 foreach ($users as $user) { ?> 

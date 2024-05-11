@@ -842,4 +842,10 @@ html footer{
     .container{
         padding: 1rem;
     }
+
+    .menu.visible {
+        padding-right: 8rem;
+    }
+
+
 }
