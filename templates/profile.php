@@ -83,7 +83,7 @@
             <div class="box-details">
                 <a href="/item.php?id=<?php echo $product['id']?>">
                 <h3><?php echo $product['name']?></h3></a>
-                <p class="info"><span>NEW</span><span><?php echo getBrand($db, $product['brand'])?></span></p>
+                <p class="info"><span><?php echo getBrand($db, $product['brand'])?></span></p>
                 <div>
                     <p><?php echo $product['price']?></p>
                 </div>
@@ -101,7 +101,7 @@
             <div class="box-details">
                 <a href="/item.php?id=<?php echo $product['id']?>">
                 <h3><?php echo $product['name']?></h3></a>
-                <p class="info"><span>NEW</span><span><?php echo getBrand($db, $product['brand'])?></span></p>
+                <p class="info"><span><?php echo getBrand($db, $product['brand'])?></span></p>
                 <div>
                     <p><?php echo $product['price']?></p>
                     <a href="shipping_form.php?product_id=<?php echo $product['id']; ?>&purchase_id=<?php echo $shipping_info_ids['purchase_id'];?>"><button class="button">Print Shipping Forms</button></a>

@@ -8,7 +8,7 @@
             <div class="box-details">
                 <a href="/item.php?id=<?php echo $product['id']?>">
                 <h3><?php echo $product['name']?></h3></a>
-                <p class="info"><span>NEW</span><span><?php echo getBrand($db, $product['brand'])?></span></p>
+                <p class="info"><span><?php echo getBrand($db, $product['brand'])?></span></p>
                 <div>
                     <p><?php echo $product['price']?></p>
                     <button data-id="<?php echo $product['id'] ?>"  class="button add-cart">ADD TO CART</button>
