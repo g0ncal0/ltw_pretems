@@ -121,7 +121,7 @@
     function output_profile_logged_admin($profile, $favorites, $selling_items, $sold_items) { ?>
         <section class="profile-page container"><?php
             output_profile_top($profile);?>
-            <p>You are an admin</p><?php
+            <p class="is-admin">You are an admin</p><?php
             output_user_area();
             output_admin_area();
             output_profile_items($favorites, $selling_items, $sold_items); ?>
