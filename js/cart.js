@@ -1,3 +1,4 @@
+'use strict'
 
 const cartInterface = document.querySelector(".cart_interface");
 const cart = document.querySelector(".cart");

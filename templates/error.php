@@ -1,6 +1,8 @@
 <?php
 
-function errorPage($error, $description){
+declare(strict_types = 1);
+
+function errorPage(?string $error, ?string $description) : void {
     ?>
     <section class="container protectedpage">
         <h1><?php echo $error?></h1>
@@ -11,7 +13,7 @@ function errorPage($error, $description){
     die();
 }
 
-function errorAPI($error){
+function errorAPI(?string $error) : void {
     $message = array();
     $message['error'] = $error;    
     header('Content-Type: application/json');

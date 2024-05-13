@@ -34,6 +34,7 @@ h1, h2, h3, h4, h5, h6{
 .hover-underline{
     text-underline-offset: 4px;
     &:hover{
+        cursor:pointer;
         text-decoration: underline;
     }
 }
@@ -169,6 +170,7 @@ body header{
         border-radius: 10px;
         z-index: 15;
     }
+    a:hover 
 }
 
 
@@ -527,12 +529,12 @@ input[type="range"]::-webkit-slider-thumb {
 
 
 /******* Admin Area (Manage Users) ******/
-.manage-users {
+.manage-users, .list-chats {
     display: flex;
     flex-direction: column;
 }
 
-.manage-users .user {
+.manage-users .user, .list-chats .chat {
     background-color: var(--grey);
     display: flex;
     align-items: center;
@@ -541,7 +543,7 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 2em;
 }
 
-.manage-users .manage-user-info{
+.manage-users .manage-user-info, .list-chats .user-info{
     display: flex;
     flex-direction: row;
     flex-grow: 4;
@@ -550,7 +552,7 @@ input[type="range"]::-webkit-slider-thumb {
     flex-wrap: wrap;
 }
 
-.manage-users .profile-image {
+.manage-users .profile-image, .list-chats .profile-image {
     border-radius: 50%;
     width: 100px;
     height: 100px;
@@ -559,7 +561,8 @@ input[type="range"]::-webkit-slider-thumb {
 
 .manage-users .user-name,
 .manage-users .user-email,
-.manage-users .user-role {
+.manage-users .user-role,
+.list-chats .user-name {
     margin: 5px 0;
 }
 
@@ -578,9 +581,14 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 5px;
 }
 
-.manage-users a:hover {
+.manage-users a:hover, .list-chats a:hover {
     background-color: var(--grey);
 } 
+
+.list-chats a {
+    text-decoration: none;
+    margin: 5px 0;
+}
 
 
 

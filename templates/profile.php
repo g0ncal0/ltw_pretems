@@ -1,5 +1,7 @@
 <?php 
-    function output_profile_top($profile){
+    declare(strict_types = 1);
+
+    function output_profile_top(array $profile) : void {
         $session = new Session(); ?>
         <div class="profile-top"><?php 
             output_profile($profile); 
@@ -17,7 +19,7 @@
         </div>
     <?php } 
 
-    function output_profile($profile) { ?>
+    function output_profile(array $profile) : void { ?>
         <section id="profile_info">
             <div class="user-profile-img">
                 <img src=<?php echo $profile['profileImg']?> alt="Profile Image" id="profile_image">
@@ -30,13 +32,13 @@
         </section>
     <?php }
 
-    function output_user_area() { ?>
+    function output_user_area() : void { ?>
         <h2>User Actions</h2>
         <a href="addProduct.php"><button class="button">Add Product</button>
     </a>
     <?php }
 
-    function output_admin_area() { ?>
+    function output_admin_area() : void { ?>
         <h2>Admin Area</h2>
         <div class="admin-area-buttons">
             <a href="admin_area.php?area=category"><button class="button">Add Category</button></a>
@@ -46,7 +48,7 @@
         </div>
     <?php }
 
-    function output_profile_items($favorites, $selling_items, $sold_items){ ?> 
+    function output_profile_items(?array $favorites,?array $selling_items,?array $sold_items) : void { ?> 
         <h2> Favorites Items </h2> <?php
         if($favorites){
             foreach ($favorites as $favorite_item) {
@@ -75,7 +77,7 @@
         }
     }
 
-    function output_profile_selling_item($product) {    
+    function output_profile_selling_item(array $product) : void {    
         $db = getDatabaseConnection();     
         ?><div class="box-item">             
             <img src="<?php echo $product['firstImg'] ?>">
@@ -91,7 +93,7 @@
         </div>
     <?php }
 
-    function output_profile_sold_item($product) {    
+    function output_profile_sold_item(array $product) : void {    
         $db = getDatabaseConnection(); 
         $shipping_info_ids = getShippingIds($db, $product['id']);
     
@@ -111,14 +113,14 @@
     <?php }
     
 
-    function output_profile_logged($profile, $favorites, $selling_items, $sold_items) { ?>
+    function output_profile_logged(array $profile, ?array $favorites, ?array $selling_items, ?array $sold_items) : void { ?>
         <section class="profile-page container"><?php
             output_profile_top($profile);
             output_user_area();
             output_profile_items($favorites, $selling_items, $sold_items); ?>
         </section><?php
     }
-    function output_profile_logged_admin($profile, $favorites, $selling_items, $sold_items) { ?>
+    function output_profile_logged_admin(array $profile, ?array $favorites, ?array $selling_items, ?array $sold_items) : void { ?>
         <section class="profile-page container"><?php
             output_profile_top($profile);?>
             <p class="is-admin">You are an admin</p><?php
@@ -128,7 +130,7 @@
         </section><?php
     }
 
-    function output_profile_other_user($profile, $selling_items){ ?>
+    function output_profile_other_user(array $profile, ?array $selling_items) : void { ?>
         <section class="profile-page container"><?php
             output_profile_top($profile);?>
 
@@ -146,7 +148,7 @@
 
 
 
-    function output_profile_purchases($purchases){
+    function output_profile_purchases(?array $purchases) : void {
         ?>
         <div class="container">
         <h2>Purchases</h2>

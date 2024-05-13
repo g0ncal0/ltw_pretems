@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types = 1);
 require_once(__DIR__ . '/util.php');
 
-function getCart($db, $session){
+function getCart(PDO $db, Session $session) : ?array {
     if($session->isLoggedIn()){
         $ci = fetchAll($db, 'SELECT product FROM cart WHERE user = ?', array($session->getId()));
         if(!isset($ci)){
@@ -32,11 +33,11 @@ function getCart($db, $session){
 
 }
 
-function emptyCart($db, $id){
+function emptyCart(PDO $db, int $id) : void {
     execute($db, 'DELETE FROM cart WHERE user = ?', array($id));
 }
 
-function purchase($db, $idPurchase, $userId, $products, $zipcode, $address, $cost){
+function purchase(PDO $db, string $idPurchase, string $userId, array $products, string $zipcode, string $address, float $cost) : void {
     execute($db, 'INSERT INTO purchases VALUES (?, ?, ?, ?, ?, ?, ?)', array($idPurchase, date('Y-m-d H:i:s'), 0, $address, $zipcode, $userId, $cost));
     foreach($products as $product){
         execute($db, 'INSERT INTO purchaseItems VALUES (?, ?)', array($idPurchase, $product['id']));

@@ -1,14 +1,16 @@
 <?php 
 
-function insertProductImage($db, $product_id) {
+declare(strict_types = 1);
+
+function insertProductImage(PDO $db, string $product_id) : void {
     execute($db, 'INSERT INTO productImgs (product) VALUES (?)', array($product_id));
 }
 
-function updatePath($db, $img_id, $path) {
+function updatePath(PDO $db, string $img_id, string $path) : void {
     execute($db, 'UPDATE productImgs SET path = ? WHERE id = ?', array($path, $img_id));
 }
 
-function uploadProductFirstImage($db, $image, $id) {
+function uploadProductFirstImage(PDO $db, array $image, string $id) : string {
     $file_tmp = $image['tmp_name'];
 
     $original = @imagecreatefromjpeg($file_tmp);
@@ -33,7 +35,7 @@ function uploadProductFirstImage($db, $image, $id) {
     return $path;
 }
 
-function uploadProductImages($db, $images, $id) {
+function uploadProductImages(PDO $db, array $images, string $id) : void {
     for ($i = 0; $i < count($images['name']); $i++) {
         $file_tmp = $images['tmp_name'][$i];
 
@@ -58,7 +60,7 @@ function uploadProductImages($db, $images, $id) {
     }
 }
 
-function uploadProfileImage($db, $image, $id) {
+function uploadProfileImage(PDO $db, array $image, int $id) : string {
     $file_tmp = $image['tmp_name'];
 
     $original = @imagecreatefromjpeg($file_tmp);
@@ -76,20 +78,20 @@ function uploadProfileImage($db, $image, $id) {
     return $path;
 }
 
-function getImagesOfProduct($db, $id) {
+function getImagesOfProduct(PDO $db, int $id) : ?array {
     return fetchAll($db, 'SELECT * FROM productImgs WHERE product = ?', array($id));
 }
 
-function getImage($db, $id) {
+function getImage(PDO $db, string $id) : ?array {
     return fetch($db, 'SELECT * FROM productImgs WHERE id = ?', array($id));
 }
 
-function deleteImage($db, $path) {
+function deleteImage(PDO $db, string $path) : void {
     execute($db, 'DELETE FROM productImgs WHERE path = ?', array($path));
     unlink('../' . $path);
 }
 
-function changeFirstImage($db, $id, $firstImg) {
+function changeFirstImage(PDO $db, int $id, array $firstImg) : void {
     $product = getProduct($db, $id);
     $path = $product['firstImg'];
 
@@ -100,7 +102,7 @@ function changeFirstImage($db, $id, $firstImg) {
     execute($db, 'UPDATE products SET firstImg = ? WHERE id = ?', array($newPath, $id));
 }
 
-function deleteProductImages($db, $id, $deleted_images) {
+function deleteProductImages(PDO $db, string $id, ?array $deleted_images) : void {
     foreach ($deleted_images as $imageId) {
         $path = getImage($db, $imageId)['path'];
         deleteImage($db, $path);

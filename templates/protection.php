@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types = 1);
 require_once(__DIR__ . '/error.php'); 
 
 
-function protectPage($session) {
+function protectPage(?Session $session) : void {
     if(!isset($session)){
         exit;
     }
@@ -15,7 +16,7 @@ function protectPage($session) {
     }
 }
 
-function protectPageUser($session, $user_id) { // User is logged in and with the right account
+function protectPageUser(?Session $session, int $user_id) : void { // User is logged in and with the right account
     if(!isset($session)){
         exit;
     }
@@ -27,7 +28,7 @@ function protectPageUser($session, $user_id) { // User is logged in and with the
     }
 }
 
-function protectPageAdmins($session){
+function protectPageAdmins(?Session $session) : void {
     if(!isset($session)){
         exit;
     }
@@ -38,7 +39,7 @@ function protectPageAdmins($session){
 }
 
 
-function protectAPIloggedIN($session){
+function protectAPIloggedIN(?Session $session) : void {
     if(!isset($session)){
         exit;
     }
@@ -49,7 +50,7 @@ function protectAPIloggedIN($session){
     }
 }
 
-function protectAPIadmin($session){
+function protectAPIadmin(?Session $session) : void {
     if(!isset($session)){
         exit;
     }
@@ -60,7 +61,7 @@ function protectAPIadmin($session){
     }
 }
 
-function protectActionloggedIn($session){
+function protectActionloggedIn(?Session $session) : void {
     if(!isset($session)){
         exit;
     }

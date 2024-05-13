@@ -10,12 +10,13 @@
 
 
     $type = $_SERVER['REQUEST_METHOD'];
-    $product = $_PUT["product"];
+    $productId = $_PUT["product"];
 
 
 
     $user = $session->getId();
     $db = getDatabaseConnection();
+    $product = getProduct($db, $productId);
 
 
     if($type == 'POST'){
@@ -29,10 +30,10 @@
         if($type == 'PUT'){
             // we want to insert the element on the database
             
-            execute($db, 'INSERT INTO cart VALUES(?,?)', [$product, $user]);
+            if ($product['user'] != $user) execute($db, 'INSERT INTO cart VALUES(?,?)', [$productId, $user]);
         }
         if($type == 'DELETE'){
-            execute($db, 'DELETE FROM cart WHERE user = ? AND product = ?', [$user, $product]);
+            execute($db, 'DELETE FROM cart WHERE user = ? AND product = ?', [$user, $productId]);
         }
     }else{
 
@@ -44,13 +45,13 @@
         if($type == 'PUT'){
             // we just associate it with session
             $oldcart = $session->getCart();
-            if (!in_array($product, $oldcart)) {
-                array_push($oldcart, $product);
+            if (!in_array($productId, $oldcart)) {
+                array_push($oldcart, $productId);
             }
             $session->setCart($oldcart);
         }
         if($type == 'DELETE'){
-            $session->setCart(array_diff($session->getCart(), [$product]));
+            $session->setCart(array_diff($session->getCart(), [$productId]));
         }
     }
 

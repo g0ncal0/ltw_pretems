@@ -1,16 +1,17 @@
 <?php 
 
+declare(strict_types = 1);
 require_once('util.php');
 
-function getAllProducts($db) {
+function getAllProducts(PDO $db) : ?array {
     return fetchAll($db, 'SELECT * FROM products WHERE available = TRUE', null);
 }
 
-function getProduct($db, $id) {
+function getProduct(PDO $db, $id) : ?array {
     return fetch($db, 'SELECT * FROM products WHERE id = ?',array($id));
 }
 
-function getProductsLimitOffset($db, $limit, $offset, $category){
+function getProductsLimitOffset(PDO $db, int $limit, int $offset, int $category) : ?array {
     if(isset($category)){
         return fetchAll($db, 'SELECT * FROM products WHERE available = TRUE LIMIT ? OFFSET ?', array($limit, $offset));
     }else{
@@ -18,28 +19,28 @@ function getProductsLimitOffset($db, $limit, $offset, $category){
     }
 }
 
-function getProductsOfUser($db, $id) {
+function getProductsOfUser(PDO $db, int $id) : ?array {
     return fetchAll($db, 'SELECT * FROM products WHERE user = ?', array($id));
 }
 
-function getSellingProductsOfUser($db, $id) {
+function getSellingProductsOfUser(PDO $db, int $id) : ?array {
     return fetchAll($db, 'SELECT * FROM products WHERE user = ? AND available = TRUE', array($id));
 }
 
-function getSellerOfProduct($db, $id) {
+function getSellerOfProduct(PDO $db, int $id) : ?array {
     return fetch($db, 'SELECT user FROM products WHERE id = ?', array($id))['user'];
 }
 
-function getSoldProductsOfUser($db, $id) {
+function getSoldProductsOfUser(PDO $db, int $id) : ?array {
     return fetchAll($db, 'SELECT * FROM products WHERE user = ? AND available = FALSE', array($id));
 }
 
-function getShippingIds($db, $id) {
+function getShippingIds(PDO $db, int $id) : ?array {
     return fetch($db, 'SELECT purchaseItems.productid AS product_id, purchaseItems.purchaseid AS purchase_id
                        FROM purchaseItems WHERE product_id = ?;', array($id));
 }
 
-function getShippingWithId($db, $product_id, $purchase_id) {
+function getShippingWithId(PDO $db, int $product_id, int $purchase_id) : ?array {
     return fetch($db, 'SELECT purchases.date AS date, purchases.address AS address, purchases.zipcode AS zipcode, users.name AS name
                        FROM purchases
                        JOIN purchaseItems ON purchases.id = purchaseItems.purchaseid
@@ -48,63 +49,63 @@ function getShippingWithId($db, $product_id, $purchase_id) {
                        WHERE purchases.id = ? AND purchaseItems.productid = ?;', array($purchase_id, $product_id));
 }
 
-function getProductsOfCategory($db, $category) {
+function getProductsOfCategory(PDO $db, int $category) : ?array {
     return fetchAll($db, 'SELECT * FROM products WHERE category = ? AND available = TRUE', array($category));
 }
 
-function getCategories($db){
+function getCategories(PDO $db) : ?array {
     return fetchAll($db, 'SELECT * FROM categories', null);
 }
 
-function getBrands($db){
+function getBrands(PDO $db) : ?array {
     return fetchAll($db, 'SELECT * FROM brands', null);
 }
 
-function getSizes($db){
+function getSizes(PDO $db) : ?array {
     return fetchAll($db, 'SELECT * FROM sizes', null);
 }
 
-function getConditions($db){
+function getConditions(PDO $db) : ?array {
     return fetchAll($db, 'SELECT * FROM conditions', null);
 }
 
-function getCategory($db, $id){
+function getCategory(PDO $db, int $id) : string {
     return fetch($db, 'SELECT name FROM categories WHERE id = ?', array($id))['name'];
 }
 
-function getCategoryWithName($db, $name){
+function getCategoryWithName(PDO $db, string $name) : ?array {
     return fetch($db, 'SELECT * FROM categories WHERE name = ?', array($name));
 }
 
-function getBrand($db, $id){
+function getBrand(PDO $db, int $id) : string {
     return fetch($db, 'SELECT name FROM brands WHERE id = ?', array($id))['name'];
 }
 
-function getSize($db, $id){
+function getSize(PDO $db, int $id) : string {
     return fetch($db, 'SELECT name FROM sizes WHERE id = ?', array($id))['name'];
 }
 
-function getSizeWithName($db, $name){
+function getSizeWithName(PDO $db, string $name) : ?array {
     return fetch($db, 'SELECT * FROM sizes WHERE name = ?', array($name));
 }
 
-function getCondition($db, $id){
+function getCondition(PDO $db, int $id) : string {
     return fetch($db, 'SELECT name FROM conditions WHERE id = ?', array($id))['name'];
 }
 
-function getConditionWithName($db, $id){
+function getConditionWithName(PDO $db, int $id) : ?array {
     return fetch($db, 'SELECT * FROM conditions WHERE name = ?', array($id));
 }
 
-function searchProducts($db, $query){
+function searchProducts(PDO $db, string $query) : ?array {
     return fetchAll($db, 'SELECT * FROM products WHERE name LIKE ? OR description LIKE ?', array("%$query%", "%$query%"));
 }
 
-function getProductID($db, $name, $date, $category, $brand, $model, $size, $condition, $price, $user, $available, $description) {
+function getProductID(PDO $db, string $name, string $date, int $category, int $brand, int $model, int $size, int $condition, float $price, int $user, int $available, string $description) : ?array {
     return fetch($db, 'SELECT id FROM products WHERE name = ? AND date = ? AND category = ? AND brand = ? AND model = ? AND size = ? AND condition = ? AND price = ? AND user = ? AND available = ? AND description = ?', array($name, $date, $category, $brand, $model, $size, $condition, $price, $user, $available, $description))['id'];
 }
 
-function addProduct($db, $name, $date, $category, $brand, $model, $size, $condition, $price, $user, $available, $description, $firstImg, $images) {
+function addProduct(PDO $db, string $name, string $date, string $category, string $brand, string $model, string $size, string $condition, string $price, int $user, string $available, string $description, array $firstImg, ?array $images) : void {
     $available = ($available === "on");
 
     execute($db, 
@@ -120,7 +121,7 @@ function addProduct($db, $name, $date, $category, $brand, $model, $size, $condit
     if (isset($images) & ($images['tmp_name'][0]) != '') uploadProductImages($db, $images, $id);
 }
 
-function changeProduct($db, $id, $name, $category, $brand, $model, $size, $condition, $price, $available, $description, $firstImg, $deleted_images, $images) {
+function changeProduct(PDO $db, string $id, string $name, string $category, string $brand, string $model, string $size, string $condition, string $price, string $available, string $description, ?array $firstImg, ?array $deleted_images, ?array $images) : void {
     if (isset($firstImg) && ($firstImg['tmp_name'] !== "")) {
         changeFirstImage($db, $id, $firstImg);
     }
@@ -138,7 +139,7 @@ function changeProduct($db, $id, $name, $category, $brand, $model, $size, $condi
     array($name, $category, $brand, $model, $size, $condition, $price, $available, $description, $id));
 }
 
-function deleteProduct($db, $id) {
+function deleteProduct(PDO $db, int $id) : void {
     $images = getImagesOfProduct($db, $id);
     $product = getProduct($db, $id);
 
@@ -152,7 +153,7 @@ function deleteProduct($db, $id) {
     execute($db, 'DELETE FROM products WHERE id = ?', array($id));
 }
 
-function getItemsOnIDs($db, $ids){
+function getItemsOnIDs(PDO $db, ?array $ids) : ?array {
     // ids should be an array.
     if(isset($ids)){
     if(count($ids) > 0){
@@ -163,24 +164,24 @@ function getItemsOnIDs($db, $ids){
     return $items;
 }
 
-function addCategory($db, $name){
+function addCategory(PDO $db, string $name) : void {
     execute($db, 'INSERT INTO categories (name) VALUES (?)', array($name));
 }   
 
-function addSize($db, $name){
+function addSize(PDO $db, string $name) : void {
     execute($db, 'INSERT INTO sizes (name) VALUES (?)', array($name));
 }   
 
-function addCondition($db, $name){
+function addCondition(PDO $db, string $name) : void {
     execute($db, 'INSERT INTO conditions (name) VALUES (?)', array($name));
 }
 
-function checkItemAvailable($db, $item){
+function checkItemAvailable(PDO $db, int $item) : int {
     $product = getProduct($db, $item);
     return $product['available'];
 }
 
-function setItemUnavailable($db, $item){
+function setItemUnavailable(PDO $db, int $item) : float {
     // returns price of item
     $price = fetch($db, 'SELECT price FROM products WHERE id = ?', array($item));
     if(!isset($price['price'])){
@@ -191,7 +192,7 @@ function setItemUnavailable($db, $item){
     return $price['price'];
 }
 
-function getDiscountInfo($db, $discount){
+function getDiscountInfo(PDO $db, ?string $discount) {
     if(!isset($discount)){
         return array();
     }
@@ -199,18 +200,18 @@ function getDiscountInfo($db, $discount){
 }
 
 
-function getPurchase($db, $id, $buyerid){
+function getPurchase(PDO $db, string $id, int $buyerid) : ?array {
     return fetch($db, 'SELECT * FROM purchases WHERE id = ? AND buyerid = ?', array($id, $buyerid));
 }
-function getPurchases($db, $buyerid){
+function getPurchases(PDO $db, int $buyerid) : ?array {
     return fetchAll($db, 'SELECT * FROM purchases WHERE buyerid = ?', array($buyerid));
 }
 
-function setpaidPurchase($db, $id){
+function setpaidPurchase(PDO $db, string $id) : void {
     execute($db, 'UPDATE purchases SET status = 1 WHERE id = ?', array($id));
 }
 
-function getFavorites($db, $session){
+function getFavorites(PDO $db, Session $session) : ?array {
     if($session->isLoggedIn()){
         $ci = fetchAll($db, 'SELECT product FROM favorites WHERE user = ?', array($session->getId()));
         if(!isset($ci)){
@@ -239,11 +240,11 @@ function getFavorites($db, $session){
     }
 }
 
-function getFav($db, $product, $user) {
+function getFav(PDO $db, int $product, int $user) : ?array {
     return fetch($db, 'SELECT * FROM favorites WHERE product = ? AND user = ?', array($product, $user));
 }
 
-function getFeaturedItems($db){
+function getFeaturedItems(PDO $db) : ?array {
     return fetchAll($db, 'SELECT * FROM products WHERE id in (SELECT product FROM featured WHERE enddate  >= CURRENT_TIMESTAMP)', array());
 }
 

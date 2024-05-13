@@ -1,5 +1,7 @@
 <?php
-    function output_total() { ?>
+    declare(strict_types = 1);
+
+    function output_total() : void { ?>
         <div class="total">
             <div class="styled-input"> 
                 <h3>Discount</h3>
@@ -15,7 +17,7 @@
     <?php }
 
 
-    function output_checkout(){ ?>
+    function output_checkout() : void { ?>
         <div class="container" id="checkout" style="display: none">
             <p class="special">Checkout</p>
             <h2>In one step, everything will be yours..</h2>

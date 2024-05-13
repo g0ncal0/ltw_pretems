@@ -1,9 +1,9 @@
 <?php 
-    declare(strict_types=1);
+    declare(strict_types = 1);
     require_once(__DIR__ . '/mixed.php');
     require_once(__DIR__ . '/../session.php');
 
-    function output_header($db, $pagetitle, $description, $user) { ?>
+    function output_header(PDO $db, ?string $pagetitle, ?string $description, ?int $user) : void { ?>
         <!DOCTYPE html>
         <html>
         <head>
@@ -97,7 +97,7 @@
             <main>
     <?php }
 
-    function simpleheader($title){
+    function simpleheader(string $title) : void {
         ?>
             <section class="header-content">
                 <h1><?php echo $title ?></h1>
@@ -106,7 +106,7 @@
         <?php
     }
 
-    function output_footer() { ?>
+    function output_footer() : void { ?>
         </main>
         <footer>
             <p>&copy; PRETEMS</p>
