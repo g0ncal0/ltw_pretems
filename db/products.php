@@ -27,7 +27,7 @@ function getSellingProductsOfUser(PDO $db, int $id) : ?array {
     return fetchAll($db, 'SELECT * FROM products WHERE user = ? AND available = TRUE', array($id));
 }
 
-function getSellerOfProduct(PDO $db, int $id) : ?array {
+function getSellerOfProduct(PDO $db, int $id) : ?int {
     return fetch($db, 'SELECT user FROM products WHERE id = ?', array($id))['user'];
 }
 
@@ -40,7 +40,7 @@ function getShippingIds(PDO $db, int $id) : ?array {
                        FROM purchaseItems WHERE product_id = ?;', array($id));
 }
 
-function getShippingWithId(PDO $db, int $product_id, int $purchase_id) : ?array {
+function getShippingWithId(PDO $db, int $product_id, string $purchase_id) : ?array {
     return fetch($db, 'SELECT purchases.date AS date, purchases.address AS address, purchases.zipcode AS zipcode, users.name AS name
                        FROM purchases
                        JOIN purchaseItems ON purchases.id = purchaseItems.purchaseid
@@ -188,6 +188,8 @@ function setItemUnavailable(PDO $db, int $item) : float {
         return 0;
     }
     execute($db, 'UPDATE products SET available = FALSE WHERE id = ?', array($item));
+    
+    execute($db, 'DELETE FROM featured WHERE product = ?', array($item));
 
     return $price['price'];
 }

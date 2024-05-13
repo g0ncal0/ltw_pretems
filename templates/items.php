@@ -13,7 +13,7 @@
                 <h3><?php echo $product['name']?></h3></a>
                 <p class="info"><span><?php echo getBrand($db, $product['brand'])?></span></p>
                 <div>
-                    <p><?php echo $product['price']?></p>
+                    <p><?php echo $product['price']?>€</p>
                     <?php if (($session->getId() != $product['user']) || (!$session->isLoggedIn())) echo '<button data-id=' . $product['id'] .  ' class="button add-cart">ADD TO CART</button>'; ?>
                 </div>
             </div>
