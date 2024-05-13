@@ -15,7 +15,6 @@
     </head>
         <div class="shipping-form">
             <h2>Shipping Forms</h2>
-            <script src="/js/shipping_form.js" defer></script>
         <?php
         require_once('include.php');
         $db = getDatabaseConnection();
