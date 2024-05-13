@@ -81,8 +81,9 @@
 
     $response['products'] = fetchAll($db, $query, $arguments); 
     $response['error'] = "";
-    if(count($response['products']) === 0){
+    if(!isset($response['products'])){
         $response['error'] = 'No more products';
+        $response['products'] = array();
     }
     echo json_encode($response);
 
