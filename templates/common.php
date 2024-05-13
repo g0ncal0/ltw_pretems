@@ -14,7 +14,7 @@
         <link rel="manifest" href="/img/site.webmanifest">
             <?php
             if($pagetitle != null){
-                ?><title><?=htmlentities($pagetitle)?> | PRETEMS</title><?php
+                ?><title><?= $pagetitle ?> | PRETEMS</title><?php
             }else{
                 echo "<title>PRETEMS</title>";
             }
@@ -29,6 +29,7 @@
             }
 
             ?>
+            <meta charset="utf-8">
             <meta name="description" content="<?php echo $description ?>">
             <link rel="stylesheet" href="normalize.css">
 
