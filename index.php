@@ -18,7 +18,11 @@
     <section class="container">
         <span class="special">You will love this...</span>
         <h2>Featured Items</h2>
-        <?php output_list_items(getFeaturedItems($db), $db); ?>
+        <?php $featuredItems = getFeaturedItems($db);
+             if ($featuredItems != null) output_list_items($featuredItems, $db); 
+        else { ?>
+            <p>There are no featured items at the moment</p>
+        <?php } ?>
     </section>
    
     <section class="container">

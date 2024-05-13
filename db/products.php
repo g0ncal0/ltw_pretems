@@ -188,6 +188,8 @@ function setItemUnavailable(PDO $db, int $item) : float {
         return 0;
     }
     execute($db, 'UPDATE products SET available = FALSE WHERE id = ?', array($item));
+    
+    execute($db, 'DELETE FROM featured WHERE product = ?', array($item));
 
     return $price['price'];
 }

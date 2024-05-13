@@ -816,7 +816,6 @@ div .message-from{
 
         & .box-item{
             display: flex;
-            padding-right: 1rem;
             flex-wrap: wrap;
         }
     }
