@@ -34,6 +34,7 @@ h1, h2, h3, h4, h5, h6{
 .hover-underline{
     text-underline-offset: 4px;
     &:hover{
+        cursor:pointer;
         text-decoration: underline;
     }
 }
@@ -169,6 +170,7 @@ body header{
         border-radius: 10px;
         z-index: 15;
     }
+    a:hover 
 }
 
 
