@@ -1,5 +1,7 @@
 <?php 
-    function output_message($message, $user, $isBuyer) { ?>
+    declare(strict_types = 1);
+
+    function output_message(array $message, array $user, bool $isBuyer) : void { ?>
         <img src="<?= $user['profileImg'] ?>" alt="Profile Image" class="profile-image"> <?php
         if ($isBuyer){ ?>
             <div class="messageFromBuyer"><?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       

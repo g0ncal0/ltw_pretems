@@ -1,5 +1,7 @@
 <?php 
-    function output_item($product, $db) {
+    declare(strict_types = 1);
+
+    function output_item(array $product, PDO $db) : void {
      ?>
         
         <div class="box-item">             
@@ -17,7 +19,7 @@
         </div>
     <?php }
 
-    function output_full_item($product, $id, $images, $db) {
+    function output_full_item(array $product, int $id, ?array $images, PDO $db) : void {
         $session = new Session();
         ?>
 
@@ -84,7 +86,7 @@
         </section>
     <?php }
 
-    function output_list_items($products, $db) {?>
+    function output_list_items(array $products, PDO $db) : void {?>
         <section id="products" class="container products">
             <?php foreach($products as $product) output_item($product, $db); ?>
         </section>

@@ -1,6 +1,8 @@
 <?php
+    declare(strict_types = 1);
+
     /* Add category */
-    function output_category_form() { ?>
+    function output_category_form() : void { ?>
         <form class="category-form" action="/actions/action_add_by_admin.php?add=category" method="post">
             <label for="name">Category Name:</label>
             <input type="text" id="name" name="name" required>    
@@ -8,7 +10,7 @@
         </form>
     <?php }
 
-    function output_existing_categories() { 
+    function output_existing_categories() : void { 
         $db = getDatabaseConnection();
         $categories = getCategories($db);
 
@@ -21,7 +23,7 @@
     <?php } 
 
     /* Add size */
-    function output_size_form() { ?>
+    function output_size_form() : void { ?>
         <form class="size-form" action="/actions/action_add_by_admin.php?add=size" method="post">
             <label for="name">Size Name:</label>
             <input type="text" id="name" name="name" required>    
@@ -29,7 +31,7 @@
         </form>
     <?php }
     
-    function output_existing_sizes() { 
+    function output_existing_sizes() : void { 
         $db = getDatabaseConnection();
         $sizes = getSizes($db);
         
@@ -42,7 +44,7 @@
     <?php }
     
     /* Add condition */
-    function output_condition_form() { ?>
+    function output_condition_form() : void { ?>
         <form class="condition-form" action="/actions/action_add_by_admin.php?add=condition" method="post">
             <label for="name">Condition Name:</label>
             <input type="text" id="name" name="name" required>    
@@ -50,7 +52,7 @@
         </form>
     <?php }
     
-    function output_existing_conditions() { 
+    function output_existing_conditions() : void { 
         $db = getDatabaseConnection();
         $conditions = getConditions($db);
         

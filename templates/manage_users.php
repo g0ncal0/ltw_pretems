@@ -1,5 +1,7 @@
 <?php
-    function output_users($users){
+    declare(strict_types = 1);
+
+    function output_users(array $users) : void {
         ?><section class="container">
             <div class="manage-users">
                 <?php
