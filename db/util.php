@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-function fetchAll(PDO $db, string $query, ?array $array) : ?array {
+function fetchAll(PDO $db, string $query, ?array $array) {
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
     $stmt = $db->prepare($query);
