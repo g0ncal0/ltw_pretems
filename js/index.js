@@ -364,12 +364,19 @@ async function get_items(){
         'Content-Type': 'application/x-www-form-urlencoded'
       }, body: encodeForAjax(data)}).then((r)=>r.json().then(
         (d) =>{
-            let count = d['products'].length;
+            const count = d['products'].length;
+            if(count == 0){
+                const errorNotMore = document.createElement('p');
+                errorNotMore.textContent = "You wanted it.. But, we have no more products";
+                list_items.append(errorNotMore);
+                return;
+            }
+            console.log(d['products']);
+           
             d['products'].forEach((element) => {
                 const t = build_item(element);
                 list_items.appendChild(t);
             });
-
             document.querySelectorAll("button.add-cart").forEach(function(btn){
                 btn.addEventListener('click', addToCart)
             })
