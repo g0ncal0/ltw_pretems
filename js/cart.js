@@ -42,10 +42,6 @@ function createProduct(product){
     productName.textContent = product['name'];
     nameLink.appendChild(productName);
 
-    const productDescription = document.createElement('p');
-    productDescription.textContent = product['description'];
-    boxDetails.appendChild(productDescription);
-
     const divPriceButton = document.createElement('div');
     boxDetails.appendChild(divPriceButton);
 
