@@ -6,7 +6,7 @@ function getAllUsers(PDO $db) : array {
     return fetchAll($db, 'SELECT * FROM users', null);
 }
 
-function getUser(PDO $db, string $user) : array {
+function getUser(PDO $db, $user) : array {
     return fetch($db, 'SELECT * FROM users WHERE id = ?', array($user));
 }
 

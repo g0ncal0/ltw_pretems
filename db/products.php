@@ -7,7 +7,7 @@ function getAllProducts(PDO $db) : array {
     return fetchAll($db, 'SELECT * FROM products WHERE available = TRUE', null);
 }
 
-function getProduct(PDO $db, string $id) : array {
+function getProduct(PDO $db, $id) : array {
     return fetch($db, 'SELECT * FROM products WHERE id = ?',array($id));
 }
 
