@@ -10,7 +10,7 @@ function getUser(PDO $db, $user) : array {
     return fetch($db, 'SELECT * FROM users WHERE id = ?', array($user));
 }
 
-function changeProfile(PDO $db, string $id, string $name, string $email, string $password, ?array $image) : void {
+function changeProfile(PDO $db, int $id, string $name, string $email, string $password, ?array $image) : void {
     $options = ['cost' => 12];
     $password = password_hash($password, PASSWORD_DEFAULT, $options);
 
@@ -36,7 +36,7 @@ function getUserWithPassword(PDO $db, string $email, string $password) {
     return false;
 }
 
-function getUserWithIdAndPassword(PDO $db, string $id, string $password) {
+function getUserWithIdAndPassword(PDO $db, int $id, string $password) {
     $stmt = $db->prepare('SELECT * FROM users WHERE id = ?');
     $stmt->execute(array($id));
     $user = $stmt->fetch(); // Fetch only one row
