@@ -78,11 +78,11 @@ function uploadProfileImage(PDO $db, array $image, int $id) : string {
     return $path;
 }
 
-function getImagesOfProduct(PDO $db, int $id) : array {
+function getImagesOfProduct(PDO $db, int $id) : ?array {
     return fetchAll($db, 'SELECT * FROM productImgs WHERE product = ?', array($id));
 }
 
-function getImage(PDO $db, string $id) : array {
+function getImage(PDO $db, string $id) : ?array {
     return fetch($db, 'SELECT * FROM productImgs WHERE id = ?', array($id));
 }
 

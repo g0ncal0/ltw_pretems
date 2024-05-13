@@ -3,7 +3,7 @@
 declare(strict_types = 1);
 require_once(__DIR__ . '/util.php');
 
-function getCart(PDO $db, Session $session) : array {
+function getCart(PDO $db, Session $session) : ?array {
     if($session->isLoggedIn()){
         $ci = fetchAll($db, 'SELECT product FROM cart WHERE user = ?', array($session->getId()));
         if(!isset($ci)){

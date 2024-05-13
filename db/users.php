@@ -2,11 +2,11 @@
 
 declare(strict_types = 1);
 
-function getAllUsers(PDO $db) : array {
+function getAllUsers(PDO $db) : ?array {
     return fetchAll($db, 'SELECT * FROM users', null);
 }
 
-function getUser(PDO $db, $user) : array {
+function getUser(PDO $db, $user) : ?array {
     return fetch($db, 'SELECT * FROM users WHERE id = ?', array($user));
 }
 
@@ -24,7 +24,7 @@ function changeProfile(PDO $db, int $id, string $name, string $email, string $pa
     }
 }
 
-function getUserWithPassword(PDO $db, string $email, string $password) {
+function getUserWithPassword(PDO $db, string $email, string $password) : ?array {
     $stmt = $db->prepare('SELECT * FROM users WHERE email = ?');
     $stmt->execute(array($email));
     $user = $stmt->fetch(); // Fetch only one row
@@ -36,7 +36,7 @@ function getUserWithPassword(PDO $db, string $email, string $password) {
     return false;
 }
 
-function getUserWithIdAndPassword(PDO $db, int $id, string $password) {
+function getUserWithIdAndPassword(PDO $db, int $id, string $password) : ?array {
     $stmt = $db->prepare('SELECT * FROM users WHERE id = ?');
     $stmt->execute(array($id));
     $user = $stmt->fetch(); // Fetch only one row
@@ -48,7 +48,7 @@ function getUserWithIdAndPassword(PDO $db, int $id, string $password) {
     return false;
 }
 
-function getUserWithEmail(PDO $db, string $email) {
+function getUserWithEmail(PDO $db, string $email) : ?array {
     $stmt = $db->prepare('SELECT * FROM users WHERE email = ?');
     $stmt->execute(array($email));
     $user = $stmt->fetch(); // Fetch only one row
@@ -56,7 +56,7 @@ function getUserWithEmail(PDO $db, string $email) {
     return $user;
 }
 
-function getUserWithUsername(PDO $db, string $username) {
+function getUserWithUsername(PDO $db, string $username) : ?array {
     $stmt = $db->prepare('SELECT * FROM users WHERE username = ?');
     $stmt->execute(array($username));
     $user = $stmt->fetch(); // Fetch only one row
@@ -100,7 +100,7 @@ function blockUser(PDO $db, int $id) : ?array {
     execute($db, 'DELETE FROM users WHERE id = ?', array($id));
 }
 
-function getBlockedUser(PDO $db, string $email) {
+function getBlockedUser(PDO $db, string $email) : ?array {
     return fetch($db, 'SELECT * FROM blockedUsers WHERE user = ?', array($email));
 }
 
