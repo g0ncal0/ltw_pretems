@@ -2,7 +2,8 @@
     declare(strict_types = 1);
 
     function output_item(array $product, PDO $db) : void {
-     ?>
+        $session = new Session();
+        ?>
         
         <div class="box-item">             
             <img src="<?php echo $product['firstImg'] ?>">
@@ -13,7 +14,7 @@
                 <p class="info"><span><?php echo getBrand($db, $product['brand'])?></span></p>
                 <div>
                     <p><?php echo $product['price']?></p>
-                    <button data-id="<?php echo $product['id'] ?>"  class="button add-cart">ADD TO CART</button>
+                    <?php if (($session->getId() != $product['user']) || (!session->isLoggedIn())) echo '<button data-id=' . $product['id'] .  ' class="button add-cart">ADD TO CART</button>'; ?>
                 </div>
             </div>
         </div>
