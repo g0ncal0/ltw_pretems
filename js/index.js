@@ -369,9 +369,7 @@ async function get_items(){
                 const errorNotMore = document.createElement('p');
                 errorNotMore.textContent = "You wanted it.. But, we have no more products";
                 list_items.append(errorNotMore);
-                return;
             }
-            console.log(d['products']);
            
             d['products'].forEach((element) => {
                 const t = build_item(element);
