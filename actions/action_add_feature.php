@@ -6,30 +6,20 @@
     $session = new Session();
     $db = getDatabaseConnection();
 
-    // FIXME: Checking should be case insensitive
-    if ($_GET['add'] == 'category'){ // Add category
-        if (!getCategoryWithName($db, $_POST['name'])){ // Add if category doesn't already exist
-            addCategory($db, $_POST['name']);
-            header('Location: ../admin_area.php?area=category&message=Category added successfully!&id=' . $session->getId());
-        } else{
-            header('Location: ../admin_area.php?area=category&message=This category already exists!&id='. $session->getId());
-        }
+    protectActionloggedIn($session);
+
+    if(!areAllElementsListDefined($_POST, array('product'))){
+        header('Location: ../items.php');
     }
-    else if ($_GET['add'] == 'size'){ // Add size
-        if (!getSizeWithName($db, $_POST['name'])){ // Add if size doesn't already exist
-            addSize($db, $_POST['name']);
-            header('Location: ../admin_area.php?area=size&message=Size added successfully!&id=' . $session->getId());
-        } else{
-            header('Location: ../admin_area.php?area=size&message=This size already exists!&id='. $session->getId());
-        }
+
+    $idProduct = $_POST['product'];
+    
+    $seller = getSellerOfProduct($db, (int) $idProduct);
+    $endDate = strtotime("+8 Days");
+    if($seller == $session->getId()){
+        execute($db, 'INSERT INTO featured VALUES (?,?)', array($idProduct, date("Y-m-d h:i:s", $d)));
     }
-    else if ($_GET['add'] == 'condition'){ // Add size
-        if (!getConditionWithName($db, $_POST['name'])){ // Add if size doesn't already exist
-            addCondition($db, $_POST['name']);
-            header('Location: ../admin_area.php?area=condition&message=Condition added successfully!&id=' . $session->getId());
-        } else{
-            header('Location: ../admin_area.php?area=condition&message=Condition already exists!&id='. $session->getId());
-        }
-    }
+
+    header('Location: ../item.php?id=' . $idProduct);
 
 ?>

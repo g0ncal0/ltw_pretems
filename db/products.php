@@ -139,7 +139,7 @@ function changeProduct(PDO $db, string $id, string $name, string $category, stri
     array($name, $category, $brand, $model, $size, $condition, $price, $available, $description, $id));
 }
 
-function deleteProduct(PDO $db, int $id) : void {
+function deleteProduct(PDO $db, string $id) : void {
     $images = getImagesOfProduct($db, $id);
     $product = getProduct($db, $id);
 
@@ -242,7 +242,7 @@ function getFavorites(PDO $db, Session $session) : ?array {
     }
 }
 
-function getFav(PDO $db, int $product, int $user) : ?array {
+function getFav(PDO $db, int $product, ?int $user) : ?array {
     return fetch($db, 'SELECT * FROM favorites WHERE product = ? AND user = ?', array($product, $user));
 }
 

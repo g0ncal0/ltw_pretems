@@ -20,7 +20,7 @@
         </div>
     <?php }
 
-    function output_full_item(array $product, int $id, ?array $images, PDO $db) : void {
+    function output_full_item(array $product, ?int $id, ?array $images, PDO $db) : void {
         $session = new Session();
         ?>
 
@@ -55,18 +55,24 @@
                     </div>
                     <div>
                         <?php if ($id !== $product['user']) {
+                            if(isset($id)){
                             $fav = getFav($db, $product['id'], $id);
                             if (!$fav) { ?>
                                 <button data-id="<?php echo $product['id']?>" class="button add-favorites">FAVORITES</button>
                             <?php } else { ?>
                                 <button data-id="<?php echo $product['id']?>" class="button add-favorites favorited">REMOVE FAVS</button>
-                            <?php } ?>
+                            <?php }} ?>
                             <button data-id="<?php echo $product['id']?>" class="button add-cart">ADD TO CART</button>
                             <a href="chat.php?buyerId=<?php echo $id ?>&productId=<?php echo $product['id']?>"><button class="button">ASK USER</button></a>
                         <?php }    
                         else { ?>
                             <a href="listChats.php?productId=<?php echo $product['id']?>"><button class="button">SEE CHATS</button></a>
                             <a href="changeProduct.php?productId=<?php echo $product['id']?>"><button class="button">EDIT PRODUCT</button></a>
+                            
+                            <form action="/actions/action_add_feature.php" method="post">
+                                <input type="hidden" name="product" value="<?=$product['id']?>">
+                                <button type="submit" class="button">Feature Item</button>
+                            </form>
 
                             <form action="/actions/action_delete_product.php" method="post">
                                 <input type="hidden" name="productId" value="<?php echo $product['id']?>">

@@ -66,9 +66,21 @@ function protectActionloggedIn(?Session $session) : void {
         exit;
     }
     if(!$session->isLoggedIn()){
-        // TODO - improve action here
+        header('Location: /index.php'); // Go back to main page
         exit;
     }
+}
+
+// iterates over all strings and checks if they are defined in POST or GET
+function areAllElementsListDefined(array $list, array $toverify) : bool{
+    foreach($toverify as $el){
+        var_dump($list[$el]);
+        var_dump($el);
+        if(!isset($list[$el])){
+            return false;
+        }
+    }
+    return true;
 }
 
 ?>
