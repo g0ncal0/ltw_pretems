@@ -839,6 +839,36 @@ html footer{
 }
 
 
+.shipping-form{
+    align-items: center;
+    padding: 3rem;
+
+    & .shipping-header{
+        display: none;
+    }
+
+    & .shipping-info{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: auto auto auto auto;
+        align-items: left;
+    }
+}
+
+
+/* Shipping Forms */
+@media print {
+    .shipping-form{
+        padding: 0;
+
+        & .shipping-header{
+            display: block;
+            border-bottom: solid #000000;
+            align-items: center;
+        }
+    }
+}
+
 
 
 /* MOBILE OPTIMIZATIONS **/
@@ -885,5 +915,4 @@ html footer{
         padding-bottom: 2rem;
         border-bottom: solid #b5b5b5;
     }
-
 }
