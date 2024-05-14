@@ -20,6 +20,7 @@
         errorPage("Invalid Purchase", "Invalid");
     }
 
+
     setpaidPurchase($db, $id);
 
     header('Location: /../purchase.php?id=' . $id);

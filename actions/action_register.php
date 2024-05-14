@@ -12,20 +12,19 @@
     }
     $db = getDatabaseConnection();
 
-    $userWithMail = getUserWithEmail($db, $_POST['r-email']);
+    $inputEmail = strtolower($_POST['r-email']); // Emails are case insensitive
+    $userWithMail = getUserWithEmail($db, $inputEmail);
     $userWithUsername = getUserWithUsername($db, $_POST['r-username']);
-    $blockedUser = getBlockedUser($db, $_POST['r-email']);
+    $blockedUser = getBlockedUser($db, $inputEmail);
 
     if ((!$userWithMail) && (!$userWithUsername) && (!$blockedUser)){ // User does not already exist (success)
-       
         $user['name'] = $_POST['r-name'];
-        $user['email'] = $_POST['r-email'];
+        $user['email'] = $inputEmail;
         $user['username'] = $_POST['r-username'];
-        $user['password'] = $_POST['r-password']; // FIXME: Encrypt password with sha1?
-        $user['admin'] = false; // TODO: How does an admin register?
+        $user['password'] = $_POST['r-password']; 
+        $user['admin'] = false; 
         $user['profileImg'] = 'img/profile/profile.png'; 
         
-        // TODO: Check if a field is empty
         if(empty($user['name']) || empty($user['email']) || empty($user['username']) || empty($user['password']) || strlen($user['password']) < 6){
             header('Location: /../register.php?error=Invalid%20Data');
             exit();

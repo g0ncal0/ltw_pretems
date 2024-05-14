@@ -20,6 +20,7 @@ if(!isset($cart)){
 foreach($cart as $item){
     if(!checkItemAvailable($db, $item['id'])){
         errorAPI("One or more item is not available anymore!");
+        emptyCart($db, $session->getId());
         exit;
     }
 }
@@ -54,6 +55,10 @@ if(isset($dicountinfo['percentage'])){
 $idpurchase = md5($session->getId() . date("Y-m-d H:i:s"));
 
 purchase($db, $idpurchase, $session->getId(), $cart);
+
+foreach($cart as $item){
+    addMessage($db, $item['id'], $session->getId(), 0, "THIS IS AN AUTOMATIC MESSAGE \n I HAVE JUST BOUGHT YOUR ITEM.");
+}
 
 $return['total'] = $sum;
 $return['error'] = "Success. Your purchase awaits payment.";

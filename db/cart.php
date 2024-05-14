@@ -18,6 +18,10 @@ function getCart(PDO $db, Session $session) : ?array {
         }
         $cart_items = getItemsOnIDs($db, $elements);
 
+        if(!isset($cart_items)){
+            return array();
+        }
+
         return $cart_items;
     }else{
         $cart = $session->getCart();

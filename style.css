@@ -278,7 +278,6 @@ body header{
         transform: none;
         box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
     }
-    background-color: ;
 }
 
 
@@ -816,7 +815,6 @@ div .message-from{
 
         & .box-item{
             display: flex;
-            padding-right: 1rem;
             flex-wrap: wrap;
         }
     }
@@ -840,6 +838,36 @@ html footer{
     text-align: center;
 }
 
+
+.shipping-form{
+    align-items: center;
+    padding: 3rem;
+
+    & .shipping-header{
+        display: none;
+    }
+
+    & .shipping-info{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: auto auto auto auto;
+        align-items: left;
+    }
+}
+
+
+/* Shipping Forms */
+@media print {
+    .shipping-form{
+        padding: 0;
+
+        & .shipping-header{
+            display: block;
+            border-bottom: solid #000000;
+            align-items: center;
+        }
+    }
+}
 
 
 
@@ -887,5 +915,4 @@ html footer{
         padding-bottom: 2rem;
         border-bottom: solid #b5b5b5;
     }
-
 }
