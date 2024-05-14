@@ -16,9 +16,11 @@ function fetchAll(PDO $db, string $query, ?array $array) : ?array {
     if (!$result) $result = null;
 
     if ($result !== null && isset($result)) {
-        foreach ($result as $key => $value) {
-            if (is_string($value)) {
-                $result[$key] = htmlentities($value);
+        for ($i = 0; $i < count($result); $i++) {
+            foreach ($result[$i] as $key => $value) {
+                if (is_string($value)) {
+                    $result[$i][$key] = htmlentities($value);
+                }
             }
         }
     }

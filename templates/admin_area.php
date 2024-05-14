@@ -10,10 +10,7 @@
         </form>
     <?php }
 
-    function output_existing_categories() : void { 
-        $db = getDatabaseConnection();
-        $categories = getCategories($db);
-
+    function output_existing_categories(?array $categories) : void { 
         ?><h2>Existing categories</h2>
         <ul><?php
             foreach ($categories as $category) {
@@ -31,10 +28,7 @@
         </form>
     <?php }
     
-    function output_existing_sizes() : void { 
-        $db = getDatabaseConnection();
-        $sizes = getSizes($db);
-        
+    function output_existing_sizes(?array $sizes) : void { 
         ?><h2>Existing sizes</h2>
         <ul><?php
             foreach ($sizes as $size) {
@@ -52,10 +46,7 @@
         </form>
     <?php }
     
-    function output_existing_conditions() : void { 
-        $db = getDatabaseConnection();
-        $conditions = getConditions($db);
-        
+    function output_existing_conditions($conditions) : void {  
         ?><h2>Existing conditions</h2>
         <ul><?php
             foreach ($conditions as $condition) {
