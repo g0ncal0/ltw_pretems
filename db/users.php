@@ -25,43 +25,31 @@ function changeProfile(PDO $db, int $id, string $name, string $email, string $pa
 }
 
 function getUserWithPassword(PDO $db, string $email, string $password) : ?array {
-    $stmt = $db->prepare('SELECT * FROM users WHERE email = ?');
-    $stmt->execute(array($email));
-    $user = $stmt->fetch(); // Fetch only one row
+    $user = fetch($db, 'SELECT * FROM users WHERE email = ?', array($email));
 
     if ($user && password_verify($password, $user['password'])) {
         return $user;
     }
 
-    return false;
+    return null;
 }
 
 function getUserWithIdAndPassword(PDO $db, int $id, string $password) : ?array {
-    $stmt = $db->prepare('SELECT * FROM users WHERE id = ?');
-    $stmt->execute(array($id));
-    $user = $stmt->fetch(); // Fetch only one row
+    $user = fetch($db, 'SELECT * FROM users WHERE id = ?', array($id));
 
     if ($user && password_verify($password, $user['password'])) {
         return $user;
     }
 
-    return false;
+    return null;
 }
 
 function getUserWithEmail(PDO $db, string $email) : ?array {
-    $stmt = $db->prepare('SELECT * FROM users WHERE email = ?');
-    $stmt->execute(array($email));
-    $user = $stmt->fetch(); // Fetch only one row
-
-    return $user;
+    return fetch($db, 'SELECT * FROM users WHERE email = ?', array($email));
 }
 
 function getUserWithUsername(PDO $db, string $username) : ?array {
-    $stmt = $db->prepare('SELECT * FROM users WHERE username = ?');
-    $stmt->execute(array($username));
-    $user = $stmt->fetch(); // Fetch only one row
-
-    return $user;
+    return fetch($db, 'SELECT * FROM users WHERE username = ?', array($username));
 }
 
 function addUser(PDO $db, array $user) : void {
