@@ -20,6 +20,7 @@ if(!isset($cart)){
 foreach($cart as $item){
     if(!checkItemAvailable($db, $item['id'])){
         errorAPI("One or more item is not available anymore!");
+        emptyCart($db, $session->getId());
         exit;
     }
 }
