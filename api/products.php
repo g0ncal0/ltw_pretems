@@ -71,7 +71,7 @@
         array_push($arguments, "%" . $searchq . "%");
     }
 
-    if(isset($offset) && strlen($offset) >= 2){
+    if(isset($offset)){
         $query = $query . ' LIMIT 20 OFFSET ?';
         $offset = 20 * $offset;
         array_push($arguments, $offset);

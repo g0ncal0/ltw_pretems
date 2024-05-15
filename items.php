@@ -98,7 +98,7 @@
 
 <div id="products">
 </div>
-<button id="more-items">More items</button>
+<button class="button" id="more-items">More items</button>
 </div>
 
 <?php
