@@ -20,7 +20,7 @@
         </div>
     <?php }
 
-    function output_full_item(array $product, ?int $id, ?array $images, PDO $db) : void {
+    function output_full_item(array $product, ?int $id, ?array $images, array $user, string $category, string $brand, string $size, string $condition, ?array $fav) : void {
         $session = new Session();
         ?>
 
@@ -38,7 +38,6 @@
                         <p class="price-info"><?=$product['price']?>€</p>
                     </div>
                     <div class="user-profile-pr">
-                        <?php $user = getUser($db, $product['user']); ?>
                         <img class="profile-img" src=<?=$user['profileImg']?>>
                         <p><a href="profile.php?id=<?php echo $product['user'] ?>"><?php echo $user['username']?></a></p>
                     </div>
@@ -46,17 +45,16 @@
                 <div>
                     <div>
                         <p><?=$product['description']?></p>
-                        <p><span class="special">Category:</span> <?php echo getCategory($db, $product['category'])?></p>
-                        <p><span class="special">Brand:</span> <?php echo getBrand($db, $product['brand'])?></p>
-                        <p><span class="special">Size:</span> <?php echo getSize($db, $product['size'])?></p>
+                        <p><span class="special">Category:</span> <?php echo $category?></p>
+                        <p><span class="special">Brand:</span> <?php echo $brand?></p>
+                        <p><span class="special">Size:</span> <?php echo $size?></p>
                         <p><span class="special">Model:</span> <?= $product['model']?></p>
-                        <p><span class="special">Condition:</span> <?php echo getCondition($db, $product['condition'])?></span> 
+                        <p><span class="special">Condition:</span> <?php echo $condition?></span> 
                         <p><span class="special">Uploaded:</span> <?= $product['date']?></span> 
                     </div>
                     <div>
                         <?php if ($id !== $product['user']) {
                             if(isset($id)){
-                            $fav = getFav($db, $product['id'], $id);
                             if (!$fav) { ?>
                                 <button data-id="<?php echo $product['id']?>" class="button add-favorites">FAVORITES</button>
                             <?php } else { ?>
@@ -95,7 +93,10 @@
 
     function output_list_items(array $products, PDO $db) : void {?>
         <section id="products" class="container products">
-            <?php foreach($products as $product) output_item($product, $db); ?>
+            <?php foreach($products as $product) {
+                $brand = 
+                output_item($product, $db);
+            } ?>
         </section>
     <?php }
 

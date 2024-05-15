@@ -7,20 +7,24 @@
 
     $db = getDatabaseConnection();
 
-
-
-
     $id = $_GET['id'];
-    $item = getProduct($db, $id);
+    $product = getProduct($db, $id);
+
+    $user = getUser($db, $product['user']);
+    $category = getCategory($db, $product['category']);
+    $brand = getBrand($db, $product['brand']);
+    $size = getSize($db, $product['size']);
+    $condition = getCondition($db, $product['condition']);
+    $fav = getFav($db, $product['id'], $session->getId());
  
     output_header($db, $item['name'], $item['description'], $session->getId());
     
-    if(empty($item)){
+    if(empty($product)){
         errorPage("No item", "The product may have been deleted");
     }
 
     $images = getImagesOfProduct($db, $id);
     
-    output_full_item($item, $session->getId(), $images, $db);
+    output_full_item($product, $session->getId(), $images, $user, $category, $brand, $size, $condition, $fav);
     output_footer();
 ?>

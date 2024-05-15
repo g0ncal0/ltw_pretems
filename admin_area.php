@@ -8,6 +8,10 @@
     $session = new Session();
     $db = getDatabaseConnection();
 
+    $categories = getCategories($db);
+    $sizes = getSizes($db);
+    $conditions = getConditions($db);
+
     protectPage($session);
 
     if ($_GET['area'] == 'category'){
@@ -15,21 +19,21 @@
         ?><section class="container"> 
             <h1>Add Category:</h1><?php
         output_category_form();
-        output_existing_categories();
+        output_existing_categories($categories);
     }
     else if ($_GET['area'] == 'size'){
         output_header($db, 'Add Size', null, $session->getId()); 
         ?><section class="container"> 
             <h1>Add Size:</h1><?php
         output_size_form();
-        output_existing_sizes();
+        output_existing_sizes($sizes);
     }
     else if ($_GET['area'] == 'condition'){
         output_header($db, 'Add Condition', null, $session->getId());
         ?><section class="container"> 
             <h1>Add Condition:</h1><?php 
         output_condition_form();
-        output_existing_conditions();
+        output_existing_conditions($conditions);
     }
 
     if (isset($_GET['message'])) {
