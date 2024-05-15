@@ -5,7 +5,7 @@
 
     function output_header(PDO $db, ?string $pagetitle, ?string $description, ?int $user) : void { ?>
         <!DOCTYPE html>
-        <html>
+        <html lang="en">
         <head>
         <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
@@ -30,7 +30,6 @@
 
             ?>
             <meta charset="utf-8">
-            <meta name="description" content="<?php echo $description ?>">
             <link rel="stylesheet" href="normalize.css">
 
             <link rel="stylesheet" href="style.css">
@@ -41,13 +40,13 @@
 
         </head>
         <body>
-            <section class="promotional">
+            <div class="promotional">
                 <span>Use Code '1234' for 30% OFF</span>
-            </section>
+            </div>
             <header>
                 <span class="hover-underline special-font menu-header">Menu</span>
                 <div class="websiteheader">
-                    <a  href="/"><img class="logo-img" src="/img/logo.png"></a>
+                    <a  href="/"><img class="logo-img" alt="The logo of pretems" src="/img/logo.png"></a>
                 </div>
                 <div class="svg-header"> 
                     <img class="toggle-login elements-menu-header" src="img/profile-login.svg" alt="User Profile">
@@ -56,7 +55,7 @@
             </header>
             <div class="menu"> <!-- MENU -->
                 <span class="special-font hover-underline" id="close-menu" >Close</span>
-                <img class="logo-img" src="/img/logo.png">
+                <img alt="The logo of pretems" class="logo-img" src="/img/logo.png">
                 <?php 
                     output_list_categories($db, "", "nolink");
                 ?>

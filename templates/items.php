@@ -6,7 +6,7 @@
         ?>
         
         <div class="box-item">             
-            <img src="<?php echo $product['firstImg'] ?>">
+            <img alt="<?=$product['description']?>" src="<?php echo $product['firstImg'] ?>">
         
             <div class="box-details">
                 <a href="/item.php?id=<?php echo $product['id']?>">
@@ -27,7 +27,7 @@
         <section class="item-page">
             <div class="item-page-photos">
                 <?php foreach($images as $image) { ?>
-                    <img class="product-imgs" src=<?php echo $image['path']?>>
+                    <img  alt="<?=$product['description']?>" class="product-imgs" src=<?php echo $image['path']?>>
                 <?php } ?>
             </div>
         
@@ -38,7 +38,7 @@
                         <p class="price-info"><?=$product['price']?>€</p>
                     </div>
                     <div class="user-profile-pr">
-                        <img class="profile-img" src=<?=$user['profileImg']?>>
+                        <img alt="Profile Image" class="profile-img" src=<?=$user['profileImg']?>>
                         <p><a href="profile.php?id=<?php echo $product['user'] ?>"><?php echo $user['username']?></a></p>
                     </div>
                 </div>
