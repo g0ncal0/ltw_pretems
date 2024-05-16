@@ -98,7 +98,7 @@
         <button id="submit-filter" class="button">Submit</button>
     </form>
 
-<div class="products">
+<div id="products" class="products">
 </div>
 <button class="button" id="more-items">More items</button>
 </div>
