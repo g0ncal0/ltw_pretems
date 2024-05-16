@@ -20,6 +20,11 @@
     errorAPI("Unauthorized");
     die();
   }
+
+  if ($session->getCSRF() !== $_POST['csrf']) {
+    errorAPI("Unauthorized");
+    die();
+  }
   
   if ($product['user'] == $session->getId()) $fromBuyer = 0;
   else $fromBuyer = 1;

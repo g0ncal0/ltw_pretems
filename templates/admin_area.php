@@ -2,8 +2,10 @@
     declare(strict_types = 1);
 
     /* Add category */
-    function output_category_form() : void { ?>
+    function output_category_form($session) : void { ?>
         <form class="category-form" action="/actions/action_add_by_admin.php?add=category" method="post">
+            <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+
             <label for="name">Category Name:</label>
             <input type="text" id="name" name="name" required>    
             <button class="button" type="submit" value="Add Category">Add Category</button>
@@ -20,8 +22,10 @@
     <?php } 
 
     /* Add size */
-    function output_size_form() : void { ?>
+    function output_size_form(Session $session) : void { ?>
         <form class="size-form" action="/actions/action_add_by_admin.php?add=size" method="post">
+            <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+
             <label for="name">Size Name:</label>
             <input type="text" id="name" name="name" required>    
             <button class="button" type="submit" value="Add Size">Add Size</button>
@@ -38,8 +42,10 @@
     <?php }
     
     /* Add condition */
-    function output_condition_form() : void { ?>
+    function output_condition_form($session) : void { ?>
         <form class="condition-form" action="/actions/action_add_by_admin.php?add=condition" method="post">
+            <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+
             <label for="name">Condition Name:</label>
             <input type="text" id="name" name="name" required>    
             <button class="button" type="submit" value="Add Condition">Add Condition</button>

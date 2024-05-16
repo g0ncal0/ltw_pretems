@@ -18,6 +18,12 @@
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+
+    if ($session->getCSRF() !== $_POST['csrf']) {
+        errorAPI("Unauthorized");
+        die();
+    }
+    
     if(!isset($email) || !isset($password)){
         echo json_encode($response);
         return;

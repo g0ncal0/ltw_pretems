@@ -12,6 +12,8 @@
                <h3>Admin Actions:</h3>
 
                 <form action="/actions/action_block_user.php" method="post">
+                    <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+
                     <input type="hidden" name="userId" value="<?php echo $profile['id']?>">
                     <button type="submit" class="button" onclick="return confirm('Are you sure you want to block this user?')">BLOCK USER</button>
                 </form>

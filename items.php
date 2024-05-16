@@ -5,7 +5,7 @@
     $db = getDatabaseConnection();
     
    
-    output_header($db, "Our catalogue", null, $session->getId());
+    output_header($db, "Our catalogue", null, $session->getId(), $session);
 
     simpleheader("Our catalogue");
 
@@ -33,6 +33,8 @@
 
 <div class="container">
     <form id="form-filter" class="styled-input">
+        <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+
         <label for="size">Size:</label>
         <select name="size" id="size">
             <option value="">Select Size</option>

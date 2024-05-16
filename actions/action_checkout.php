@@ -13,12 +13,16 @@ $discount = $_POST['discount'];
 $address = $_POST['delivery'];
 $zipcode = $_POST['zipcode'];
 
-if(!isset($cart) || empty($cart)){
+if ($session->getCSRF() !== $_POST['csrf']) {
+    header('Location: /purchase.php?id='. $idpurchase . '&error=invalidRequest');
+}
+else if(!isset($cart) || empty($cart)){
     errorAPI("No items..");
     exit;
 }
 // check if elements are all available
 
+else 
 foreach($cart as $item){
     if(!checkItemAvailable($db, $item['id'])){
         errorAPI("One or more item is not available anymore!");

@@ -8,7 +8,7 @@
 
     $purchaseId = $_GET['id'];
 
-    output_header($db, "Your purchase", null, $session->getId());    
+    output_header($db, "Your purchase", null, $session->getId(), $session);    
 
     $purchase = getPurchase($db, $purchaseId, $session->getId());
     if(empty($purchase) || !isset($purchase) || !$session->isLoggedIn()){
@@ -33,6 +33,8 @@
             <p>Your purchase awaits payment</p>
             <h2>Pay</h2>
             <form class="styled-input" method="post" action="/actions/action_pay.php">
+                <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+
                 <label for="card">Credit Card</label>
                 <input type="text" name="card" id="card">
 

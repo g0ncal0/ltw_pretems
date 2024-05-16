@@ -23,8 +23,6 @@
         echo json_encode(getCart($db, $session));
         return;
     }
-    
-    
     if($user !== NULL){
         
         if($type == 'PUT'){

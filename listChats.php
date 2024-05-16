@@ -5,7 +5,7 @@
     $db = getDatabaseConnection();
     
    
-    output_header($db, "List chats", null, $session->getId());
+    output_header($db, "List chats", null, $session->getId(), $session);
 
     simpleheader("List of chats for this product");
 

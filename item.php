@@ -17,7 +17,7 @@
     $condition = getCondition($db, $product['condition']);
     $fav = getFav($db, $product['id'], $session->getId());
  
-    output_header($db, $item['name'], $item['description'], $session->getId());
+    output_header($db, $item['name'], $item['description'], $session->getId(), $session);
     
     if(empty($product)){
         errorPage("No item", "The product may have been deleted");
@@ -25,6 +25,6 @@
 
     $images = getImagesOfProduct($db, $id);
     
-    output_full_item($product, $session->getId(), $images, $user, $category, $brand, $size, $condition, $fav);
+    output_full_item($product, $session->getId(), $images, $user, $category, $brand, $size, $condition, $fav, $session);
     output_footer();
 ?>

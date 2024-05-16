@@ -6,8 +6,11 @@
     $session = new Session();
     $db = getDatabaseConnection();
 
+    if ($session->getCSRF() !== $_POST['csrf']) {
+        header('Location: ../addProduct.php?error=invalidRequest');
+    }
     // FIXME: Checking should be case insensitive
-    if ($_GET['add'] == 'category'){ // Add category
+    else if ($_GET['add'] == 'category'){ // Add category
         if (!getCategoryWithName($db, $_POST['name'])){ // Add if category doesn't already exist
             addCategory($db, $_POST['name']);
             header('Location: ../admin_area.php?area=category&message=Category added successfully!&id=' . $session->getId());

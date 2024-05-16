@@ -1,4 +1,8 @@
 <?php
+    function generate_random_token() {
+        return bin2hex(openssl_random_pseudo_bytes(32));
+    }
+
     class Session {
         private array $messages;
 
@@ -7,6 +11,11 @@
 
         $this->messages = isset($_SESSION['messages']) ? $_SESSION['messages'] : array();
         unset($_SESSION['messages']);
+
+        if (!isset($_SESSION['csrf'])) {
+            $_SESSION['csrf'] = generate_random_token();
+        }
+        
         }
 
         public function isLoggedIn() : bool {
@@ -31,6 +40,10 @@
 
         public function setId(int $id) {
         $_SESSION['id'] = $id;
+        }
+
+        public function getCSRF() {
+        return isset($_SESSION['csrf']) ? $_SESSION['csrf'] : null;  
         }
 
         public function setName(string $name) {

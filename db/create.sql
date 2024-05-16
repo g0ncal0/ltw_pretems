@@ -154,6 +154,7 @@ INSERT INTO brands VALueS (4, 'Salsa');
 INSERT INTO conditions VALUES (1, 'New');
 INSERT INTO conditions VALUES (2, 'Barely used');
 INSERT INTO conditions VALUES (3, 'Used');
+INSERT INTO conditions VALUES (4, 'Very used');
 
 INSERT INTO products VALUES ('Wonderful Dress', 1, '2023-11-12', 1, 1, 'ModeloA', 1, 1, 80.9, 1, 1, 'A beautiful dress only used once. With a beautiful color and all intact.', 'img/products/dress.jpeg'),
 ('Green T-shirt', 2, '2024-1-12', 4, 2, 'ModeloB', 2, 2, 20.1, 1, 1, "You know... it's a t-shirt. nothing very special.", 'img/products/p2_1.jpeg'),

@@ -8,18 +8,20 @@
 
     protectActionloggedIn($session);
 
-    if(!areAllElementsListDefined($_POST, array('product'))){
-        header('Location: ../items.php');
+    if ($session->getCSRF() !== $_POST['csrf']) {
+        header('Location: ../item.php?id=' . $idProduct . '&error=invalidRequest');
     }
 
-    $idProduct = $_POST['product'];
-    
-    $seller = getSellerOfProduct($db, (int) $idProduct);
-    $endDate = strtotime("+8 Days");
-    if($seller == $session->getId()){
-        execute($db, 'INSERT INTO featured VALUES (?,?)', array($idProduct, date("Y-m-d h:i:s", $d)));
-    }
+    else {
+        $idProduct = $_POST['product'];
+        
+        $seller = getSellerOfProduct($db, (int) $idProduct);
+        $endDate = strtotime("+8 Days");
+        if($seller == $session->getId()){
+            execute($db, 'INSERT INTO featured VALUES (?,?)', array($idProduct, date("Y-m-d h:i:s", $d)));
+        }
 
-    header('Location: ../item.php?id=' . $idProduct);
+        header('Location: ../item.php?id=' . $idProduct);
+    }    
 
 ?>

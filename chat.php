@@ -9,7 +9,7 @@
 
     $product = getProduct($db, $productId);
 
-    output_header($db,  "Chat-" . $productId . "-" . $buyerId, null, $session->getId()); ?>
+    output_header($db,  "Chat-" . $productId . "-" . $buyerId, null, $session->getId(), $session); ?>
 
     <script src="/js/chat.js" defer></script>
 
@@ -44,6 +44,8 @@
             </section>
 
             <form id="newCommentForm">
+                <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>    
+
                 <input type="hidden" id="productId" name="productId" value=<?php echo $productId?>>
                 <input type="hidden" id="buyerId" name="buyerId" value=<?php echo $buyerId?>>
 

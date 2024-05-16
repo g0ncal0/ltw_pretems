@@ -14,7 +14,10 @@
 
     $user = getUserWithIdAndPassword($db, $session->getId(), $_POST['currentPassword']);
     
-    if ($user) {
+    if ($session->getCSRF() !== $_POST['csrf']) {
+        header('Location: ../changeProfile.php?error=invalidRequest');
+    }
+    else if ($user) {
         $password = $_POST['newPassword'];
         if ($password === '') $password = $_POST['currentPassword'];
 
@@ -22,7 +25,6 @@
 
         header('Location: ../profile.php?id=' . $session->getId());
     }    
-
     else {
         header('Location: ../changeProfile.php?error=invalidPassword');
     }

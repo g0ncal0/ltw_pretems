@@ -8,7 +8,7 @@
 
     $db = getDatabaseConnection();
 
-    output_header($db, "Your shopping Cart", null, $session->getId());    
+    output_header($db, "Your shopping Cart", null, $session->getId(), $session);    
     simpleheader("Cart");
 
     ?>
@@ -21,6 +21,6 @@
     </div>
 
 <?php
-    output_checkout();
+    output_checkout($session);
     output_footer();
 ?>

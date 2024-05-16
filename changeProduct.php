@@ -14,7 +14,7 @@
     $product = getProduct($db, $_GET['productId']);
     $images = getImagesOfProduct($db, $_GET['productId']);
 
-    output_header($db, 'Change Product', null, $session->getId()); 
+    output_header($db, 'Change Product', null, $session->getId(), $session); 
     protectPage($session);
 
     $error = $_GET['error'];
@@ -41,6 +41,8 @@
         
         <h1>Change Product:</h1>
         <form class="product-form" action="/actions/action_change_product.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+
             <input type="hidden" id="productId" name="productId" value=<?php echo $product['id']?>>
 
             <label for="name">Name:</label>
