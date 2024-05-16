@@ -96,9 +96,8 @@
     <?php }
 
     function output_list_items(array $products, PDO $db) : void {?>
-        <section id="products" class="container products">
+        <section class="products" class="container products">
             <?php foreach($products as $product) {
-                $brand = 
                 output_item($product, $db);
             } ?>
         </section>
