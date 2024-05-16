@@ -18,7 +18,7 @@
         $seller = getSellerOfProduct($db, (int) $idProduct);
         $endDate = strtotime("+8 Days");
         if($seller == $session->getId()){
-            execute($db, 'INSERT INTO featured VALUES (?,?)', array($idProduct, date("Y-m-d h:i:s", $d)));
+            execute($db, 'INSERT INTO featured VALUES (?,?)', array($idProduct, date("Y-m-d h:i:s", $endDate)));
         }
 
         header('Location: ../item.php?id=' . $idProduct);
