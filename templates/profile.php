@@ -51,27 +51,33 @@
     function output_profile_items(?array $favorites,?array $selling_items,?array $sold_items) : void { ?> 
         <h2> Favorites Items </h2> <?php
         if($favorites){
-            foreach ($favorites as $favorite_item) {
-                output_profile_selling_item($favorite_item);
-            }
+            echo "<div id=products>";
+                foreach ($favorites as $favorite_item) {
+                    output_profile_selling_item($favorite_item);
+                }
+            echo "</div>";
         } else {
             echo "<p> No items </p>";
         }
         
         ?> <h2> Items that you are selling </h2> <?php
         if($selling_items){
-            foreach ($selling_items as $selling_item) {
-                output_profile_selling_item($selling_item);
-            }
+            echo "<div id=products>";
+                foreach ($selling_items as $selling_item) {
+                    output_profile_selling_item($selling_item);
+                }
+            echo "</div>";
         } else {
             echo "<p> No items </p>";
         }
 
         ?> <h2> Items that you sold </h2> <?php
         if($sold_items){
+            echo "<div id=products>";
             foreach ($sold_items as $sold_item) {
                 output_profile_sold_item($sold_item);
             }
+            echo "</div>";
         } else {
             echo "<p> No items </p>";
         }
