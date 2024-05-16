@@ -8,7 +8,7 @@
     $id = $session->getId();
     $profile = getUser($db, $id);
 
-    output_header($db, 'Change Profile', null, $session->getId()); 
+    output_header($db, 'Change Profile', null, $session->getId(), $session); 
     protectPage($session);
 
     $error = $_GET['error'];
@@ -21,6 +21,8 @@
         
         <h1>Change Profile:</h1>
         <form class="profile-form" action="/actions/action_change_profile.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+
             <label for="name">Name:</label>
             <input type="text" name="name" id="name" value="<?php echo $profile['name']; ?>">
 

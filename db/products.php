@@ -19,7 +19,7 @@ function getProductsLimitOffset(PDO $db, int $limit, int $offset, int $category)
     }
 }
 
-function getProductsOfUser(PDO $db, int $id) : ?array {
+function getProductsOfUser(PDO $db, $id) : ?array {
     return fetchAll($db, 'SELECT * FROM products WHERE user = ?', array($id));
 }
 
@@ -93,7 +93,7 @@ function getCondition(PDO $db, int $id) : string {
     return fetch($db, 'SELECT name FROM conditions WHERE id = ?', array($id))['name'];
 }
 
-function getConditionWithName(PDO $db, int $id) : ?array {
+function getConditionWithName(PDO $db, string $id) : ?array {
     return fetch($db, 'SELECT * FROM conditions WHERE name = ?', array($id));
 }
 
@@ -139,7 +139,7 @@ function changeProduct(PDO $db, string $id, string $name, string $category, stri
     array($name, $category, $brand, $model, $size, $condition, $price, $available, $description, $id));
 }
 
-function deleteProduct(PDO $db, string $id) : void {
+function deleteProduct(PDO $db, $id) : void {
     $images = getImagesOfProduct($db, $id);
     $product = getProduct($db, $id);
 

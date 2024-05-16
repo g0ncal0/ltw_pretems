@@ -10,19 +10,25 @@
         die();
     }
 
-    if(!isset($id)){
+    else if(!isset($id)){
         errorPage("Error", "Wrong format");
     }
 
-    $purchase = getPurchase($db, $id, $session->getId());
-
-    if(empty($purchase)){
-        errorPage("Invalid Purchase", "Invalid");
+    else if ($session->getCSRF() !== $_POST['csrf']) {
+        header('Location: ../purchase.php?error=invalidRequest');
     }
 
+    else {$purchase = getPurchase($db, $id, $session->getId());
 
-    setpaidPurchase($db, $id);
+        if(empty($purchase)){
+            errorPage("Invalid Purchase", "Invalid");
+        }
 
-    header('Location: /../purchase.php?id=' . $id);
+
+
+        setpaidPurchase($db, $id);
+
+        header('Location: /../purchase.php?id=' . $id);
+    }
 
 ?>

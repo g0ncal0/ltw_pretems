@@ -20,6 +20,11 @@
         return;
     }
     
+    if ($session->getCSRF() !== $_POST['csrf']) {
+        errorAPI("Unauthorized");
+        die();
+    }
+    
     if($user !== NULL){
         
         if($type == 'PUT'){

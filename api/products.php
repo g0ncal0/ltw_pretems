@@ -15,6 +15,11 @@
         return;
     }
 
+    if ($session->getCSRF() !== $_POST['csrf']) {
+        errorAPI("Unauthorized");
+        die();
+    }
+
 
     // Get all the variables
 

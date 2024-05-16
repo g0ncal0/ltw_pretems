@@ -7,9 +7,6 @@
     require_once(__DIR__ . '/../db/users.php');
 
     $session = new Session();
-    if($session->isLoggedIn()){
-        header('Location: /../index.php'); // Go back to main page
-    }
     $db = getDatabaseConnection();
 
     $inputEmail = strtolower($_POST['r-email']); // Emails are case insensitive
@@ -17,7 +14,15 @@
     $userWithUsername = getUserWithUsername($db, $_POST['r-username']);
     $blockedUser = getBlockedUser($db, $inputEmail);
 
-    if ((!$userWithMail) && (!$userWithUsername) && (!$blockedUser)){ // User does not already exist (success)
+    if($session->isLoggedIn()){
+        header('Location: /../index.php'); // Go back to main page
+    }
+
+    else if ($session->getCSRF() !== $_POST['csrf']) {
+        header('Location: ../register.php?error=invalidRequest');
+    }
+
+    else if ((!$userWithMail) && (!$userWithUsername) && (!$blockedUser)){ // User does not already exist (success)
         $user['name'] = $_POST['r-name'];
         $user['email'] = $inputEmail;
         $user['username'] = $_POST['r-username'];

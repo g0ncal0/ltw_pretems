@@ -12,6 +12,8 @@
                <h3>Admin Actions:</h3>
 
                 <form action="/actions/action_block_user.php" method="post">
+                    <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+
                     <input type="hidden" name="userId" value="<?php echo $profile['id']?>">
                     <button type="submit" class="button" onclick="return confirm('Are you sure you want to block this user?')">BLOCK USER</button>
                 </form>
@@ -51,7 +53,7 @@
     function output_profile_items(?array $favorites,?array $selling_items,?array $sold_items) : void { ?> 
         <h2> Favorites Items </h2> <?php
         if($favorites){
-            echo "<div id=products>";
+            echo "<div class=products>";
                 foreach ($favorites as $favorite_item) {
                     output_profile_selling_item($favorite_item);
                 }
@@ -62,7 +64,7 @@
         
         ?> <h2> Items that you are selling </h2> <?php
         if($selling_items){
-            echo "<div id=products>";
+            echo "<div class=products>";
                 foreach ($selling_items as $selling_item) {
                     output_profile_selling_item($selling_item);
                 }
@@ -73,7 +75,7 @@
 
         ?> <h2> Items that you sold </h2> <?php
         if($sold_items){
-            echo "<div id=products>";
+            echo "<div class=products>";
             foreach ($sold_items as $sold_item) {
                 output_profile_sold_item($sold_item);
             }

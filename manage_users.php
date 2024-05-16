@@ -10,7 +10,7 @@ $session = new Session();
 $db = getDatabaseConnection();
 $users = getAllUsers($db);
 
-output_header($db, 'Manage Users', null, $session->getId()); 
+output_header($db, 'Manage Users', null, $session->getId(), $session); 
 protectPage($session);
 simpleheader("Manage Users");
 output_users($users);

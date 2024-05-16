@@ -71,7 +71,7 @@ function isAdmin(PDO $db, int $id) : bool {
     return (bool) $isAdmin;
 }
 
-function blockUser(PDO $db, int $id) : ?array {
+function blockUser(PDO $db, string $id) : void {
     $user = getUser($db, $id);
     $products = getProductsOfUser($db, $id);
 

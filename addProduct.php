@@ -10,7 +10,7 @@
     $sizes = getSizes($db);
     $conditions = getConditions($db);
 
-    output_header($db, 'Add Product', null, $session->getId()); 
+    output_header($db, 'Add Product', null, $session->getId(), $session); 
     protectPage($session);
 
 
@@ -30,6 +30,8 @@
     <section class="container">
         <h1>Add Product:</h1>
         <form class="product-form" action="/actions/action_add_product.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+
             <label for="name">Product Name:</label>
             <input type="text" id="name" name="name" required>
 

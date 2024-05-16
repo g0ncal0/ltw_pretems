@@ -20,9 +20,7 @@
         </div>
     <?php }
 
-    function output_full_item(array $product, ?int $id, ?array $images, array $user, string $category, string $brand, string $size, string $condition, ?array $fav) : void {
-        $session = new Session();
-        ?>
+    function output_full_item(array $product, ?int $id, ?array $images, array $user, string $category, string $brand, string $size, string $condition, ?array $fav, Session $session) : void { ?>
 
         <section class="item-page">
             <div class="item-page-photos">
@@ -68,11 +66,15 @@
                             <a href="changeProduct.php?productId=<?php echo $product['id']?>"><button class="button">EDIT PRODUCT</button></a>
                             
                             <form action="/actions/action_add_feature.php" method="post">
+                                <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+
                                 <input type="hidden" name="product" value="<?=$product['id']?>">
                                 <button type="submit" class="button">Feature Item</button>
                             </form>
 
                             <form action="/actions/action_delete_product.php" method="post">
+                                <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+
                                 <input type="hidden" name="productId" value="<?php echo $product['id']?>">
                                 <button type="submit" class="button" onclick="return confirm('Are you sure you want to delete this product?')">DELETE PRODUCT</button>
                             </form>    
@@ -81,6 +83,8 @@
                             <h3>Admin Actions:</h3>
 
                             <form action="/actions/action_delete_product.php" method="post">
+                                <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+
                                 <input type="hidden" name="productId" value="<?php echo $product['id']?>">
                                 <button type="submit" class="button" onclick="return confirm('Are you sure you want to delete this product?')">DELETE PRODUCT</button>
                             </form> 
@@ -92,9 +96,8 @@
     <?php }
 
     function output_list_items(array $products, PDO $db) : void {?>
-        <section id="products" class="container products">
+        <section class="products" class="container products">
             <?php foreach($products as $product) {
-                $brand = 
                 output_item($product, $db);
             } ?>
         </section>
