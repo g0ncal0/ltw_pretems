@@ -11,7 +11,7 @@
             <p> <?php echo $message['message'] ?> </p>
             <p class="message-from">
                 <?php echo $user['name'] ?>
-                <?php echo $message['date'] ?>
+                <span class="timestamp"> <?php echo $message['date'] ?> </span>
             </p>
         </div>    
     <?php }

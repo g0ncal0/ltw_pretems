@@ -8,7 +8,7 @@ function getMessages(PDO $db, string $productId, string $buyerId) : ?array {
 }
 
 function addMessage(PDO $db, string $productId, string $buyerId, int $fromBuyer, string $message) : void {
-    execute($db, 'INSERT INTO messages (productId, buyerId, fromBuyer, message, date) VALUES (?, ?, ?, ?, ?)', array($productId, $buyerId, $fromBuyer, $message, date("Y-m-d H:i")));
+    execute($db, 'INSERT INTO messages (productId, buyerId, fromBuyer, message, date) VALUES (?, ?, ?, ?, ?)', array($productId, $buyerId, $fromBuyer, $message, date("Y-m-d H:i:s")));
 }
 
 function getMessage(PDO $db, string $productId, string $buyerId, int $fromBuyer, string $message) : ?array {
@@ -17,6 +17,10 @@ function getMessage(PDO $db, string $productId, string $buyerId, int $fromBuyer,
 
 function getChats(PDO $db, int $productId) : ?array {
     return fetchAll($db, 'SELECT DISTINCT users.id, users.username, users.profileImg FROM users JOIN messages ON users.id = messages.buyerId WHERE messages.productId = ?', array($productId));
+}
+
+function getNewMessages(PDO $db, string $productId, string $buyerId, string $lastTime) : ?array {
+    return fetchAll($db, 'SELECT * FROM messages WHERE productId = ? AND buyerId = ? AND date > ?', array($productId, $buyerId, $lastTime));
 }
 
 ?>

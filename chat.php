@@ -30,12 +30,12 @@
             <section class="messages">            
             <?php foreach($messages as $message) {
                 if ($message['fromBuyer']) { ?>
-                    <div class="fromBuyer">
+                    <div class="fromBuyer message">
                         <?php output_message($message, $buyer, true); ?>
                     </div>    
                 <?php }
                 else { ?>
-                    <div class="fromSeller">
+                    <div class="fromSeller message">
                         <?php output_message($message, $seller, false); ?>
                     </div>
 
