@@ -11,6 +11,43 @@ const productId = document.querySelector('#newCommentForm #productId')
 const buyerId = document.querySelector('#newCommentForm #buyerId')
 const newMessage = document.querySelector('#newCommentForm #newMessage')
 
+async function processMessage(message) {
+    const newDiv = document.createElement("div");
+    const newDivMsg = document.createElement("div");
+    
+    let user = null;
+    let userPfp = null;
+
+    if (message.fromBuyer) {
+        user = await getUserName(buyerId.value);
+        userPfp = await getUserPfp(buyerId.value);
+        newDiv.className = "fromBuyer message";
+        newDivMsg.className = "messageFromBuyer";
+    }
+    else {
+        const product = await getProduct(productId.value);
+        user = await getUserName(product.user);
+        userPfp = await getUserPfp(product.user);
+        newDiv.className = "fromSeller message";
+        newDivMsg.className = "messageFromSeller";
+    }
+
+    newDiv.innerHTML = `            
+        <img src="${userPfp}" alt="Profile Image" class="profile-image">        
+    `;
+
+    newDivMsg.innerHTML = `
+        <p>${message.message}</p>
+        <p class='message-from'>
+            ${user} <span class="timestamp"> ${message.date} </span>
+        </p>
+    `;
+
+    const section = document.querySelector('.messages');
+    newDiv.appendChild(newDivMsg);
+    section.appendChild(newDiv);
+}
+
 if (newMessageButton) {
     newMessageButton.addEventListener('click', async function(e) {
         e.preventDefault();
@@ -31,40 +68,7 @@ if (newMessageButton) {
 
         const message = await response.json()
 
-        const newDiv = document.createElement("div");
-        const newDivMsg = document.createElement("div");
-        
-        let user = null;
-        let userPfp = null;
-
-        if (message.fromBuyer) {
-            user = await getUserName(buyerId.value);
-            userPfp = await getUserPfp(buyerId.value);
-            newDiv.className = "fromBuyer message";
-            newDivMsg.className = "messageFromBuyer";
-        }
-        else {
-            const product = await getProduct(productId.value);
-            user = await getUserName(product.user);
-            userPfp = await getUserPfp(product.user);
-            newDiv.className = "fromSeller message";
-            newDivMsg.className = "messageFromSeller";
-        }
-
-        newDiv.innerHTML = `            
-            <img src="${userPfp}" alt="Profile Image" class="profile-image">        
-        `;
-
-        newDivMsg.innerHTML = `
-            <p>${message.message}</p>
-            <p class='message-from'>
-                ${user} <span class="timestamp"> ${message.date} </span>
-            </p>
-        `;
-
-        const section = document.querySelector('.messages');
-        newDiv.appendChild(newDivMsg);
-        section.appendChild(newDiv);
+        processMessage(message)
 
         newMessage.value = ''
     })
@@ -110,43 +114,10 @@ async function updateChat() {
     const section = document.querySelector('.messages');
 
     if (messages != null) {
-        const promises = messages.map(async (message) => {
-            const newDiv = document.createElement("div");
-            const newDivMsg = document.createElement("div");
-            
-            let user = null;
-            let userPfp = null;
-    
-            if (message.fromBuyer) {
-                user = await getUserName(buyerId.value);
-                userPfp = await getUserPfp(buyerId.value);
-                newDiv.className = "fromBuyer message";
-                newDivMsg.className = "messageFromBuyer";
-            } else {
-                const product = await getProduct(productId.value);
-                user = await getUserName(product.user);
-                userPfp = await getUserPfp(product.user);
-                newDiv.className = "fromSeller message";
-                newDivMsg.className = "messageFromSeller";
-            }
-    
-            newDiv.innerHTML = `            
-                <img src="${userPfp}" alt="Profile Image" class="profile-image">        
-            `;
-    
-            newDivMsg.innerHTML = `
-                <p>${message.message}</p>
-                <p class='message-from'>
-                    ${user} <span class="timestamp"> ${message.date} </span>
-                </p>
-            `;
-    
-            newDiv.appendChild(newDivMsg);
-            section.appendChild(newDiv);
+        messages.forEach(message => {
+            processMessage(message);
         });
-    
-        await Promise.all(promises);
-    }  
+    }
 }
 
 setInterval(updateChat, 3000);
