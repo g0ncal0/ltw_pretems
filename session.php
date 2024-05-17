@@ -7,14 +7,14 @@
         private array $messages;
 
         public function __construct() {
-        session_status() === PHP_SESSION_ACTIVE ?: session_start();
+            session_status() === PHP_SESSION_ACTIVE ?: session_start();
 
-        $this->messages = isset($_SESSION['messages']) ? $_SESSION['messages'] : array();
-        unset($_SESSION['messages']);
+            $this->messages = isset($_SESSION['messages']) ? $_SESSION['messages'] : array();
+            unset($_SESSION['messages']);
 
-        if (!isset($_SESSION['csrf'])) {
-            $_SESSION['csrf'] = generate_random_token();
-        }
+            if (!isset($_SESSION['csrf'])) {
+                $_SESSION['csrf'] = generate_random_token();
+            }
         
         }
 

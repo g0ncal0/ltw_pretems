@@ -6,16 +6,6 @@ require_once(__DIR__ . '/../db/products.php');
 
 
 
-function output_featured(PDO $db) : void { 
-    $featured = getFeatured($db); 
-    ?>
-    <section class="container">
-        <h2><span class="special">Featured</span> Items</h2>
-        <?php output_list_items($featured, $db); ?>
-    </section>
-
-<?php }
-
 function output_list_categories(PDO $db, ?string $parentclass, ?string $childclass) : void {
     $categories = getCategories($db);
     echo "<ul class='$parentclass'>";

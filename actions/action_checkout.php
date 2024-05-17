@@ -13,6 +13,8 @@ $discount = $_POST['discount'];
 $address = $_POST['delivery'];
 $zipcode = $_POST['zipcode'];
 
+
+
 if ($session->getCSRF() !== $_POST['csrf']) {
     header('Location: /purchase.php?id='. $idpurchase . '&error=invalidRequest');
 }
@@ -62,6 +64,13 @@ $idpurchase = md5($session->getId() . date("Y-m-d H:i:s"));
 
 purchase($db, $idpurchase, $session->getId(), $cart, $zipcode, $address, $sum);
 emptyCart($db, $session->getId());
+
+foreach($cart as $item){
+    addMessage($db, $item['id'], $session->getId(), 1, "**THIS IS AN AUTOMATIC MESSAGE** \n I HAVE JUST BOUGHT YOUR ITEM.");
+    addMessage($db, $item['id'], $session->getId(), 1, "SEND IT TO ". $address . " at " . $zipcode .". Thank you.");
+
+}
+
 
 header('Location: /purchase.php?id='. $idpurchase);
 

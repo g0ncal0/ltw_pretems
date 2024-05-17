@@ -178,7 +178,7 @@ for (let i = 0; i < rangeInputvalue.length; i++) {
 
 /***** LOGIN ******/
 
-const csrfLogin = document.querySelector("#login-form #csrf");
+const csrfLogin = document.querySelector("#login-form .csrf");
 const loginButton = document.querySelector("#login-submit");
 const emailLogin = document.querySelector("#login-form input[name='Lemail']");
 const passwordLogin = document.querySelector("#login-form input[name='Lpassword']");
@@ -302,7 +302,7 @@ if(registerFormPassword){
 
 /**** ITEMS *****/
 
-const csrf = document.querySelector("#form-filter #csrf");
+const csrf = document.querySelector("#form-filter .csrf");
 const list_items = document.querySelector("#products");
 const button_filter = document.querySelector('#submit-filter');
 const sizeE = document.querySelector("#form-filter #size");

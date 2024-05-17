@@ -10,7 +10,7 @@
         header('Location: /'); 
     }
     else if ($session->getCSRF() !== $_POST['csrf']) {
-        header('Location: ../deleteProduct.php?error=invalidRequest');
+        header('Location: ../deleteProduct.php?error='.  urlencode("This request looks invalid"));
     }
 
     else {

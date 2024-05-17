@@ -33,7 +33,7 @@
 
 <div class="container">
     <form id="form-filter" class="styled-input">
-        <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+        <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
 
         <label for="size">Size:</label>
         <select name="size" id="size">

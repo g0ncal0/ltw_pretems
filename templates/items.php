@@ -14,7 +14,7 @@
                 <p class="info"><span><?php echo getBrand($db, $product['brand'])?></span></p>
                 <div>
                     <p><?php echo $product['price']?>€</p>
-                    <?php if (($session->getId() != $product['user']) || (!$session->isLoggedIn())) echo '<button data-id=' . $product['id'] .  ' class="button add-cart">ADD TO CART</button>'; ?>
+                    <?php if ((($session->getId() != $product['user']) || (!$session->isLoggedIn())) && $product['available']) echo '<button data-id=' . $product['id'] .  ' class="button add-cart">ADD TO CART</button>'; ?>
                 </div>
             </div>
         </div>
@@ -52,15 +52,24 @@
                     </div>
                     <div>
                         <?php if ($id !== $product['user']) {
+                            if($product['available']){
                             if(isset($id)){
-                            if (!$fav) { ?>
-                                <button data-id="<?php echo $product['id']?>" class="button add-favorites">FAVORITES</button>
-                            <?php } else { ?>
-                                <button data-id="<?php echo $product['id']?>" class="button add-favorites favorited">REMOVE FAVS</button>
-                            <?php }} ?>
-                            <button data-id="<?php echo $product['id']?>" class="button add-cart">ADD TO CART</button>
-                            <a href="chat.php?buyerId=<?php echo $id ?>&productId=<?php echo $product['id']?>"><button class="button">ASK USER</button></a>
-                        <?php }    
+                                if (!$fav) { ?>
+
+                                    <button data-id="<?php echo $product['id']?>" class="button add-favorites">FAVORITES</button>
+                                
+                                    <?php } 
+                                    else 
+                                    { ?>
+                                    <button data-id="<?php echo $product['id']?>" class="button add-favorites favorited">REMOVE FAVS</button>
+                                <?php }}
+                                ?>
+
+                                <button data-id="<?php echo $product['id']?>" class="button add-cart">ADD TO CART</button>
+                                <?php } ?>
+                                <a href="chat.php?buyerId=<?php echo $id ?>&productId=<?php echo $product['id']?>"><button class="button">ASK USER</button></a>
+                        <?php }
+
                         else { ?>
                             <a href="listChats.php?productId=<?php echo $product['id']?>"><button class="button">SEE CHATS</button></a>
                             <a href="changeProduct.php?productId=<?php echo $product['id']?>"><button class="button">EDIT PRODUCT</button></a>

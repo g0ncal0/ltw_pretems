@@ -64,4 +64,5 @@ function execute(PDO $db, string $action, array $data) : void {
 
 /******* USEFUL FUNCTIONS ********/
 
+
 ?>

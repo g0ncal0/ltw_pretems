@@ -8,12 +8,14 @@
 
     protectActionloggedIn($session);
 
+    $idProduct = $_POST['product'];
+
     if ($session->getCSRF() !== $_POST['csrf']) {
-        header('Location: ../item.php?id=' . $idProduct . '&error=invalidRequest');
+        header('Location: ../item.php?id=' . urlencode($idProduct) . '&error='. urlencode("This request looks invalid"));
+    
     }
 
     else {
-        $idProduct = $_POST['product'];
         
         $seller = getSellerOfProduct($db, (int) $idProduct);
         $endDate = strtotime("+8 Days");

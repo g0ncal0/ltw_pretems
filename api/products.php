@@ -20,6 +20,14 @@
         die();
     }
 
+    $pId = $_POST['productId'];
+    
+
+    if(isset($pId)){
+        $product = getProduct($db, $_GET['productId']);
+        echo json_encode($product);
+        exit();
+    }
 
     // Get all the variables
 

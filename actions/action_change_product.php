@@ -15,7 +15,8 @@
     $user = getUserWithIdAndPassword($db, $session->getId(), $_POST['currentPassword']);
 
     if ($session->getCSRF() !== $_POST['csrf']) {
-        header('Location: ../changeProduct.php?error=invalidRequest');
+        header('Location: ../changeProduct.php?error='.  urlencode("This request looks invalid"));
+        exit();
     }
     
     else if ($user) {

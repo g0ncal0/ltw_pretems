@@ -21,7 +21,7 @@
     ?>
    
     <div class="container">
-    <p><?=$purchaseId?></p>
+    <p>ID: <?=$purchaseId?></p>
     <p><span class="special">Address:</span> <?=$purchase['address']?></p>
     <p><span class="special">ZipCode:</span> <?=$purchase['zipcode']?></p>
     <p><span class="special">Total amount:</span> <?=$purchase['cost']?>€</p>
@@ -39,7 +39,7 @@
                 <input type="text" name="card" id="card">
 
                 <input type="hidden" name='id' value='<?=$purchaseId?>'>
-                <button class="button" type="submit">PAY</a>
+                <button class="button" type="submit">PAY</button>
             </form>
             <?php
         }else{
@@ -48,6 +48,22 @@
 
     ?>
 
+        <h2>The items you bought</h2>
+
+        <div class="products">
+
+        <?php
+            $itemsPurch = getItemsPurchased($db, $purchaseId);
+
+            foreach($itemsPurch as $itm){
+                $product = getProduct($db, $itm['productid']);
+                output_item($product, $db);
+            }
+
+        
+
+    ?>
+        </div>
 
 
     

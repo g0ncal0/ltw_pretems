@@ -17,7 +17,6 @@
     output_header($db, 'Change Product', null, $session->getId(), $session); 
     protectPage($session);
 
-    $error = $_GET['error'];
 
     function printOptions($elements){
         foreach($elements as $element){
@@ -35,9 +34,7 @@
     ?>
 
     <section class="container">
-        <?php if ($error) { ?>
-            <h1>Invalid Password. Please try again</h1>
-        <?php } ?>
+        
         
         <h1>Change Product:</h1>
         <form class="product-form" action="/actions/action_change_product.php" method="post" enctype="multipart/form-data">

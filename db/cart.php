@@ -48,4 +48,9 @@ function purchase(PDO $db, string $idPurchase, string $userId, array $products, 
     }
 }
 
+
+function getItemsPurchased(PDO $db, string $idPurchase){
+    return fetchAll($db, 'SELECT productid FROM purchaseItems WHERE purchaseid = ?', array($idPurchase));
+}
+
 ?>

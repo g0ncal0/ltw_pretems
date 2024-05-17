@@ -60,6 +60,7 @@ function createProduct(product){
 }
 
 function setPrice(value){
+    value = parseFloat(value);
     price.textContent = value.toFixed(2);
 }
 

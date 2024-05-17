@@ -11,13 +11,10 @@
     output_header($db, 'Change Profile', null, $session->getId(), $session); 
     protectPage($session);
 
-    $error = $_GET['error'];
+    
     ?>
 
     <section class="container">
-        <?php if ($error) { ?>
-            <h1>Invalid Password. Please try again</h1>
-        <?php } ?>
         
         <h1>Change Profile:</h1>
         <form class="profile-form" action="/actions/action_change_profile.php" method="post" enctype="multipart/form-data">
