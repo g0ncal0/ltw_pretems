@@ -44,7 +44,7 @@
             </section>
 
             <form id="newCommentForm">
-                <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>    
+                <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>    
 
                 <input type="hidden" id="productId" name="productId" value=<?php echo $productId?>>
                 <input type="hidden" id="buyerId" name="buyerId" value=<?php echo $buyerId?>>

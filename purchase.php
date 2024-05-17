@@ -33,7 +33,7 @@
             <p>Your purchase awaits payment</p>
             <h2>Pay</h2>
             <form class="styled-input" method="post" action="/actions/action_pay.php">
-                <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+                <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
 
                 <label for="card">Credit Card</label>
                 <input type="text" name="card" id="card">

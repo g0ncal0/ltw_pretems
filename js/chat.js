@@ -10,7 +10,7 @@ const newMessageButton = document.querySelector('#newCommentForm button')
 const productId = document.querySelector('#newCommentForm #productId')
 const buyerId = document.querySelector('#newCommentForm #buyerId')
 const newMessage = document.querySelector('#newCommentForm #newMessage')
-const csrfM = document.querySelector('#newCommentForm #csrf')
+const csrfM = document.querySelector('#newCommentForm .csrf')
 
 async function processMessage(message) {
     const newDiv = document.createElement("div");

@@ -23,7 +23,7 @@
             <p class="special">Checkout</p>
             <h2>In one step, everything will be yours..</h2>
             <form class="styled-input" method="post" action="/actions/action_checkout.php">
-                <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+                <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
 
                 <input name="discount" id="discount" type="hidden"> 
                 <input name="delivery" id="delivery" type="text" placeholder="Delivery Spot">

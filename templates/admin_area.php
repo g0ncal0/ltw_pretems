@@ -4,7 +4,7 @@
     /* Add category */
     function output_category_form($session) : void { ?>
         <form class="category-form" action="/actions/action_add_by_admin.php?add=category" method="post">
-            <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+            <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
 
             <label for="name">Category Name:</label>
             <input type="text" id="name" name="name" required>    
@@ -24,7 +24,7 @@
     /* Add size */
     function output_size_form(Session $session) : void { ?>
         <form class="size-form" action="/actions/action_add_by_admin.php?add=size" method="post">
-            <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+            <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
 
             <label for="name">Size Name:</label>
             <input type="text" id="name" name="name" required>    
@@ -44,7 +44,7 @@
     /* Add condition */
     function output_condition_form($session) : void { ?>
         <form class="condition-form" action="/actions/action_add_by_admin.php?add=condition" method="post">
-            <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+            <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
 
             <label for="name">Condition Name:</label>
             <input type="text" id="name" name="name" required>    

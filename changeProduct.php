@@ -38,7 +38,7 @@
         
         <h1>Change Product:</h1>
         <form class="product-form" action="/actions/action_change_product.php" method="post" enctype="multipart/form-data">
-            <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+            <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
 
             <input type="hidden" id="productId" name="productId" value=<?php echo $product['id']?>>
 

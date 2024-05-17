@@ -75,14 +75,14 @@
                             <a href="changeProduct.php?productId=<?php echo $product['id']?>"><button class="button">EDIT PRODUCT</button></a>
                             
                             <form action="/actions/action_add_feature.php" method="post">
-                                <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+                                <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
 
                                 <input type="hidden" name="product" value="<?=$product['id']?>">
                                 <button type="submit" class="button">Feature Item</button>
                             </form>
 
                             <form action="/actions/action_delete_product.php" method="post">
-                                <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+                                <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
 
                                 <input type="hidden" name="productId" value="<?php echo $product['id']?>">
                                 <button type="submit" class="button" onclick="return confirm('Are you sure you want to delete this product?')">DELETE PRODUCT</button>
@@ -92,7 +92,7 @@
                             <h3>Admin Actions:</h3>
 
                             <form action="/actions/action_delete_product.php" method="post">
-                                <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+                                <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
 
                                 <input type="hidden" name="productId" value="<?php echo $product['id']?>">
                                 <button type="submit" class="button" onclick="return confirm('Are you sure you want to delete this product?')">DELETE PRODUCT</button>
