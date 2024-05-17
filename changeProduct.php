@@ -14,7 +14,7 @@
     $product = getProduct($db, $_GET['productId']);
     $images = getImagesOfProduct($db, $_GET['productId']);
 
-    output_header($db, 'Change Product', null, $session->getId(), $session); 
+    output_header($db, 'Change Product', null, $session->getId()); 
     protectPage($session);
 
 

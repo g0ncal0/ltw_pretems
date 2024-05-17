@@ -16,11 +16,10 @@ $zipcode = $_POST['zipcode'];
 
 
 if ($session->getCSRF() !== $_POST['csrf']) {
-    header('Location: /purchase.php?id='. $idpurchase . '&error=invalidRequest');
+    throw new Exception('CSRF token is invalid.');
 }
 else if(!isset($cart) || empty($cart)){
-    errorAPI("No items..");
-    exit;
+    header('Location: ../cart.php?error=noCart');
 }
 // check if elements are all available
 

@@ -14,12 +14,7 @@
         echo json_encode($response);
         return;
     }
-
-    if ($session->getCSRF() !== $_POST['csrf']) {
-        errorAPI("Unauthorized");
-        die();
-    }
-
+    
     $pId = $_POST['productId'];
     
 

@@ -11,7 +11,7 @@
 
     $profile = getUser($db, $id);
 
-    output_header($db,  $profile['name'] . "'s Profile", null, $session->getId(), $session);
+    output_header($db,  $profile['name'] . "'s Profile", null, $session->getId());
 
     simpleheader("User Profile");
 

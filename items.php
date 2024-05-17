@@ -5,7 +5,7 @@
     $db = getDatabaseConnection();
     
    
-    output_header($db, "Our catalogue", null, $session->getId(), $session);
+    output_header($db, "Our catalogue", null, $session->getId());
 
     simpleheader("Our catalogue");
 

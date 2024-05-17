@@ -3,7 +3,7 @@
     require_once(__DIR__ . '/mixed.php');
     require_once(__DIR__ . '/../session.php');
 
-    function output_header(PDO $db, ?string $pagetitle, ?string $description, ?int $user, Session $session) : void { ?>
+    function output_header(PDO $db, ?string $pagetitle, ?string $description, ?int $user) : void { ?>
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -81,8 +81,6 @@
                 
                 
                 <form class="styled-input bottom-side-menu" action="items.php" method="get">
-                    <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
-
                     <input type="text" placeholder="Search (ENTER)" name="q" title="q">
                 </form>
                 
@@ -93,8 +91,6 @@
                     <p>Get into your account</p>
 
                     <form id="login-form" class="account-form">
-                        <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
-                            
                         <label for="Lemail">Email Address</label>
                         <input type="email" id="Lemail" name="Lemail">
                         <label for="Lpassword">Password</label>

@@ -9,7 +9,7 @@
 
     $product = getProduct($db, $productId);
 
-    output_header($db,  "Chat-" . $productId . "-" . $buyerId, null, $session->getId(), $session); ?>
+    output_header($db,  "Chat-" . $productId . "-" . $buyerId, null, $session->getId()); ?>
 
     <script src="/js/chat.js" defer></script>
 

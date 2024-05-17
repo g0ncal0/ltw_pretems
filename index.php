@@ -4,7 +4,7 @@
     $session = new Session();
 
     $db = getDatabaseConnection();
-    output_header($db, null, null, $session->getId(), $session);
+    output_header($db, null, null, $session->getId());
 ?>
 
     <section class="home-box">

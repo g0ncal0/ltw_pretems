@@ -4,7 +4,7 @@
 
     $db = getDatabaseConnection();
 
-    output_header($db, "Register", null, $session->getId(), $session);
+    output_header($db, "Register", null, $session->getId());
 
 ?>
 

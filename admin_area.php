@@ -15,21 +15,21 @@
     protectPage($session);
 
     if ($_GET['area'] == 'category'){
-        output_header($db, 'Add Category', null, $session->getId(), $session);
+        output_header($db, 'Add Category', null, $session->getId());
         ?><section class="container"> 
             <h1>Add Category:</h1><?php
         output_category_form($session);
         output_existing_categories($categories);
     }
     else if ($_GET['area'] == 'size'){
-        output_header($db, 'Add Size', null, $session->getId(), $session); 
+        output_header($db, 'Add Size', null, $session->getId()); 
         ?><section class="container"> 
             <h1>Add Size:</h1><?php
         output_size_form($session);
         output_existing_sizes($sizes);
     }
     else if ($_GET['area'] == 'condition'){
-        output_header($db, 'Add Condition', null, $session->getId(), $session);
+        output_header($db, 'Add Condition', null, $session->getId());
         ?><section class="container"> 
             <h1>Add Condition:</h1><?php 
         output_condition_form($session);

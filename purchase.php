@@ -8,7 +8,7 @@
 
     $purchaseId = $_GET['id'];
 
-    output_header($db, "Your purchase", null, $session->getId(), $session);    
+    output_header($db, "Your purchase", null, $session->getId());    
 
     $purchase = getPurchase($db, $purchaseId, $session->getId());
     if(empty($purchase) || !isset($purchase) || !$session->isLoggedIn()){

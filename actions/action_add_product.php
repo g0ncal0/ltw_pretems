@@ -10,8 +10,7 @@
     protectActionloggedIn($session);
 
     if ($session->getCSRF() !== $_POST['csrf']) {
-        header('Location: ../addProduct.php?error='. urlencode("This request looks invalid"));
-        exit();
+        throw new Exception('CSRF token is invalid.');
     }
 
     else if(!areAllElementsListDefined($_POST, array('name', 'category', 'brand', 'model', 'size', 'condition', 'price', 'available', 'description'))){

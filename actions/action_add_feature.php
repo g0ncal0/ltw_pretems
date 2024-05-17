@@ -11,8 +11,7 @@
     $idProduct = $_POST['product'];
 
     if ($session->getCSRF() !== $_POST['csrf']) {
-        header('Location: ../item.php?id=' . urlencode($idProduct) . '&error='. urlencode("This request looks invalid"));
-    
+        throw new Exception('CSRF token is invalid.');
     }
 
     else {

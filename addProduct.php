@@ -10,7 +10,7 @@
     $sizes = getSizes($db);
     $conditions = getConditions($db);
 
-    output_header($db, 'Add Product', null, $session->getId(), $session); 
+    output_header($db, 'Add Product', null, $session->getId()); 
     protectPage($session);
 
 

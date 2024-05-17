@@ -15,7 +15,7 @@
     }
 
     else if ($session->getCSRF() !== $_POST['csrf']) {
-        header('Location: ../purchase.php?error=' . urlencode("This request looks invalid") );
+        throw new Exception('CSRF token is invalid.');
     }
 
     else {$purchase = getPurchase($db, $id, $session->getId());
