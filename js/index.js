@@ -178,7 +178,6 @@ for (let i = 0; i < rangeInputvalue.length; i++) {
 
 /***** LOGIN ******/
 
-const csrfLogin = document.querySelector("#login-form .csrf");
 const loginButton = document.querySelector("#login-submit");
 const emailLogin = document.querySelector("#login-form input[name='Lemail']");
 const passwordLogin = document.querySelector("#login-form input[name='Lpassword']");
@@ -191,7 +190,7 @@ async function login(){
         infoLogin.textContent = "Oopss... We don't think that is valid.";
         return;
     }
-    const data = {"email": emailLogin.value, "password": passwordLogin.value, "csrf": csrfLogin.value};
+    const data = {"email": emailLogin.value, "password": passwordLogin.value};
 
     let cart = [];
 
@@ -302,7 +301,6 @@ if(registerFormPassword){
 
 /**** ITEMS *****/
 
-const csrf = document.querySelector("#form-filter .csrf");
 const list_items = document.querySelector("#products");
 const button_filter = document.querySelector('#submit-filter');
 const sizeE = document.querySelector("#form-filter #size");
@@ -360,7 +358,7 @@ async function get_items(){
         // we want to clean out everything.
         list_items.innerHTML = "";
     }
-    const data = {'category': categoryE.value, 'brand': brandE.value, 'size': sizeE.value, 'condition': conditionE.value, 'min': minpriceE.value, 'max': maxpriceE.value, 'offset': offset, 'q': searchI.value, 'csrf': csrf.value}; // define the data
+    const data = {'category': categoryE.value, 'brand': brandE.value, 'size': sizeE.value, 'condition': conditionE.value, 'min': minpriceE.value, 'max': maxpriceE.value, 'offset': offset, 'q': searchI.value}; // define the data
     await fetch('/api/products.php', {method: "post", headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }, body: encodeForAjax(data)}).then((r)=>r.json().then(
