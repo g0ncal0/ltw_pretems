@@ -10,6 +10,7 @@
                 <p id="info-discount"></p>
                 <h3>Total:</h3>
                 <p id="cart-total-price"></p>
+                <p id="anothercurrencies" class="special-font small-info"></p>
                 
                 <button class="proceed-checkout button" type="button">Checkout</button>
             </div>

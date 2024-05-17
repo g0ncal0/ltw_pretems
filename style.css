@@ -34,6 +34,10 @@ h1, h2, h3, h4, h5, h6{
     font-family: 'Now', 'Open Sans';
 }
 
+.small-info{
+    font-size: 0.7rem;
+}
+
 .hover-underline{
     text-underline-offset: 4px;
     &:hover{
