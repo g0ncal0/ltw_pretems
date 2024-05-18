@@ -19,7 +19,7 @@
     
 
     if(isset($pId)){
-        $product = getProduct($db, $_GET['productId']);
+        $product = getProduct($db, $pId);
         echo json_encode($product);
         exit();
     }
