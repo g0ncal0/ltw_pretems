@@ -14,10 +14,9 @@
     $product = getProduct($db, $_GET['productId']);
     $images = getImagesOfProduct($db, $_GET['productId']);
 
-    output_header($db, 'Change Product', null, $session->getId(), $session); 
+    output_header($db, 'Change Product', null, $session->getId()); 
     protectPage($session);
 
-    $error = $_GET['error'];
 
     function printOptions($elements){
         foreach($elements as $element){
@@ -35,13 +34,11 @@
     ?>
 
     <section class="container">
-        <?php if ($error) { ?>
-            <h1>Invalid Password. Please try again</h1>
-        <?php } ?>
+        
         
         <h1>Change Product:</h1>
         <form class="product-form" action="/actions/action_change_product.php" method="post" enctype="multipart/form-data">
-            <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+            <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
 
             <input type="hidden" id="productId" name="productId" value=<?php echo $product['id']?>>
 

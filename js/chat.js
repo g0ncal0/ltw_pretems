@@ -10,7 +10,7 @@ const newMessageButton = document.querySelector('#newCommentForm button')
 const productId = document.querySelector('#newCommentForm #productId')
 const buyerId = document.querySelector('#newCommentForm #buyerId')
 const newMessage = document.querySelector('#newCommentForm #newMessage')
-const csrf = document.querySelector('#newCommentForm #csrf')
+const csrfM = document.querySelector('#newCommentForm .csrf')
 
 async function processMessage(message) {
     const newDiv = document.createElement("div");
@@ -57,7 +57,7 @@ if (newMessageButton) {
             return;
         }
 
-        const data = {"productId": productId.value, "buyerId": buyerId.value, "message": newMessage.value, "csrf": csrf.value};
+        const data = {"productId": productId.value, "buyerId": buyerId.value, "message": newMessage.value, "csrf": csrfM.value};
 
         const response = await fetch('/api/chat.php', {
             method: "post",
@@ -76,19 +76,23 @@ if (newMessageButton) {
 }
 
 async function getUserName(userId) {
-    const response = await fetch(`/api/getUser.php?userId=${userId}`);
+    const response = await fetch(`/api/user.php?userId=${userId}`);
     const data = await response.json();
     return data.name;
 }
 
 async function getProduct(productId) {
-    const response = await fetch(`/api/getProduct.php?productId=${productId}`);
+    const response = await fetch('/api/products.php', {method: "post", headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: encodeForAjax({'productId': productId})});
+
     const data = await response.json();
     return data;
 }
 
 async function getUserPfp(userId){
-    const response = await fetch(`/api/getUser.php?userId=${userId}`);
+    const response = await fetch(`/api/user.php?userId=${userId}`);
     const data = await response.json();
     return data.profileImg;
 }

@@ -19,7 +19,7 @@
     }
 
     else if ($session->getCSRF() !== $_POST['csrf']) {
-        header('Location: ../register.php?error=invalidRequest');
+        throw new Exception('CSRF token is invalid.');
     }
 
     else if ((!$userWithMail) && (!$userWithUsername) && (!$blockedUser)){ // User does not already exist (success)

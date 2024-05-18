@@ -13,6 +13,9 @@
     --black: #000000;
     --white: #FFFFFF;
     --promotional: #cecece;
+    --error: #f2aaaa;
+    --radius-normal: 15px;
+    --spaced: 1rem;
 }
 
 
@@ -29,6 +32,10 @@ h1, h2, h3, h4, h5, h6{
 
 .special-font{
     font-family: 'Now', 'Open Sans';
+}
+
+.small-info{
+    font-size: 0.7rem;
 }
 
 .hover-underline{
@@ -79,6 +86,13 @@ main{
 }
 
 
+.errorinfo{
+    background-color: var(--error);
+    border-radius: var(--radius-normal);
+    padding: var(--spaced);
+    max-width: 500px;
+    margin: auto;
+}
 
 
 
@@ -167,7 +181,7 @@ body header{
         margin-top: 15%;
         background-color: var(--background-color);
         padding: 3rem;
-        border-radius: 10px;
+        border-radius: var(--radius-normal);
         z-index: 15;
     }
     a:hover 
@@ -208,7 +222,7 @@ body header{
 }
 
 .box-item{
-    border-radius: 12px;
+    border-radius: var(--radius-normal);
     width: 24rem;
 
     max-width: 90%;
@@ -428,7 +442,7 @@ body header{
 .header-content{
     background-color: var(--main);
     color: white;
-    border-radius: 16px;
+    border-radius: var(--radius-normal);
     margin: 8px;
     padding: 2rem 4rem;
     text-align: center;
@@ -539,7 +553,7 @@ input[type="range"]::-webkit-slider-thumb {
     align-items: center;
     margin-bottom: 10px;
     padding: 2em;
-    border-radius: 2em;
+    border-radius: var(--radius-normal);
 }
 
 .manage-users .manage-user-info, .list-chats .user-info{

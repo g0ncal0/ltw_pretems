@@ -4,7 +4,7 @@
 
     $db = getDatabaseConnection();
 
-    output_header($db, "Register", null, $session->getId(), $session);
+    output_header($db, "Register", null, $session->getId());
 
 ?>
 
@@ -19,7 +19,7 @@
         if ($error == 'InvalidBlockedUser') echo '<p class="error-message">Sorry, you are blocked for not respecting the rules of our site.';
         ?>
         <form id="register-account" class="account-form" action="actions/action_register.php" method="post">
-            <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+            <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
 
             <label for="name">Name</label>
             <input required type="text" name="r-name" id="r-name">

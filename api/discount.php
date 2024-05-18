@@ -32,6 +32,10 @@
         echo json_encode($r);
         die();
     }
+  }else{
+    $r['error'] = 'The min amount of ' . $discount['minamount'] . '€ was not met.';
+    echo json_encode($r);
+    die();
   }
   
 

@@ -8,7 +8,7 @@
 
     $db = getDatabaseConnection();
 
-    output_header($db, "Your shopping Cart", null, $session->getId(), $session);    
+    output_header($db, "Your shopping Cart", null, $session->getId());    
     simpleheader("Cart");
 
     ?>

@@ -7,7 +7,7 @@
     $db = getDatabaseConnection();
 
     if ($session->getCSRF() !== $_POST['csrf']) {
-        header('Location: ../addProduct.php?error=invalidRequest');
+        throw new Exception('CSRF token is invalid.');
     }
     // FIXME: Checking should be case insensitive
     else if ($_GET['add'] == 'category'){ // Add category

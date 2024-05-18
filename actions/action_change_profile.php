@@ -15,7 +15,7 @@
     $user = getUserWithIdAndPassword($db, $session->getId(), $_POST['currentPassword']);
     
     if ($session->getCSRF() !== $_POST['csrf']) {
-        header('Location: ../changeProfile.php?error=invalidRequest');
+        throw new Exception('CSRF token is invalid.');
     }
     else if ($user) {
         $password = $_POST['newPassword'];

@@ -59,8 +59,14 @@ function createProduct(product){
     cart.appendChild(div);
 }
 
-function setPrice(value){
+async function setPrice(value){
+    value = parseFloat(value);
+    let conv = await fetch(`api/coinconversion.php?amount=${value}`);
+    let d = await conv.json();
     price.textContent = value.toFixed(2);
+    if(value != 0){
+        document.querySelector("#anothercurrencies").textContent = `${d['dollar'].toFixed(2)}$ | ${d['frank'].toFixed(2)} CHF | ${d['pound'].toFixed(2)}£`
+    }
 }
 
 async function updateCart(){

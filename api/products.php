@@ -14,12 +14,15 @@
         echo json_encode($response);
         return;
     }
+    
+    $pId = $_POST['productId'];
+    
 
-    if ($session->getCSRF() !== $_POST['csrf']) {
-        errorAPI("Unauthorized");
-        die();
+    if(isset($pId)){
+        $product = getProduct($db, $_GET['productId']);
+        echo json_encode($product);
+        exit();
     }
-
 
     // Get all the variables
 

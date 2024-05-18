@@ -10,7 +10,7 @@
         header('Location: /'); 
     }
     else if ($session->getCSRF() !== $_POST['csrf']) {
-        header('Location: ../addProduct.php?error=invalidRequest');
+        throw new Exception('CSRF token is invalid.');
     }
 
     else  {

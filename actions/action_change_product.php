@@ -15,7 +15,7 @@
     $user = getUserWithIdAndPassword($db, $session->getId(), $_POST['currentPassword']);
 
     if ($session->getCSRF() !== $_POST['csrf']) {
-        header('Location: ../changeProduct.php?error=invalidRequest');
+        throw new Exception('CSRF token is invalid.');
     }
     
     else if ($user) {

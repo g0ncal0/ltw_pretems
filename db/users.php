@@ -10,6 +10,10 @@ function getUser(PDO $db, $user) : ?array {
     return fetch($db, 'SELECT * FROM users WHERE id = ?', array($user));
 }
 
+function getNamePhotoUser(PDO $db, $user) : ?array{
+    return fetch($db, 'SELECT name, profileImg FROM users WHERE id=?', array($user));
+}
+
 function changeProfile(PDO $db, int $id, string $name, string $email, string $password, ?array $image) : void {
     $options = ['cost' => 12];
     $password = password_hash($password, PASSWORD_DEFAULT, $options);

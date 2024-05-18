@@ -3,7 +3,7 @@
     require_once(__DIR__ . '/mixed.php');
     require_once(__DIR__ . '/../session.php');
 
-    function output_header(PDO $db, ?string $pagetitle, ?string $description, ?int $user, Session $session) : void { ?>
+    function output_header(PDO $db, ?string $pagetitle, ?string $description, ?int $user) : void { ?>
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -53,6 +53,12 @@
                     <a href="/cart.php"><img class="elements-menu-header" src="img/cart.svg" alt="Cart"></a>
                 </div>
             </header>
+            <?php if(isset($_GET['error'])){?>
+                    <div class="errorinfo">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <?=htmlspecialchars($_GET['error'])?>
+                    </div>
+            <?php }?>
             <div class="menu"> <!-- MENU -->
                 <span class="special-font hover-underline" id="close-menu" >Close</span>
                 <img alt="The logo of pretems" class="logo-img" src="/img/logo.png">
@@ -71,11 +77,10 @@
                         <img class="toggle-login elements-menu-header" src="img/profile-login.svg" alt="User Profile">
                         <a href="/cart.php"><img class="elements-menu-header" src="img/cart.svg" alt="Cart"></a>
                 </div>
+
                 
                 
                 <form class="styled-input bottom-side-menu" action="items.php" method="get">
-                    <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
-
                     <input type="text" placeholder="Search (ENTER)" name="q" title="q">
                 </form>
                 
@@ -86,8 +91,6 @@
                     <p>Get into your account</p>
 
                     <form id="login-form" class="account-form">
-                        <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
-                            
                         <label for="Lemail">Email Address</label>
                         <input type="email" id="Lemail" name="Lemail">
                         <label for="Lpassword">Password</label>

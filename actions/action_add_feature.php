@@ -8,12 +8,13 @@
 
     protectActionloggedIn($session);
 
+    $idProduct = $_POST['product'];
+
     if ($session->getCSRF() !== $_POST['csrf']) {
-        header('Location: ../item.php?id=' . $idProduct . '&error=invalidRequest');
+        throw new Exception('CSRF token is invalid.');
     }
 
     else {
-        $idProduct = $_POST['product'];
         
         $seller = getSellerOfProduct($db, (int) $idProduct);
         $endDate = strtotime("+8 Days");

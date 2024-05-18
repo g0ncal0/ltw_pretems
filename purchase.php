@@ -8,7 +8,7 @@
 
     $purchaseId = $_GET['id'];
 
-    output_header($db, "Your purchase", null, $session->getId(), $session);    
+    output_header($db, "Your purchase", null, $session->getId());    
 
     $purchase = getPurchase($db, $purchaseId, $session->getId());
     if(empty($purchase) || !isset($purchase) || !$session->isLoggedIn()){
@@ -21,7 +21,7 @@
     ?>
    
     <div class="container">
-    <p><?=$purchaseId?></p>
+    <p>ID: <?=$purchaseId?></p>
     <p><span class="special">Address:</span> <?=$purchase['address']?></p>
     <p><span class="special">ZipCode:</span> <?=$purchase['zipcode']?></p>
     <p><span class="special">Total amount:</span> <?=$purchase['cost']?>€</p>
@@ -33,13 +33,13 @@
             <p>Your purchase awaits payment</p>
             <h2>Pay</h2>
             <form class="styled-input" method="post" action="/actions/action_pay.php">
-                <input type="hidden" id="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
+                <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
 
                 <label for="card">Credit Card</label>
                 <input type="text" name="card" id="card">
 
                 <input type="hidden" name='id' value='<?=$purchaseId?>'>
-                <button class="button" type="submit">PAY</a>
+                <button class="button" type="submit">PAY</button>
             </form>
             <?php
         }else{
@@ -48,6 +48,22 @@
 
     ?>
 
+        <h2>The items you bought</h2>
+
+        <div class="products">
+
+        <?php
+            $itemsPurch = getItemsPurchased($db, $purchaseId);
+
+            foreach($itemsPurch as $itm){
+                $product = getProduct($db, $itm['productid']);
+                output_item($product, $db);
+            }
+
+        
+
+    ?>
+        </div>
 
 
     

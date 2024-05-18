@@ -22,8 +22,7 @@
   }
 
   if ($session->getCSRF() !== $_POST['csrf']) {
-    errorAPI("Unauthorized");
-    die();
+    throw new Exception('CSRF token is invalid.');
   }
   
   if ($product['user'] == $session->getId()) $fromBuyer = 0;
