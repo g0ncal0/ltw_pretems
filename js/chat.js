@@ -6,6 +6,12 @@ function encodeForAjax(data) {
     }).join('&')
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+let isLocked = false;
+
 const newMessageButton = document.querySelector('#newCommentForm button')
 const productId = document.querySelector('#newCommentForm #productId')
 const buyerId = document.querySelector('#newCommentForm #buyerId')
@@ -53,6 +59,12 @@ if (newMessageButton) {
     newMessageButton.addEventListener('click', async function(e) {
         e.preventDefault();
 
+        while (isLocked) {
+            await sleep(100);
+        }
+
+        isLocked = true;
+
         if(!productId.value || !buyerId.value || !newMessage.value){
             return;
         }
@@ -72,6 +84,8 @@ if (newMessageButton) {
         processMessage(message)
 
         newMessage.value = ''
+
+        isLocked = false;
     })
 }
 
@@ -114,6 +128,10 @@ async function fetchNewMessages(productId, buyerId, lastTime) {
 }
 
 async function updateChat() {
+    if (isLocked) return;
+
+    isLocked = true;
+
     const lastTime = getLastMessageTimestamp();
     const messages = await fetchNewMessages(productId.value, buyerId.value, lastTime);
     const section = document.querySelector('.messages');
@@ -123,6 +141,8 @@ async function updateChat() {
             processMessage(message);
         });
     }
+
+    isLocked = false;
 }
 
-setInterval(updateChat, 3000);
+setInterval(updateChat, 4000);
