@@ -139,7 +139,9 @@
     }
 
     function output_profile_other_user(array $profile, ?array $selling_items) : void { ?>
-        <section class="profile-page container"><?php
+        < class="profile-page container"><?php
+            echo "<div class=products>";
+
             output_profile_top($profile);?>
 
             <h2> Items that the user is selling </h2> <?php
@@ -149,7 +151,8 @@
                 }
             } else {
                 echo "<p> No items </p>";
-            } ?>
+            } 
+            echo "</div>"; ?>
 
         </section><?php
     }
