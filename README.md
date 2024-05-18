@@ -4,7 +4,7 @@
 ## Group ltw00g00
 
 - Filipe Correia (up202206776) %
-- Gonçalo Nunes (up2022) %
+- Gonçalo Nunes (up202205538) %
 - Vanessa Queirós (up2022) %
 
 ## Install Instructions
@@ -70,7 +70,7 @@ We also implemented the following additional requirements:
 - [ ] **Rating and Review System**
 - [x] **Promotional Features**
 - [ ] **Analytics Dashboard**
-- [ ] **Multi-Currency Support**
+- [x] **Multi-Currency Support**
 - [ ] **Item Swapping**
 - [x] **API Integration**
 - [x] **Dynamic Promotions**
