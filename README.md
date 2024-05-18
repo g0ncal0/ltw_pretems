@@ -5,7 +5,7 @@
 
 - Filipe Correia (up202206776) %
 - Gonçalo Nunes (up202205538) %
-- Vanessa Queirós (up2022) %
+- Vanessa Queirós (up202207919) %
 
 ## Install Instructions
 
@@ -61,7 +61,7 @@ We have been careful with the following security aspects:
 - [x] **Cross-Site Scripting (XSS)**
 - [x] **Cross-Site Request Forgery (CSRF)**
 
-**Password Storage Mechanism**: md5 / sha1 / sha256 / *hash_password&verify_password*
+**Password Storage Mechanism**: hash_password&verify_password
 
 **Aditional Requirements**:
 
