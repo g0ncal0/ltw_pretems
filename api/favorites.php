@@ -20,10 +20,6 @@
         return;
     }
     
-    if ($session->getCSRF() !== $_POST['csrf']) {
-        throw new Exception('CSRF token is invalid.');
-    }
-    
     if($user !== NULL){
         
         if($type == 'PUT'){
