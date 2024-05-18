@@ -46,6 +46,7 @@
             <a href="admin_area.php?area=category"><button class="button">Add Category</button></a>
             <a href="admin_area.php?area=size"><button class="button">Add Size</button></a>
             <a href="admin_area.php?area=condition"><button class="button">Add Condition</button></a>
+            <a href="admin_area.php?area=brand"><button class="button">Add Brand</button></a>
             <a href="manage_users.php"><button class="button">Manage Users</button></a>
         </div>
     <?php }

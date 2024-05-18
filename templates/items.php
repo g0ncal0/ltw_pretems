@@ -78,7 +78,7 @@
                                 <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
 
                                 <input type="hidden" name="product" value="<?=$product['id']?>">
-                                <button type="submit" class="button">Feature Item</button>
+                                <button type="submit" class="button">FEATURE ITEM</button>
                             </form>
 
                             <form action="/actions/action_delete_product.php" method="post">

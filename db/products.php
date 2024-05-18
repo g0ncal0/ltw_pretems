@@ -61,6 +61,10 @@ function getBrands(PDO $db) : ?array {
     return fetchAll($db, 'SELECT * FROM brands', null);
 }
 
+function getBrandWithName(PDO $db, string $id) : ?array {
+    return fetch($db, 'SELECT * FROM brands WHERE name = ?', array($id));
+}
+
 function getSizes(PDO $db) : ?array {
     return fetchAll($db, 'SELECT * FROM sizes', null);
 }
@@ -174,6 +178,10 @@ function addSize(PDO $db, string $name) : void {
 
 function addCondition(PDO $db, string $name) : void {
     execute($db, 'INSERT INTO conditions (name) VALUES (?)', array($name));
+}
+
+function addBrand(PDO $db, string $name) : void {
+    execute($db, 'INSERT INTO brands (name) VALUES (?)', array($name));
 }
 
 function checkItemAvailable(PDO $db, int $item) : int {

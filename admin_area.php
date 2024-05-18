@@ -11,6 +11,7 @@
     $categories = getCategories($db);
     $sizes = getSizes($db);
     $conditions = getConditions($db);
+    $brands = getBrands($db);
 
     protectPage($session);
 
@@ -34,6 +35,13 @@
             <h1>Add Condition:</h1><?php 
         output_condition_form($session);
         output_existing_conditions($conditions);
+    }
+    else if ($_GET['area'] == 'brand'){
+        output_header($db, 'Add Brand', null, $session->getId());
+        ?><section class="container"> 
+            <h1>Add Brand:</h1><?php 
+        output_brand_form($session);
+        output_existing_brands($brands);
     }
 
     if (isset($_GET['message'])) {
