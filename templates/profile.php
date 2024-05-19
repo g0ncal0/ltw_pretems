@@ -9,15 +9,15 @@
                 <a href="changeProfile.php"><button class="button">✏️ Edit Profile</button></a>
             <?php }
             else if ($session->getAdmin()) { ?>
-               <h3>Admin Actions:</h3>
-
+                </div>
                 <form action="/actions/action_block_user.php" method="post">
+                <h2>Admin Actions</h2>
                     <input type="hidden" class="csrf" name="csrf" value=<?php echo $session->getCSRF() ?>>
-
                     <input type="hidden" name="userId" value="<?php echo $profile['id']?>">
                     <button type="submit" class="button" onclick="return confirm('Are you sure you want to block this user?')">BLOCK USER</button>
                 </form>
-            <?php } ?>
+                <?php return;
+            } ?>
         </div>
     <?php } 
 
@@ -87,6 +87,7 @@
     }
 
     function output_profile_selling_item(array $product) : void {    
+        $session = new Session(); 
         $db = getDatabaseConnection();     
         ?><div class="box-item">             
             <img src="<?php echo $product['firstImg'] ?>">
@@ -98,7 +99,8 @@
                 <div>
                     <p><?php echo $product['price']?>€</p>
                 </div>
-            </div>
+                <?php if ((($session->getId() != $product['user']) || (!$session->isLoggedIn())) && $product['available']) echo '<button data-id=' . $product['id'] .  ' class="button add-cart">ADD TO CART</button>'; ?>            
+            </div> 
         </div>
     <?php }
 
@@ -140,12 +142,10 @@
     }
 
     function output_profile_other_user(array $profile, ?array $selling_items) : void { ?>
-        < class="profile-page container"><?php
-            echo "<div class=products>";
-
+        <section class="profile-page container"><?php
             output_profile_top($profile);?>
-
-            <h2> Items that the user is selling </h2> <?php
+            <h2> Items that the user is selling </h2> 
+            <div class=products> <?php
             if($selling_items){
                 foreach ($selling_items as $selling_item) {
                     output_profile_selling_item($selling_item);
