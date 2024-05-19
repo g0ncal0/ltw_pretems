@@ -147,7 +147,6 @@ INSERT INTO sizes VALUES (4, 'L');
 INSERT INTO sizes VALUES (5, 'XL');
 
 INSERT INTO brands VALUES (1, 'Other');
-INSERT INTO brands VALUES (1, 'Nike');
 INSERT INTO brands VALUES (2, 'Adidas');
 INSERT INTO brands VALUES (3, 'Pull n Bear');
 INSERT INTO brands VALueS (4, 'Salsa');
