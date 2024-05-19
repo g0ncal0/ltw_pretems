@@ -5,7 +5,7 @@
 
     $session = new Session();
 
-    protectAPIloggedIN($session);
+    //protectAPIloggedIN($session);
 
 
     // Let's imagine that 1€ = 1.08 dollars
