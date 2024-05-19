@@ -3,9 +3,9 @@
 
 ## Group ltw15g03
 
-- Filipe Correia (up202206776) %
-- Gonçalo Nunes (up202205538) %
-- Vanessa Queirós (up202207919) %
+- Filipe Correia (up202206776) 35%
+- Gonçalo Nunes (up202205538) 35%
+- Vanessa Queirós (up202207919) 30%
 
 ## Install Instructions
 
