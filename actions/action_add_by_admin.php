@@ -9,7 +9,6 @@
     if ($session->getCSRF() !== $_POST['csrf']) {
         throw new Exception('CSRF token is invalid.');
     }
-    // FIXME: Checking should be case insensitive
     else if ($_GET['add'] == 'category'){ // Add category
         if (!getCategoryWithName($db, $_POST['name'])){ // Add if category doesn't already exist
             addCategory($db, $_POST['name']);

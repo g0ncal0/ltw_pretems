@@ -3,7 +3,7 @@
 
     require_once('../include.php');
 
-    $session = new Session();  // TODO: change
+    $session = new Session(); 
 
 
     if(!$session->isLoggedIn()){

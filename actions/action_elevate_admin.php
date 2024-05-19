@@ -3,7 +3,7 @@
 
     
 
-    $session = new Session();  // TODO: change
+    $session = new Session();  
     $db = getDatabaseConnection();
     $user = getUser($db, $_GET['id']);
 

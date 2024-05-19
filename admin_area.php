@@ -1,8 +1,4 @@
 <?php
-    /* TODO:
-    - (Option to remove a category / size,... => Remove for all items containing it!)
-    */
-
     require_once('include.php');
 
     $session = new Session();
