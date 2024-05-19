@@ -1,7 +1,7 @@
 
-# Your Project Name
+# Pretems
 
-## Group ltw00g00
+## Group ltw15g03
 
 - Filipe Correia (up202206776) %
 - Gonçalo Nunes (up202205538) %
@@ -24,7 +24,29 @@ We have used the following external libraries:
 
 ## Screenshots
 
-(2 or 3 screenshots of your website)
+Several screenshots of our website. Using mobile and PC.
+
+![image](https://github.com/FEUP-LTW-2024/ltw-project-2024-ltw15g03/assets/68955432/b3e5cf02-d2fc-424f-9daf-0f976f3794d0)
+
+![image](https://github.com/FEUP-LTW-2024/ltw-project-2024-ltw15g03/assets/68955432/3dfdb9b6-581a-4941-8d43-97e2bf9267ab)
+
+
+![image](https://github.com/FEUP-LTW-2024/ltw-project-2024-ltw15g03/assets/68955432/bed3560e-6c53-40da-a4df-5842028c3d73)
+
+![image](https://github.com/FEUP-LTW-2024/ltw-project-2024-ltw15g03/assets/68955432/721b0dd8-ce5c-45ef-9b55-3dbf93b9a0f7)
+
+<video src="https://github.com/FEUP-LTW-2024/ltw-project-2024-ltw15g03/assets/68955432/d51fb7b2-0bce-44b1-9888-962ec816c354" 
+ width="320" height="240" controls></video>
+
+<video src="https://github.com/FEUP-LTW-2024/ltw-project-2024-ltw15g03/assets/68955432/534ed423-69eb-4a1e-8021-1bd183e93ad7"  
+ width="320" height="240" controls></video>
+
+
+
+
+(Link for the videos: https://github.com/FEUP-LTW-2024/ltw-project-2024-ltw15g03/assets/68955432/d51fb7b2-0bce-44b1-9888-962ec816c354; https://github.com/FEUP-LTW-2024/ltw-project-2024-ltw15g03/assets/68955432/534ed423-69eb-4a1e-8021-1bd183e93ad7)
+
+
 
 ## Implemented Features
 
